@@ -1,7 +1,6 @@
 package es.unileon.prg1.blablakid;
 public class Kids{
 	
-	int maxNumOfKids;
 	private Kid kids[];
 	private int siguiente;
 	
@@ -13,21 +12,19 @@ public class Kids{
 	
 	
 	/*
-	 * Comprueba que el número de niños sea correcto, de modo que no puede ser inferior a 1.
-	 * @param Número máximo de niños recibido en tiempo de ejecución
+	 * Comprueba que el nï¿½mero de niï¿½os sea correcto, de modo que no puede ser inferior a 1.
+	 * @param Numero maximo de niï¿½os recibido en tiempo de ejecuciï¿½n
 	 * @return Nada
 	 */
 	protected void isNumOfKidsValid(int numKids) throws BlaException {
-		if(numKids > 0) {
-			maxNumOfKids = numKids;
-		} else {
-			throw new BlaException("Error: El número de niños pasado como parámetro en la ejecución no es válido. Introduca un valor positivo y mayor que 0. ");
-		}
+		if(numKids <= 0) {
+			throw new BlaException("Error: El numero de niÃ±os pasado como parametro en la ejecucion no es valido. Introduca un valor positivo y mayor que 0. ");
+		} 
 	}
 	
 	protected boolean addKid(String name) {
 		Boolean isSave = false;
-		if(!checkKidExists(name) && this.siguiente <= maxNumOfKids) {
+		if(!checkKidExists(name) && this.siguiente < kids.length) {
 			kids[this.siguiente] = new Kid(name);	
 			this.siguiente++;
 			isSave = true;
@@ -61,7 +58,7 @@ public class Kids{
 			}
 			
 		} else {
-			System.out.println("Error: El niño introducido no existe");
+			System.out.println("Error: El niï¿½o introducido no existe");
 		}
 		return checkDelete;
 	}

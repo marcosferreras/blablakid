@@ -3,17 +3,22 @@ package es.unileon.prg1.blablakid;
 public class MainBlablakid{
 
 	public static void main(String[] args) {
-		Blablakid blablakid;
-		try {
-			if (args.length == 1) {
-				int maxNumOfKids = Integer.parseInt(args[0]);
-				blablakid = new Blablakid(maxNumOfKids);
+			int maxNumOfKids = 0;
+			if (args.length != 1) {
+				System.out.println("Error: Indique un unico parametro en la ejecucion del programa. java -cp classes es.unileon.prg1.blablakid.MainBlablakid maxKids");
 			} else {
-				throw new BlaException("Error: Indique un único parámetro en la ejecución del programa. java –cp classes es.unileon.prg1.blablakid.MainBlablakid maxKids");
+				try {
+					maxNumOfKids = Integer.parseInt(args[0]);
+				} catch (NumberFormatException e) {
+					System.out.println("Error: El valor pasado en la ejecuciÃ³n no es un nÃºmero entero");
+				}
+				try {
+					Blablakid blablakid = new Blablakid(maxNumOfKids);
+					TextUI textUI = new TextUI(blablakid);
+					textUI.start();
+				} catch (BlaException e) {
+				System.out.println(e.getMessage());
+				}
 			}
-			blablakid.addKid("Aurelio");
-		} catch (BlaException e) {
-		System.out.println(e.getMessage());
-		}
 	}
 }
