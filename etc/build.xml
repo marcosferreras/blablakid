@@ -18,6 +18,7 @@
 
     <target name="run" depends="compile">
       <java classname="es.unileon.prg1.blablakid.MainBlablakid">
+	<arg value="3"/>
          <classpath>
               <pathelement path="${classes}"/>
          </classpath>
