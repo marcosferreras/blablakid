@@ -4,7 +4,13 @@ public class Blablakid{
 	protected Blablakid(int maxNumOfKids) throws BlaException{
 		kids = new Kids(maxNumOfKids);
 	}
-	void addKid(String name) {
-		kids.addKid(name);
+	void addKid(Kid kid) throws BlaException {
+		kids.addKid(kid);
+	}
+	void removeKid(String name) throws BlaException {
+		kids.removeKid(name);
+	}
+	public String toString(){
+		return kids.toString();
 	}
 }

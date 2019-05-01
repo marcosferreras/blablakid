@@ -12,13 +12,9 @@ public class MainBlablakid{
 				} catch (NumberFormatException e) {
 					System.out.println("Error: El valor pasado en la ejecución no es un número entero");
 				}
-				try {
-					Blablakid blablakid = new Blablakid(maxNumOfKids);
-					TextUI textUI = new TextUI(blablakid);
+	
+					TextUI textUI = new TextUI(maxNumOfKids);
 					textUI.start();
-				} catch (BlaException e) {
-				System.out.println(e.getMessage());
-				}
 			}
 	}
 }
