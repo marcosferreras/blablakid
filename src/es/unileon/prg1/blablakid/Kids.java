@@ -22,13 +22,25 @@ public class Kids{
 		} 
 	}
 	
-	protected boolean addKid(String name) {
-		Boolean isSave = false;
-		if(!checkKidExists(name) && this.siguiente < kids.length) {
-			kids[this.siguiente] = new Kid(name);	
+	protected boolean addKid(Kid kid) throws BlaException {
+		/*Boolean isSave = false;
+		if(!checkKidExists(kid.getName()) && this.siguiente < kids.length) {
+			kids[this.siguiente] = kid;	
 			this.siguiente++;
 			isSave = true;
 		}
+		return isSave;*/
+		boolean isSave = false;
+		if(checkKidExists(kid.getName())){
+			throw new BlaException("Error: El niño "+kid.getName()+" ya existe");
+		} else if (this.siguiente >= kids.length){
+			throw new BlaException("Error: Se ha alcanzado el número máximo de niños");
+		} else {
+			kids[this.siguiente] = kid;
+			this.siguiente++;
+			isSave = true;
+		}
+			
 		return isSave;
 	}
 	
@@ -36,7 +48,7 @@ public class Kids{
 	protected boolean checkKidExists(String name) {
 		Boolean checkExist = false;
 		int i = 0;
-		while((checkExist == false) && (i <= this.siguiente) && kids[i]!= null) {
+		while((checkExist == false) && (i < this.siguiente) && kids[i]!= null) {
 			if(name.equals(kids[i].getName())){
 				checkExist = true;
 			}
@@ -49,16 +61,18 @@ public class Kids{
 		Boolean checkDelete = false;
 		if(checkKidExists(name)) {
 			int i = 0;
-			while((checkDelete == false) && (i <= this.siguiente) && kids[i]!= null) {
+			while((checkDelete == false) && (i < this.siguiente) && kids[i]!= null) {
 				if(name.equals(kids[i].getName())){
 					kids[i] = null;
 					checkDelete = true;
+					organizeKids(i);
+					this.siguiente--;
 				}
 				i++;
 			}
 			
 		} else {
-			System.out.println("Error: El ni�o introducido no existe");
+			System.out.println("Error: El niño introducido no existe");
 		}
 		return checkDelete;
 	}
@@ -75,4 +89,21 @@ public class Kids{
 		}
 		return kid;
 	}
+	void organizeKids(int position){
+		int i = 0;
+		while((position+1) < kids.length){
+			kids[position] = kids[position+1];
+			position++;
+		}
+		kids[(kids.length)-1] = null;
+	}
+	public String toString(){
+		StringBuffer salida= new StringBuffer();
+		salida.append("KIDS:");
+		for(int i = 0; i < this.siguiente; i++){
+			salida.append("\n****** "+kids[i].toString()+" ******");
+		}
+		return salida.toString();	
+	}
+			
 }
