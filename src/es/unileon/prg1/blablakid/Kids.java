@@ -90,7 +90,6 @@ public class Kids{
 		return kid;
 	}
 	void organizeKids(int position){
-		int i = 0;
 		while((position+1) < kids.length){
 			kids[position] = kids[position+1];
 			position++;

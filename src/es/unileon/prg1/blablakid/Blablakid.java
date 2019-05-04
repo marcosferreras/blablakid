@@ -10,6 +10,9 @@ public class Blablakid{
 	void removeKid(String name) throws BlaException {
 		kids.removeKid(name);
 	}
+	void addActivity(Activity activity, String nameKid) throws BlaException {
+		kids.searchKid(nameKid).add(activity);
+	}
 	public String toString(){
 		return kids.toString();
 	}
