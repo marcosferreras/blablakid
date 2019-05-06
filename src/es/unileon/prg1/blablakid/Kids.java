@@ -2,9 +2,9 @@ package es.unileon.prg1.blablakid;
 public class Kids{
 	
 	private Kid kids[];
-	private int siguiente;
+	private int next;
 	
-	protected Kids(int numKids) throws BlaException{
+	public Kids(int numKids) throws BlaException{
 		this.isNumOfKidsValid(numKids);
 		kids = new Kid[numKids];
 		
@@ -16,28 +16,28 @@ public class Kids{
 	 * @param Numero maximo de ni�os recibido en tiempo de ejecuci�n
 	 * @return Nada
 	 */
-	protected void isNumOfKidsValid(int numKids) throws BlaException {
+	private void isNumOfKidsValid(int numKids) throws BlaException {
 		if(numKids <= 0) {
 			throw new BlaException("Error: El numero de niños pasado como parametro en la ejecucion no es valido. Introduca un valor positivo y mayor que 0. ");
 		} 
 	}
 	
-	protected boolean addKid(Kid kid) throws BlaException {
+	protected boolean add(Kid kid) throws BlaException {
 		/*Boolean isSave = false;
-		if(!checkKidExists(kid.getName()) && this.siguiente < kids.length) {
-			kids[this.siguiente] = kid;	
-			this.siguiente++;
+		if(!checkKidExists(kid.getName()) && this.next < kids.length) {
+			kids[this.next] = kid;	
+			this.next++;
 			isSave = true;
 		}
 		return isSave;*/
 		boolean isSave = false;
-		if(checkKidExists(kid.getName())){
+		if(checkExists(kid.getName())){
 			throw new BlaException("Error: El niño "+kid.getName()+" ya existe");
-		} else if (this.siguiente >= kids.length){
+		} else if (this.next >= kids.length){
 			throw new BlaException("Error: Se ha alcanzado el número máximo de niños");
 		} else {
-			kids[this.siguiente] = kid;
-			this.siguiente++;
+			kids[this.next] = kid;
+			this.next++;
 			isSave = true;
 		}
 			
@@ -45,10 +45,10 @@ public class Kids{
 	}
 	
 	
-	protected boolean checkKidExists(String name) {
+	protected boolean checkExists(String name) {
 		Boolean checkExist = false;
 		int i = 0;
-		while((checkExist == false) && (i < this.siguiente) && kids[i]!= null) {
+		while((checkExist == false) && (i < this.next) && kids[i]!= null) {
 			if(name.equals(kids[i].getName())){
 				checkExist = true;
 			}
@@ -57,39 +57,37 @@ public class Kids{
 		
 		return checkExist;
 	}
-	boolean removeKid(String name){
-		Boolean checkDelete = false;
-		if(checkKidExists(name)) {
+	public void remove(String name)throws BlaException{
+		Boolean isDelete = false;
+		if(checkExists(name) == false) {
+			throw new BlaException("Error: El niño introducido no existe");
+		} else {
 			int i = 0;
-			while((checkDelete == false) && (i < this.siguiente) && kids[i]!= null) {
+			while((isDelete == false) && (i < this.next) && kids[i]!= null) {
 				if(name.equals(kids[i].getName())){
 					kids[i] = null;
-					checkDelete = true;
-					organizeKids(i);
-					this.siguiente--;
+					isDelete = true;
+					organize(i);
+					this.next--;
 				}
 				i++;
 			}
-			
-		} else {
-			System.out.println("Error: El niño introducido no existe");
 		}
-		return checkDelete;
 	}
-	Kid searchKid(String name) {
+	public Kid search(String name) {
 		Kid kid = null;
-		Boolean checkExist = false;
+		Boolean exist = false;
 		int i = 0;
-		while((checkExist == false) && (i <= this.siguiente) && kids[i]!= null) {
+		while((exist == false) && (i < this.next) && kids[i]!= null) {
 			if(name.equals(kids[i].getName())){
 				kid = kids[i];
-				checkExist = true;
+				exist = true;
 			}
 			i++;
 		}
 		return kid;
 	}
-	void organizeKids(int position){
+	private void organize(int position){
 		while((position+1) < kids.length){
 			kids[position] = kids[position+1];
 			position++;
@@ -99,7 +97,7 @@ public class Kids{
 	public String toString(){
 		StringBuffer salida= new StringBuffer();
 		salida.append("KIDS:");
-		for(int i = 0; i < this.siguiente; i++){
+		for(int i = 0; i < this.next; i++){
 			salida.append("\n****** "+kids[i].toString()+" ******");
 		}
 		return salida.toString();	

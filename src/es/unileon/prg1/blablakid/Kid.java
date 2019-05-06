@@ -17,9 +17,7 @@ public class Kid{
 			this.activities = activities;
 			this.next++;
 		}*/
-		if(!activities.addActivity(activity)) {
-			throw new BlaException("Error: El niño "+name+" ha llegado a su límite de 3 actividades");
-		}
+		activities.add(activity);
 	}
 	
 	public String toString(){
