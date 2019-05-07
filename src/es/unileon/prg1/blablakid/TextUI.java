@@ -1,13 +1,9 @@
 package es.unileon.prg1.blablakid;
 
 public class TextUI {
-	Blablakid blablakid;//esta declarado ya para todos los blablakid (todos sus metodos)
-	protected TextUI (int numMaxKids) {
-		try{
-			blablakid = new Blablakid(numMaxKids);
-			} catch (BlaException e) {
-				System.out.println(e.getMessage());
-		}
+	private Blablakid blablakid;//esta declarado ya para todos los blablakid (todos sus metodos)
+	public TextUI (Blablakid blablakid) {
+		this.blablakid = blablakid;
 	}
 	
 	protected void start() {
@@ -48,7 +44,8 @@ public class TextUI {
 	public void selectOption(int number)throws BlaException{
 
 			switch (number){
-				case 1: askKid();
+				case 1: 
+					this.blablakid.add(askKid());
 					
 					break;
 				case 2: removeKid();
@@ -77,18 +74,23 @@ public class TextUI {
 
 			}
 	}
-	public void askKid(){
+	public Kid askKid(){
+		String name;
+		//TODO falta volver a pedir si está vacio
 		System.out.println ("Name the kid to add:\n");
-		blablakid.addKid(new Kid(teclado.readString()));//me crea un niño con el nombre introducido  (constructor de Kid)
+		name = Teclado.readString()));//me crea un niño con el nombre introducido  (constructor de Kid)
+		return new Kid(name);
 	}
 	
 	public void removeKid(){
 		System.out.println ("Name the kid to remove:\n");
 		blablakid.removeKid(teclado.readString());
-		System.out.println ("Remove kid error: Kid Daniel not found:\n");//Error
+		System.out.println ("Remove kid error: Kid "+???+ not found:\n");//Error
 	}
 	public void askParent(){ //pregunta por todos los datos del parent
+		String name;
 		System.out.println ("Name of the parent to add:");
+		name = Teclado.readString()));
 		//blablakid.addParent(new Parent(teclado.readString())); 
 	
 		System.out.println ("How many kids does Pedro have?:");
