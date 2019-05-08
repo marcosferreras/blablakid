@@ -13,11 +13,11 @@ public class Activities{
 	 * @param The activity to add
 	 */
 	public void add(Activity activity) throws BlaException {
-		if(this.next < 3) {
+		if(this.next >= 3) {
+			throw new BlaException("Error: El niño ha llegado a su límite de 3 actividades. Pruebe a eliminar alguna actividad.");
+		} else {
 			this.activities[this.next] = activity;
 			this.next++;
-		} else {
-			throw new BlaException("Error: El niño ha llegado a su límite de 3 actividades. Pruebe a eliminar alguna actividad.");
 		}
 	}
 	/*
@@ -44,7 +44,7 @@ public class Activities{
 		boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next) && this.activities[i]!= null) {
-			if(name.equals(kids[i].getName())){
+			if(name.equals(activities[i].getName())){
 				activity = this.activities[i];
 				exist = true;
 			}
@@ -70,7 +70,7 @@ public class Activities{
 		boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next) && this.activities[i]!= null) {
-			if(activity.equals(this.activities[i].getName())){
+			if(activity.getName().equals(this.activities[i].getName())){
 				exist = true;
 			}
 			i++;
