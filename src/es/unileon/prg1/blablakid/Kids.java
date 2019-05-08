@@ -9,71 +9,58 @@ public class Kids{
 		kids = new Kid[numKids];
 		
 	}
-	
-	
-	/*
-	 * Comprueba que el n�mero de ni�os sea correcto, de modo que no puede ser inferior a 1.
-	 * @param Numero maximo de ni�os recibido en tiempo de ejecuci�n
-	 * @return Nada
-	 */
 	private void isNumOfKidsValid(int numKids) throws BlaException {
 		if(numKids <= 0) {
 			throw new BlaException("Error: El numero de niños pasado como parametro en la ejecucion no es valido. Introduca un valor positivo y mayor que 0. ");
 		} 
 	}
-	
+	/*
+	 * Add a kid to the collection
+	 * @param A kid to add
+	 */
 	protected boolean add(Kid kid) throws BlaException {
-		/*Boolean isSave = false;
-		if(!checkKidExists(kid.getName()) && this.next < kids.length) {
-			kids[this.next] = kid;	
-			this.next++;
-			isSave = true;
-		}
-		return isSave;*/
-		boolean isSave = false;
-		if(checkExists(kid.getName())){
+		boolean saveCorrect = false;
+		if(search(kid.getName()) != null){
 			throw new BlaException("Error: El niño "+kid.getName()+" ya existe");
 		} else if (this.next >= kids.length){
 			throw new BlaException("Error: Se ha alcanzado el número máximo de niños");
 		} else {
 			kids[this.next] = kid;
+			saveCorrect = true;
 			this.next++;
-			isSave = true;
 		}
-			
-		return isSave;
+		return saveCorrect;
 	}
-	
-	
-	protected boolean checkExists(String name) {
-		Boolean checkExist = false;
+	/*
+	 * Remove a Kid from the collection
+	 * @param Name of the kid to remove
+	 */
+	public void remove(String name)throws BlaException{
+		Kid kid = search(name);
+		if(kid == null) {
+			throw new BlaException("Error: El niño introducido no existe");
+		} else {
+					kid = null;
+					organize(position(kid));
+					this.next--;				
+		}
+	}
+	private int position(Kid kid) {
+		boolean exist = false;
 		int i = 0;
-		while((checkExist == false) && (i < this.next) && kids[i]!= null) {
-			if(name.equals(kids[i].getName())){
-				checkExist = true;
+		while((exist == false) && (i < this.next) && this.kids[i]!= null) {
+			if(kid.getName().equals(this.kids[i].getName())){
+				exist = true;
 			}
 			i++;
 		}
-		
-		return checkExist;
+		return (i-1);
 	}
-	public void remove(String name)throws BlaException{
-		Boolean isDelete = false;
-		if(checkExists(name) == false) {
-			throw new BlaException("Error: El niño introducido no existe");
-		} else {
-			int i = 0;
-			while((isDelete == false) && (i < this.next) && kids[i]!= null) {
-				if(name.equals(kids[i].getName())){
-					kids[i] = null;
-					isDelete = true;
-					organize(i);
-					this.next--;
-				}
-				i++;
-			}
-		}
-	}
+	/*
+	 * Search a kid in the collection
+	 * @param Name of the kid to search
+	 * @return A kid object
+	 */
 	public Kid search(String name) {
 		Kid kid = null;
 		Boolean exist = false;

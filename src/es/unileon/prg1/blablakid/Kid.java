@@ -7,16 +7,18 @@ public class Kid{
 		this.name = name;
 		activities = new Activities();
 	}
-	String getName(){
+	/*
+	 * Gets the name of a kid
+	 * @ The name of the kid 
+	 */
+	public String getName(){
 		return this.name;
 	}
-	void add(Activity activity)throws BlaException{
-		/*if(this.next >= 3) {
-			throw new BlaException("Error: El niño "+name+" ha llegado a su límite de 3 actividades");
-		} else {
-			this.activities = activities;
-			this.next++;
-		}*/
+	/*
+	 * Add an activity to the kid
+	 * @param Activity to add
+	 */
+	public void add(Activity activity)throws BlaException{
 		activities.add(activity);
 	}
 	
