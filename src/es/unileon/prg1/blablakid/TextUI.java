@@ -45,8 +45,7 @@ public class TextUI {
 
 			switch (number){
 				case 1: 
-					this.blablakid.add(askKid());
-					
+						askKid();
 					break;
 				case 2: removeKid();
 					break;
@@ -74,28 +73,33 @@ public class TextUI {
 
 			}
 	}
+	private void blablakid(Kid askKid) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public Kid askKid(){
 		String name;
-		//TODO falta volver a pedir si está vacio
-		System.out.println ("Name the kid to add:\n");
-		name = Teclado.readString()));//me crea un niño con el nombre introducido  (constructor de Kid)
+		System.out.println ("Name the kid to add:");
+		name = Teclado.readString();//me crea un niño con el nombre introducido  (constructor de Kid)
 		return new Kid(name);
 	}
-	
-	public void removeKid(){
+
+	public void removeKid() throws BlaException{
+		String name;
 		System.out.println ("Name the kid to remove:\n");
-		blablakid.removeKid(teclado.readString());
-		System.out.println ("Remove kid error: Kid "+???+ not found:\n");//Error
+		name = Teclado.readString();
+		blablakid.removeKid(name);
 	}
 	public void askParent(){ //pregunta por todos los datos del parent
 		String name;
 		System.out.println ("Name of the parent to add:");
-		name = Teclado.readString()));
+		name = Teclado.readString();
 		//blablakid.addParent(new Parent(teclado.readString())); 
 	
 		System.out.println ("How many kids does Pedro have?:");
 		System.out.println ("How many rides can Pedro make per day?:");
-		System.out.println ("Who is"+????+"'s kid number"+??"?:");
+		System.out.println ("Who is's kid number?:");
 	}
 	
 	public void removeParent(){
@@ -103,10 +107,16 @@ public class TextUI {
 	}
 
 	public void askActivity(){
+		String name;
 		System.out.println ("Name of the activity:");
+		name = Teclado.readString();
 		System.out.println ("Where does the activity Baloncesto takes place?");
+		String place;
+		place = Teclado.readString();
 		System.out.println ("Day of the week for the activity:\nInsert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday");
-		switch(){
+		
+		int number = 0;
+		switch(number){
 			case 0:
 			case 1:
 			case 2:
@@ -116,4 +126,8 @@ public class TextUI {
 		System.out.println ("Name of the kid taking the activity:");
 		System.out.println ("When does the activity start? \n Insert hour:");
 		System.out.println ("Insert minute:");
+	}
 }
+
+
+
