@@ -1,27 +1,36 @@
 package es.unileon.prg1.blablakid;
 public class Ride{
 	
-	private Activity activity;
-	private Time time;
+	private Time timeStart;
+	private Time timeEnd;
+	private String start;
+	private String end;
 	
-	public Ride(Activity activity, Time time) {
-		this.activity=activity;
-		this.time=time;
+	public Ride(Time timeStart, Time timeEnd, String Start, String end) {
+		this.timeStart=timeStart;
+		this.timeEnd=timeEnd;
+		this.start=start;
+		this.end=end;
 	}
-	
-	public Time getTime() {
-		return this.time;
+
+	public Time getTimeStart() {
+		return timeStart;
 	}
-	
-	public void setTime(Time time) {
-		this.time=time;
+
+	public void setTimeStart(Time timeStart) {
+		this.timeStart = timeStart;
 	}
-	
-	public Activity getActivity() {
-		return this.activity;
+
+	public Time getTimeEnd() {
+		return timeEnd;
 	}
-	
-	public void setActivity(Activity activity) {
-		this.activity=activity;
+
+	public void setTimeEnd(Time timeEnd) {
+		this.timeEnd = timeEnd;
 	}
+
+	/*private boolean isSame() {
+		boolean exit=false;
+		if (timeStart==timeEnd)
+	}*/
 }
