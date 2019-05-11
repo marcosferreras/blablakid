@@ -45,7 +45,7 @@ public class Time{
 	 * Check if the time sent as a parameter is greater than the local variable of the class
 	 * @return True-is greater False- isn't greater
 	 */
-	private boolean isLess(Time time) {
+	public boolean isBefore(Time time) {
 		boolean exit=false;
 		if (time.getHour()>this.hour) {
 			exit=true;

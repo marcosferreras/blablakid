@@ -18,14 +18,45 @@ public class Activity{
 	public String getName(){
 		return this.name;
 	}
-	/*public void add(Ride ride) {
-		isValid(ride);
-	}
-	public boolean isValid(Ride ride) {
+	public boolean add(Ride ride)throws BlaException {
 		boolean valid = false;
-		if (ride.getTime().get ==  ) {
-			this.start = ride;
+		if(isValidRideBefore(ride) == true) {
+			this.before = ride;
+			valid = true;
+		} else if (isValidRideAfter(ride) == true) {
+			this.after = ride;
+			valid = true;
 		}
 		return valid;
-	}*/
+	}
+	public boolean isValidRideBefore(Ride ride) throws BlaException {
+		boolean valid = false;
+		if (ride.getTimeEnd().getHour() != this.start.getHour() || ride.getTimeEnd().getMinute() != this.start.getMinute() ) {
+			throw new BlaException("Error: This ride doesn´t exist in this kid");
+		} else if (this.after != null) {
+			throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+		} else if (this.start.isBefore(ride.getTimeStart())) {
+			throw new BlaException ("Error: The start time of the activity is before the pick-up time");
+		} else {
+			valid = true;
+		}
+		return valid;	
+	}
+	public boolean isValidRideAfter(Ride ride) throws BlaException {
+		boolean valid = false;
+		if (ride.getTimeStart().getHour() != this.end.getHour() || ride.getTimeStart().getMinute() != this.end.getMinute() ) {
+			throw new BlaException("Error: This ride doesn´t exist in this kid");
+		} else if (this.before != null) {
+			throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+		} else if (ride.getTimeStart().isBefore(this.end)) {
+			throw new BlaException ("Error: The start time of the activity is before the pick-up time");
+		} else {
+			valid = true;
+		}
+		return valid;
+	}
+	
+	public void removeRide(String nameRide) {
+		
+	}
 }
