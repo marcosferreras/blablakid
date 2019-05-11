@@ -124,8 +124,8 @@ public class TextUI {
 		System.out.println ("Where does the activity Baloncesto takes place?");
 		place = Teclado.readString();
 		System.out.println ("Day of the week for the activity:\nInsert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday");
-		
-		int number = 0;
+		int number = Teclado.readInteger();
+		number = 0;
 		switch(number){
 			case 0:
 			case 1:
