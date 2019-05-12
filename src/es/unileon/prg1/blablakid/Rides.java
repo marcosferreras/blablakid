@@ -15,11 +15,13 @@ public class Rides{
 	
 	private void  add(Ride ride) {
 		this.rides[next]=ride;
+		next++;
 	}
 	
 	private void remove(int number) {
 			this.rides[number]=null;
 			reorganice(number);
+			next--;
 	}
 	
 	private void reorganice(int number) {

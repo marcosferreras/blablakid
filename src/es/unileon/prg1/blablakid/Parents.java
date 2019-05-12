@@ -1,19 +1,19 @@
 package es.unileon.prg1.blablakid;
 
 public class Parents {
-	int numOfParents;
+	int next;
 	private Parent parent[];
 	
 	private Parents(int numParents) throws BlaException {
 		if (isCorrectNumber(numParents)) {
 			parent = new Parent[numParents];
-			this.numOfParents=1;
+			this.next=1;
 		}
 	}
 	
 	private boolean isCorrectNumber(int numParents) throws BlaException {
 		boolean salida;
-		if (numParents>=0) salida=true;
+		if (numParents>0) salida=true;
 		else {
 			salida=false;
 			throw new BlaException ("El numero introducido mayor que 0.");
@@ -21,6 +21,18 @@ public class Parents {
 		return salida;
 	}
 	
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int numOfParents) {
+		this.next = numOfParents;
+	}
+
+	public Parent getParent(int number) {
+		return parent[number];
+	}
+
 	public boolean checkParentExists(String name) {
 			boolean salida=false;
 		int i=0;
@@ -32,30 +44,26 @@ public class Parents {
 	}
 	
 	public void add(Parent parent) throws BlaException{
-		int i=0;
-		while ( this.parent[i] != null) i++;
-		if (checkParentExists(parent.getName())) throw new BlaException("Esa persona ya existe");
-		else this.parent[i]=parent;
+		if (checkParentExists(parent.getName())) throw new BlaException("That parent has allready exist");
+		else {
+			this.parent[next]=parent;
+			this.next++;
+		}
 	}
 	
-	public void deleateParent(Parent parent) throws BlaException{
+	public void deleate(Parent parent) throws BlaException{
 		int i=0;
 		if (checkParentExists(parent.getName())==true) {
 			while(this.parent[i].getName()!=parent.getName()) i++;
 			this.parent[i]=null;
-			reorganice(i);
-		} else throw new BlaException("Esa persona no existe");
-	}
-	
-	private void reorganice(int number) {
-		int i=0;
-		while (this.parent[i]!=null) i++;
-		Parent aux;
-		for (int j=number;j<i;j++) {
-			aux=this.parent[j+1];
-			this.parent[j]=aux;
-		}
-		this.parent[i]=null;
+			Parent aux;
+			for (int j=i;j<next;j++) {
+				aux=this.parent[j+1];
+				this.parent[j]=aux;
+			}
+			this.parent[next]=null;
+			next--;
+		} else throw new BlaException("That parent dosent exist");
 	}
 }
 	
