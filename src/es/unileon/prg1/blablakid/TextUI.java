@@ -96,7 +96,7 @@ public class TextUI {
 		int numberkids, numberrides, kidnumber;
 		System.out.println ("Name of the parent to add:");
 		name = Teclado.readString();
-		//blablakid.addParent(new Parent(teclado.readString())); 
+		//blablakid.addParent(new Parent(teclado.readString()); 
 	
 		System.out.println ("How many kids does Pedro have?:");
 		numberkids = Teclado.readInteger();
