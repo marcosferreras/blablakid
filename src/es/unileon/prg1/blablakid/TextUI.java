@@ -112,7 +112,7 @@ public class TextUI {
 		String name;
 		System.out.println ("Name of the parent to remove:\n");
 		name = Teclado.readString();
-		//blablakid.removeParent?????
+		//blablakid.removeParent????
 	}
 
 	public void askActivity(){
