@@ -13,9 +13,9 @@ public class Rides{
 		}
 	}
 	
-	/*private void  add(Ride ride) {
-		
-	}*/
+	private void  add(Ride ride) {
+		this.rides[next]=ride;
+	}
 	
 	private void remove(int number) {
 			this.rides[number]=null;

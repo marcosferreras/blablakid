@@ -5,13 +5,13 @@ public class Blablakid{
 		kids = new Kids(maxNumOfKids);
 	}
 	void addKid(Kid kid) throws BlaException {
-		kids.addKid(kid);
+		kids.add(kid);
 	}
 	void removeKid(String name) throws BlaException {
-		kids.removeKid(name);
+		kids.remove(name);
 	}
 	void addActivity(Activity activity, String nameKid) throws BlaException {
-		kids.searchKid(nameKid).add(activity);
+		kids.search(nameKid).add(activity);
 	}
 	public String toString(){
 		return kids.toString();

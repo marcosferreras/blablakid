@@ -32,12 +32,36 @@ public class Time{
 	
 	private boolean isLess(int hour, int minute) {
 		boolean exit=false;
-		if (hour>this.hour) exit=true;
-		else if (hour==this.hour) {
-			if (minute>this.minute) exit=true;
-			else exit=false;
-		}else exit=false;
+		if (hour>this.hour) {
+			exit=true;
+		} else if (hour==this.hour) {
+			if (minute>this.minute) {
+				exit=true;
+			}
+		}
 		return exit;
+	}
+	/*
+	 * Check if the time sent as a parameter is greater than the local variable of the class
+	 * @return True-is greater False- isn't greater
+	 */
+	public boolean isBefore(Time time) {
+		boolean exit=false;
+		if (time.getHour()>this.hour) {
+			exit=true;
+		} else if (time.getHour()==this.hour) {
+			if (time.getMinute()>this.minute) {
+				exit=true;
+			}
+		}
+		return exit;
+	}
+	/*
+	 * Check if the time sent as a parameter is greater than the local variable of the class
+	 * @return True-is greater False- isn't greater
+	 */
+	public boolean isEqual(Time time) {
+		return ((this.hour == time.getHour()) && (this.minute == time.getMinute()));
 	}
 	
 }
