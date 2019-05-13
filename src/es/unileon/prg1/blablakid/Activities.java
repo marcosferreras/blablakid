@@ -77,4 +77,12 @@ public class Activities{
 		}
 		return (i-1);
 	}
+	public String toString() {
+		StringBuffer salida= new StringBuffer();
+		for(int i = 0; i < this.next ; i++) {
+			salida.append("\n##### Activity "+(i+1)+" #####");
+			salida.append(this.activities[i].toString());
+		}
+		return salida.toString();
+	}
 }

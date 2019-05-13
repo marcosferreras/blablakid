@@ -85,7 +85,7 @@ public class Kids{
 		StringBuffer salida= new StringBuffer();
 		salida.append("KIDS:");
 		for(int i = 0; i < this.next; i++){
-			salida.append("\n****** "+kids[i].toString()+" ******");
+			salida.append(kids[i].toString());
 		}
 		return salida.toString();	
 	}

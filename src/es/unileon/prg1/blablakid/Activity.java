@@ -55,8 +55,19 @@ public class Activity{
 		}
 		return valid;
 	}
-	
-	public void removeRide(String nameRide) {
-		
+	public String toString() {
+		StringBuffer salida = new StringBuffer();
+		salida.append("\n"+this.name+"("+this.place+" - "+day.toString()+")"+this.start.toString()+">"+this.end.toString());
+		if (this.before == null) {
+			salida.append("\nNo ride before "+this.name+" assigned");
+		} else {
+			salida.append(this.before.toString());
+		}
+		if(this.after == null) {
+			salida.append("\nNo ride after "+this.name+" assigned");
+		} else {
+			salida.append(this.after.toString());
+		}
+		return salida.toString();
 	}
 }

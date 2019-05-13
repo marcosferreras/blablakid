@@ -23,6 +23,9 @@ public class Kid{
 	}
 	
 	public String toString(){
-		return this.name;
+		StringBuffer salida= new StringBuffer();
+		salida.append("\n****** "+this.name+" ******");
+		salida.append(activities.toString());
+		return salida.toString(); 
 	}
 }
