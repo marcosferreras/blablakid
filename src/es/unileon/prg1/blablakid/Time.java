@@ -10,7 +10,7 @@ public class Time{
 		else this.hour=hour;
 		
 		if (minute<0) throw new BlaException("Negative minutes dont exist");
-		else if (minute>24) throw new BlaException("that minut is very hight");
+		else if (minute>60) throw new BlaException("that minut is very hight");
 		else this.minute=minute;
 	}
 
@@ -29,18 +29,7 @@ public class Time{
 	public void setMinute(int minute) {
 		this.minute = minute;
 	}
-	
-	private boolean isLess(int hour, int minute) {
-		boolean exit=false;
-		if (hour>this.hour) {
-			exit=true;
-		} else if (hour==this.hour) {
-			if (minute>this.minute) {
-				exit=true;
-			}
-		}
-		return exit;
-	}
+
 	/*
 	 * Check if the time sent as a parameter is greater than the local variable of the class
 	 * @return True-is greater False- isn't greater

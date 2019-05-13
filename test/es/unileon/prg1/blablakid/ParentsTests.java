@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class KidsTests {
+public class ParentsTests {
 	private Parents parents;
 	
 	@Before
