@@ -5,13 +5,21 @@ public class Time{
 	private int minute;
 	
 	public Time(int hour,int minute) throws BlaException{
-		if (hour<0) throw new BlaException("Negative hours dont exist");
-		else if (hour>24) throw new BlaException("that hour is very hight");
-		else this.hour=hour;
+		if (hour<0) {
+			throw new BlaException("Error: Negative hours don't exist");
+		} else if (hour>24) {
+			throw new BlaException("Error: The hour entered can't be higher than 23");
+		} else {
+			this.hour=hour;
+		}
 		
-		if (minute<0) throw new BlaException("Negative minutes dont exist");
-		else if (minute>60) throw new BlaException("that minut is very hight");
-		else this.minute=minute;
+		if (minute<0) {
+			throw new BlaException("Error: Negative minutes don't exist");
+		} else if (minute>59) {
+			throw new BlaException("Error: The minute entered can't be higher than 59");
+		} else {
+			this.minute=minute;
+		}
 	}
 
 	public int getHour() {
@@ -29,7 +37,18 @@ public class Time{
 	public void setMinute(int minute) {
 		this.minute = minute;
 	}
-
+	
+	private boolean isLess(int hour, int minute) {
+		boolean exit=false;
+		if (hour>this.hour) {
+			exit=true;
+		} else if (hour==this.hour) {
+			if (minute>this.minute) {
+				exit=true;
+			}
+		}
+		return exit;
+	}
 	/*
 	 * Check if the time sent as a parameter is greater than the local variable of the class
 	 * @return True-is greater False- isn't greater
@@ -51,6 +70,11 @@ public class Time{
 	 */
 	public boolean isEqual(Time time) {
 		return ((this.hour == time.getHour()) && (this.minute == time.getMinute()));
+	}
+	public String toString() {
+		StringBuffer salida = new StringBuffer();
+		salida.append(this.hour+":"+this.minute);
+		return salida.toString();
 	}
 	
 }
