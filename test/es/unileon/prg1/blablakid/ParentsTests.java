@@ -9,30 +9,28 @@ public class ParentsTests {
 	
 	@Before
 	public void setup() throws BlaException{
-		Kids kids = new Kids(3);
-		kids.add(new Kid("Beatriz"));
 		this.parents = new Parents(6);
-		parents.add(new Parent("Jose",kids));
+		Parent parent = new Parent("Jose",1);
+		Kids kids = new Kids(3);
+		kids.add(new Kid("Carlos"));
+		parent.addKids(kids);
+		this.parents.add(parent);
 	}
 	
 	@Test (expected = BlaException.class)
 	public void testNumOfParentsValid()throws BlaException{
-		new Kids(0);
+		new Parents(-1);
 	}
 	
 	@Test (expected = BlaException.class)
 	public void testAddRepeated() throws BlaException{
-		Kids kids = new Kids(3);
-		kids.add(new Kid("Beatriz"));
-		parents.add(new Parent("Jose", kids));
+		parents.add(new Parent("Jose",1));
 	}
 	
 	@Test
 	public void testadd() throws BlaException{
-		Kids kids = new Kids(3);
-		kids.add(new Kid("Beatriz"));
-		parents.add(new Parent("Juan Carlos", kids));
-		assertEquals(2,parents.getNext());
+		parents.add(new Parent("Juan Carlos",1));
+		assertEquals("Juan Carlos",parents.getParent(1).getName());
 	}
 	
 	@Test (expected = BlaException.class)
@@ -42,20 +40,13 @@ public class ParentsTests {
 	
 	@Test 
 	public void testdeleate() throws BlaException{
-		Kids kids = new Kids(3);
-		kids.add(new Kid("Beatriz"));
-		Parent parent = new Parent("Jose Luis", kids);
-		parents.add(parent);
-		
-		parents.deleate("Juan Carlos");
-		
-		assertEquals(1,parents.getNext());
-		assertEquals(parent.getName(),parents.getParent(2).getName());
+		this.parents.deleate("Jose");
+		assertEquals(false,parents.checkParentExists("Jose"));
 	}
 	
 	@Test 
 	public void testcheckParentExists(){
-		assertEquals(true,parents.checkParentExists("Jose Luis"));
+		assertEquals(true,parents.checkParentExists("Jose"));
 	}
 	
 	@Test 
@@ -77,5 +68,10 @@ public class ParentsTests {
 	public void testGetNextSetNext() {
 		parents.setNext(6);
 		assertEquals(6,parents.getNext());
+	}
+	
+	@Test
+	public void getParentTest() {
+		assertEquals("Jose",parents.getParent(0).getName());
 	}
 }

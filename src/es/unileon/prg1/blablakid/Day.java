@@ -5,14 +5,8 @@ public class Day{
 	private Rides rides;
 	
 	public Day(int numberRides,int numberDay)  throws BlaException {
-		if (numberDay<0) throw new BlaException("The day of the week must be positive");
-		else if (numberDay>5) throw new BlaException("This week only have five posible days");
-		else setWeekDay(numberDay);
-		
-		if (numberRides>0) {
-			rides = new Rides(numberRides);
-		}
-		else throw new BlaException ("that day doesnt a correct number for the rides");
+		setWeekDay(numberDay);
+		rides = new Rides(numberRides);
 	}
 	
 	public void setWeekDay(int number) throws BlaException{

@@ -1,25 +1,20 @@
 package es.unileon.prg1.blablakid;
 public class Week{
 	
-	private Day []days;
+	private Day []day;
 	private int next=0;
 	
-	public Week() {
-		days = new Day[5];
-	}
-	
-	private void add(Day day) throws BlaException{
-		if (found(day)==-1) {
-			this.days[next]=day;
-			this.next++;
+	public Week(int number)  throws BlaException{
+		day = new Day[5];
+		for (int i=0;i<5;i++) {
+			this.day[i] = new Day(number,i);
 		}
-		else throw new BlaException("that day have already exist, please remove first the day");
 	}
 	
 	private int found(Day day) {
 		int output=-1;
 		for (int i=0;i<next;i++) {
-			if (days[i].getWeekDay()==day.getWeekDay()) output=i;
+			if (this.day[i].getWeekDay()==day.getWeekDay()) output=i;
 		}
 		return output;
 	}

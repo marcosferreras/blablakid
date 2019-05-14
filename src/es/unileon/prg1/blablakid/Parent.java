@@ -5,9 +5,9 @@ public class Parent{
 	private Week week;
 	private Kids kids;
 	
-	public Parent(String name) throws BlaException {
+	public Parent(String name,int number) throws BlaException {
 		this.name=name;
-		
+		week = new Week(number);
 	}
 
 	public void addKids(Kids kids) throws BlaException {

@@ -7,7 +7,7 @@ public class Parents {
 	public Parents(int numParents) throws BlaException {
 		if (isCorrectNumber(numParents)) {
 			parent = new Parent[numParents];
-			this.next=1;
+			this.next=0;
 		}
 	}
 	
@@ -34,12 +34,14 @@ public class Parents {
 	}
 
 	public boolean checkParentExists(String name) {
-			boolean salida=false;
+		boolean salida=false;
 		int i=0;
-		do {
-			if (parent[i].getName()==name) salida=true;
+		while (i<this.next) {
+			if (parent[i].getName().equals(name)) {
+				salida=true;
+			}
 			i++;
-		}while ((salida==false) && (parent[i]!=null));
+		}
 		return salida;
 	}
 	
@@ -53,7 +55,7 @@ public class Parents {
 	
 	public void deleate(String name) throws BlaException{
 		int i=0;
-		if (checkParentExists(name)==true) {
+		if (checkParentExists(name)) {
 			while(this.parent[i].getName()!=name) i++;
 			this.parent[i]=null;
 			Parent aux;
