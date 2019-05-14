@@ -26,29 +26,10 @@ public class Time{
 		return hour;
 	}
 
-	public void setHour(int hour) {
-		this.hour = hour;
-	}
-
 	public int getMinute() {
 		return minute;
 	}
-
-	public void setMinute(int minute) {
-		this.minute = minute;
-	}
 	
-	private boolean isLess(int hour, int minute) {
-		boolean exit=false;
-		if (hour>this.hour) {
-			exit=true;
-		} else if (hour==this.hour) {
-			if (minute>this.minute) {
-				exit=true;
-			}
-		}
-		return exit;
-	}
 	/*
 	 * Check if the time sent as a parameter is greater than the local variable of the class
 	 * @return True-is greater False- isn't greater

@@ -15,7 +15,7 @@ public class Kids{
 		} 
 	}
 	/*
-	 * Add a kid to the collection
+	 * Add a kid to the collection 
 	 * @param A kid to add
 	 */
 	protected boolean add(Kid kid) throws BlaException {
@@ -40,7 +40,6 @@ public class Kids{
 		if(kid == null) {
 			throw new BlaException("Error: El niño introducido no existe");
 		} else {
-					kid = null;
 					organize(position(kid));
 					this.next--;				
 		}
@@ -48,7 +47,7 @@ public class Kids{
 	private int position(Kid kid) {
 		boolean exist = false;
 		int i = 0;
-		while((exist == false) && (i < this.next) && this.kids[i]!= null) {
+		while((exist == false) && (i < this.next)) {
 			if(kid.getName().equals(this.kids[i].getName())){
 				exist = true;
 			}
@@ -61,11 +60,11 @@ public class Kids{
 	 * @param Name of the kid to search
 	 * @return A kid object
 	 */
-	public Kid search(String name) {
+	public Kid search(String name){
 		Kid kid = null;
 		Boolean exist = false;
 		int i = 0;
-		while((exist == false) && (i < this.next) && kids[i]!= null) {
+		while((exist == false) && (i < this.next)) {
 			if(name.equals(kids[i].getName())){
 				kid = kids[i];
 				exist = true;
@@ -75,11 +74,11 @@ public class Kids{
 		return kid;
 	}
 	private void organize(int position){
-		while((position+1) < kids.length){
+		while(position < this.next){
 			kids[position] = kids[position+1];
 			position++;
 		}
-		kids[(kids.length)-1] = null;
+		kids[this.next-1] = null;
 	}
 	public String toString(){
 		StringBuffer salida= new StringBuffer();

@@ -12,42 +12,62 @@ public class TimeTest {
 		time = new Time(15,30);
 	}
 	
+	@Test
+	public void builderTest() throws BlaException{
+		Time aux =new Time(1,1);
+		assertEquals(1,aux.getHour());
+		assertEquals(1,aux.getMinute());
+	}
+	
 	@Test (expected = BlaException.class)
-	public void constructorNegativeHourTest() throws BlaException{
+	public void testNegativeHour() throws BlaException{
 		new Time(-1,30);
 	}
 	
 	@Test (expected = BlaException.class)
-	public void constructorVeryHightHourTest() throws BlaException{
+	public void testHourHigherTo23() throws BlaException{
 		new Time(100,30);
 	}
 	
 	@Test (expected = BlaException.class)
-	public void constructorNegativeMInuteTest() throws BlaException{
+	public void testNegativeMinutes() throws BlaException{
 		new Time(10,-30);
 	}
 	
 	@Test (expected = BlaException.class)
-	public void constructorVeryHightMinuteTest() throws BlaException{
+	public void testMInuteHigherTo59() throws BlaException{
 		new Time(10,300);
 	}
 	
 	@Test
-	public void setGetHour() {
-		this.time.setHour(10);
-		assertEquals(10,this.time.getHour());
+	public void testGetHour() {
+		assertEquals(15,this.time.getHour());
 	}
 	
 	@Test
-	public void setGetMinute() {
-		this.time.setMinute(10);
-		assertEquals(10,this.time.getMinute());
+	public void testGetMinute() {
+		assertEquals(30,this.time.getMinute());
 	}
 	
 	@Test
-	public void constructorTest() throws BlaException{
-		Time aux =new Time(1,1);
-		assertEquals(1,aux.getHour());
-		assertEquals(1,aux.getMinute());
+	public void testIsBefore() throws BlaException {
+		assertEquals(true, this.time.isBefore(new Time(19,00)));
+		assertEquals(true, this.time.isBefore(new Time(15,31)));
+	}
+	@Test
+	public void testIsNotBefore()throws BlaException {
+		assertEquals(false, this.time.isBefore(new Time(15,00)));
+	}
+	@Test
+	public void testIsEqual() throws BlaException {
+		assertEquals(true, this.time.isEqual(new Time(15,30)));
+	}
+	@Test
+	public void testIsNotEqual()throws BlaException {
+		assertEquals(false, this.time.isEqual(new Time(15,31)));
+	}
+	@Test
+	public void testToString() {
+		assertEquals(time.toString(),"15:30");
 	}
 }
