@@ -9,22 +9,22 @@ public class DayTest {
 	
 	@Before
 	public void setup() throws BlaException{
-		day = new Day(6,3);
+		day = new Day(3,3);
 	}
 	
 	@Test (expected = BlaException.class)
-	public void wrongWeekDay1Test() throws BlaException{
-		Day aux = new Day(6,-1);
+	public void wrongWeekDayNegativeTest() throws BlaException{
+		new Day(2,-1);
 	}
 	
 	@Test (expected = BlaException.class)
-	public void wrongWeekDay2Test() throws BlaException{
-		Day aux = new Day(6,10);
+	public void wrongWeekDayVeryBigTest() throws BlaException{
+		new Day(6,10);
 	}
 	
 	@Test (expected = BlaException.class)
-	public void wrongWeekDay2Test() throws BlaException{
-		Day aux = new Day(-1,2);
+	public void wrongWeekNRides2Test() throws BlaException{
+		new Day(-1,2);
 	}
 	
 	@Test

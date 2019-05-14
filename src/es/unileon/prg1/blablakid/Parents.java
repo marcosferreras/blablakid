@@ -4,7 +4,7 @@ public class Parents {
 	int next;
 	private Parent parent[];
 	
-	private Parents(int numParents) throws BlaException {
+	public Parents(int numParents) throws BlaException {
 		if (isCorrectNumber(numParents)) {
 			parent = new Parent[numParents];
 			this.next=1;
@@ -51,10 +51,10 @@ public class Parents {
 		}
 	}
 	
-	public void deleate(Parent parent) throws BlaException{
+	public void deleate(String name) throws BlaException{
 		int i=0;
-		if (checkParentExists(parent.getName())==true) {
-			while(this.parent[i].getName()!=parent.getName()) i++;
+		if (checkParentExists(name)==true) {
+			while(this.parent[i].getName()!=name) i++;
 			this.parent[i]=null;
 			Parent aux;
 			for (int j=i;j<next;j++) {
