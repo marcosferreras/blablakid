@@ -9,9 +9,9 @@ public class ParentsTests {
 	
 	@Before
 	public void setup() throws BlaException{
-		kids = new Kids(3);
+		Kids kids = new Kids(3);
 		kids.add(new Kid("Beatriz"));
-		parents = new Parents(6);
+		this.parents = new Parents(6);
 		parents.add(new Parent("Jose",kids));
 	}
 	
@@ -22,14 +22,14 @@ public class ParentsTests {
 	
 	@Test (expected = BlaException.class)
 	public void testAddRepeated() throws BlaException{
-		kids = new Kids(3);
+		Kids kids = new Kids(3);
 		kids.add(new Kid("Beatriz"));
 		parents.add(new Parent("Jose", kids));
 	}
 	
 	@Test
 	public void testadd() throws BlaException{
-		kids = new Kids(3);
+		Kids kids = new Kids(3);
 		kids.add(new Kid("Beatriz"));
 		parents.add(new Parent("Juan Carlos", kids));
 		assertEquals(2,parents.getNext());
@@ -42,7 +42,7 @@ public class ParentsTests {
 	
 	@Test 
 	public void testdeleate() throws BlaException{
-		kids = new Kids(3);
+		Kids kids = new Kids(3);
 		kids.add(new Kid("Beatriz"));
 		Parent parent = new Parent("Jose Luis", kids);
 		parents.add(parent);
@@ -50,7 +50,7 @@ public class ParentsTests {
 		parents.deleate("Juan Carlos");
 		
 		assertEquals(1,parents.getNext());
-		assertEquals(parent,parets.getParents(2));
+		assertEquals(parent.getName(),parents.getParent(2).getName());
 	}
 	
 	@Test 
@@ -64,13 +64,13 @@ public class ParentsTests {
 	}
 	
 	@Test
-	public void testIsCorrectNumber(){
-		assertEquals(false , parents.checkParentExists(-1));
+	public void testIsCorrectNumberFalseTest(){
+		assertEquals(false , parents.checkParentExists("m"));
 	}
 	
 	@Test
-	public void testIsCorrectNumber(){
-		assertEquals(true , parents.checkParentExists(1));
+	public void testIsCorrectNumberTrueTest(){
+		assertEquals(true , parents.checkParentExists("Jose"));
 	}
 	
 	@Test
@@ -78,3 +78,4 @@ public class ParentsTests {
 		parents.setNext(6);
 		assertEquals(6,parents.getNext());
 	}
+}

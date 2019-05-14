@@ -14,22 +14,22 @@ public class TimeTest {
 	
 	@Test (expected = BlaException.class)
 	public void constructorNegativeHourTest() throws BlaException{
-		Time aux = new Time(-1,30);
+		new Time(-1,30);
 	}
 	
 	@Test (expected = BlaException.class)
 	public void constructorVeryHightHourTest() throws BlaException{
-		Time aux = new Time(100,30);
+		new Time(100,30);
 	}
 	
 	@Test (expected = BlaException.class)
 	public void constructorNegativeMInuteTest() throws BlaException{
-		Time aux = new Time(10,-30);
+		new Time(10,-30);
 	}
 	
 	@Test (expected = BlaException.class)
 	public void constructorVeryHightMinuteTest() throws BlaException{
-		Time aux = new Time(10,300);
+		new Time(10,300);
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class TimeTest {
 	@Test
 	public void constructorTest() throws BlaException{
 		Time aux =new Time(1,1);
-		assertEquals(1,getHour());
-		assertEquals(1,getMinute());
+		assertEquals(1,aux.getHour());
+		assertEquals(1,aux.getMinute());
 	}
 }

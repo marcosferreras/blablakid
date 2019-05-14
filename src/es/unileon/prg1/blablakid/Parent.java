@@ -2,27 +2,24 @@ package es.unileon.prg1.blablakid;
 public class Parent{
 	
 	private String name;
-	private Week Week;
-	private Kid hijo[];
+	private Week week;
+	private Kids kids;
 	
-	public Parent(String name,Kid hijo[]) throws BlaException {
+	public Parent(String name) throws BlaException {
 		this.name=name;
-		this.hijo=hijo;
 		
 	}
 
+	public void addKids(Kids kids) throws BlaException {
+		this.kids=kids
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Kid getHijo(int number) {
-		return hijo[number];
-	}
-
-	public void setHijo(Kid hijo, int numero) {
-		this.hijo[numero] = hijo;
 	}
 }

@@ -6,7 +6,7 @@ public class Day{
 	
 	public Day(int numberRides,int numberDay)  throws BlaException {
 		if (numberDay<0) throw new BlaException("The day of the week must be positive");
-		else if (numberDay<5) throw new BlaException("This week only have five posible days");
+		else if (numberDay>5) throw new BlaException("This week only have five posible days");
 		else setWeekDay(numberDay);
 		
 		if (numberRides>0) {
@@ -15,7 +15,7 @@ public class Day{
 		else throw new BlaException ("that day doesnt a correct number for the rides");
 	}
 	
-	public void setWeekDay(int number) {
+	public void setWeekDay(int number) throws BlaException{
 		switch(number){
 			case 0:
 				this.weekDay = WeekDays.MONDAY;
@@ -33,6 +33,8 @@ public class Day{
 				this.weekDay = WeekDays.FRIDAY;
 			break;
 			default:
+				throw new BlaException ("that day doesnt a correct number for the week day");
+				
 		}
 	}
 	
