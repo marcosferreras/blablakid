@@ -11,7 +11,7 @@ public class Parent{
 	}
 
 	public void addKids(Kids kids) throws BlaException {
-		this.kids=kids
+		this.kids=kids;
 	}
 	
 	
