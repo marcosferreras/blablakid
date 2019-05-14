@@ -29,7 +29,20 @@ public class DayTest {
 	
 	@Test
 	public void getSetWeekDays() throws BlaException{
+		this.day.setWeekDay(0);
+		assertEquals(WeekDays.MONDAY,this.day.getWeekDay());
+		this.day.setWeekDay(1);
+		assertEquals(WeekDays.TUESDAY,this.day.getWeekDay());
 		this.day.setWeekDay(2);
 		assertEquals(WeekDays.WEDNESDAY,this.day.getWeekDay());
+		this.day.setWeekDay(3);
+		assertEquals(WeekDays.THURSDAY,this.day.getWeekDay());
+		this.day.setWeekDay(4);
+		assertEquals(WeekDays.FRIDAY,this.day.getWeekDay());
+	}
+	
+	@Test (expected = BlaException.class)
+	public void wrongGetSetWeekDaysTest() throws BlaException{
+		this.day.setWeekDay(9);
 	}
 }

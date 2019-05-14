@@ -5,12 +5,16 @@ public class Parent{
 	private Week week;
 	private Kids kids;
 	
-	public Parent(String name,Kids kids) throws BlaException {
+	public Parent(String name) throws BlaException {
 		this.name=name;
-		this.kids=kids;
 		
 	}
 
+	public void addKids(Kids kids) throws BlaException {
+		this.kids=kids
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
