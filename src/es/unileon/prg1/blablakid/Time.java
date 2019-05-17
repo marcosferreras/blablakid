@@ -52,6 +52,7 @@ public class Time{
 	public boolean isEqual(Time time) {
 		return ((this.hour == time.getHour()) && (this.minute == time.getMinute()));
 	}
+
 	public String toString() {
 		StringBuffer salida = new StringBuffer();
 		salida.append(this.hour+":"+this.minute);

@@ -29,12 +29,28 @@ public class Activity{
 	public String getName(){
 		return this.name;
 	}
+	public String getPlace(){
+		return this.place;
+	}
+	public WeekDays getDay(){
+		return this.day;
+	}
 	/*
 	 * @return Before ride of the activity
 	 */
+	public Time getStart(){
+		return this.start;
+	}
+	public Time getEnd(){
+		return this.end;
+	}
 	public Ride getBefore(){
 		return this.before;
 	}
+	public Ride getAfter(){
+		return this.after;
+	}
+	
 	/*
 	 * Add a ride to the activity
 	 * @param A ride to add to the activity of a kid
@@ -42,38 +58,22 @@ public class Activity{
 	 */
 	public boolean add(Ride ride)throws BlaException {
 		boolean valid = false;
-		if(isRideBefore(ride)) {
-			this.before = ride;
-			valid = true;
-		} else if (isRideAfter(ride)) {
-			this.after = ride;
-			valid = true;
-		}
-		return valid;
-	}
-	private boolean isRideBefore(Ride ride) throws BlaException {
-		boolean valid = false; 
-		if (ride.getTimeEnd().isEqual(this.start)) {
-			throw new BlaException("Error: This ride does not exist in this kid");
-		} else if (this.after != null) {
-			throw new BlaException("Error: This ride is already assigned. Try to remove it before");
-		} else if (this.start.isBefore(ride.getTimeStart())) {
-			throw new BlaException ("Error: The start time of the activity is before that the pick-up time");
+		if(ride.getTimeEnd().isEqual(this.start)) {
+			if (this.before != null) {
+				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+			} else {
+				this.before = ride;
+				valid = true;
+			}
+		} else if (ride.getTimeStart().isEqual(this.end)) {
+			if (this.after != null) {
+				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+			} else {
+				this.after = ride;
+				valid = true;
+			}
 		} else {
-			valid = true;
-		}
-		return valid;	
-	}
-	private boolean isRideAfter(Ride ride) throws BlaException {
-		boolean valid = false;
-		if (ride.getTimeStart().isEqual(this.end)) {
 			throw new BlaException("Error: This ride does not exist in this kid");
-		} else if (this.before != null) {
-			throw new BlaException("Error: This ride is already assigned. Try to remove it before");
-		} else if (ride.getTimeStart().isBefore(this.end)) {
-			throw new BlaException ("Error: The start time of the activity is before the pick-up time");
-		} else {
-			valid = true;
 		}
 		return valid;
 	}

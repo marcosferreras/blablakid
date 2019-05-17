@@ -13,10 +13,12 @@ public class Activities{
 	 * @param The activity to add
 	 */
 	public void add(Activity activity) throws BlaException {
-		if(this.next >= 3) {
+		if(this.next >= 2) {
 			throw new BlaException("Error: El niño ha llegado a su límite de 3 actividades. Pruebe a eliminar alguna actividad.");
+		} else if (search(activity.getName(), activity.getDay()) != null) {
+			throw new BlaException("Error: Activity "+activity.getName()+" is already added in "+activity.getDay()+". Try to remove it before");
 		} else {
-			this.activities[this.next] = activity;
+			this.activities[this.next]=activity;
 			this.next++;
 		}
 	}
@@ -24,13 +26,13 @@ public class Activities{
 	 * Remove an activity from the collection
 	 * @param Name of the activity to remove
 	 */
-	public void remove(String name) throws BlaException {
-		Activity activity = search(name);
+	public void remove(String name, WeekDays day) throws BlaException {
+		Activity activity = search(name, day);
 		if(activity == null) {
 			throw new BlaException("Error: El niño introducido no existe");
 		} else {
-					activity = null;
 					organize(position(activity));
+					this.activities[this.next]=null;
 					this.next--;
 			}
 	}
@@ -39,12 +41,12 @@ public class Activities{
 	 * @param Name of the activity
 	 * @return False-It doesn't exist True
 	 */
-	protected Activity search(String name) {
+	public Activity search(String name, WeekDays day) {
 		Activity activity = null;
 		boolean exist = false;
 		int i = 0;
-		while((exist == false) && (i < this.next) && this.activities[i]!= null) {
-			if(name.equals(activities[i].getName())){
+		while((exist == false) && (i < this.next)) {
+			if(name.equals(activities[i].getName()) && day.equals(activities[i].getDay())){
 				activity = this.activities[i];
 				exist = true;
 			}
@@ -69,7 +71,7 @@ public class Activities{
 	public int position(Activity activity) {
 		boolean exist = false;
 		int i = 0;
-		while((exist == false) && (i < this.next) && this.activities[i]!= null) {
+		while((exist == false) && (i < this.next)) {
 			if(activity.getName().equals(this.activities[i].getName())){
 				exist = true;
 			}

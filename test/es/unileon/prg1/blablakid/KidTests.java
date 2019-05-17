@@ -15,11 +15,9 @@ public class KidTests {
 	public void testKid() {
 		assertEquals("Daniel", kid.getName());
 	}
-	/*@Test
+	@Test
 	public void testAddActivity()throws BlaException {
 		
 		kid.add(new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00)));
-		
-		
-	}*/
+	}
 }
