@@ -3,7 +3,8 @@ public class Blablakid{
 	Kids kids;
 	Parents parents;
 	protected Blablakid(int maxNumOfKids) throws BlaException{
-		kids = new Kids(maxNumOfKids);
+		this.kids = new Kids(maxNumOfKids);
+		this.parents = new Parents(maxNumOfKids*2);
 	}
 	void add(Kid kid) throws BlaException {
 		kids.add(kid);
