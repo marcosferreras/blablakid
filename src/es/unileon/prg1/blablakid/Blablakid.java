@@ -6,18 +6,24 @@ public class Blablakid{
 		this.kids = new Kids(maxNumOfKids);
 		this.parents = new Parents(maxNumOfKids*2);
 	}
-	void add(Kid kid) throws BlaException {
+	public void add(Kid kid) throws BlaException {
 		kids.add(kid);
 	}
-	public Kids getKids() {
-		return this.kids;
-	}
 	
-	void removeKid(String name) throws BlaException {
-		kids.remove(name);
+	public void removeKid(String name) throws BlaException {
+		this.kids.remove(name);
 	}
-	void add(Activity activity, String nameKid) throws BlaException {
-		kids.search(nameKid).add(activity);
+	public void add(Activity activity, String nameKid) throws BlaException {
+		Kid kid = kids.search(nameKid);
+		if(kid == null){
+			throw new BlaException("Error: The kid "+nameKid+" does not exist");
+		} else {
+			kid.add(activity);
+		}
+	}
+	public void addRide(String nameParent,String activity,String nameKid,Ride ride, WeekDays day) throws BlaException {
+		kids.addRide(activity,nameKid,ride,day);
+		
 	}
 	void add(Parent parent, Kids kids) throws BlaException{
 		parents.add(parent);

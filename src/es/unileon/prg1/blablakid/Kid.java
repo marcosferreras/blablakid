@@ -21,6 +21,9 @@ public class Kid{
 	public void add(Activity activity)throws BlaException{
 		activities.add(activity);
 	}
+	public boolean addRide(String activityName,Ride ride, WeekDays day)throws BlaException {
+		return activities.addRide(activityName,ride, day);
+	}
 	
 	public String toString(){
 		StringBuffer salida= new StringBuffer();

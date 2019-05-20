@@ -57,25 +57,25 @@ public class Activity{
 	 * @return True if the ride was added or False if not
 	 */
 	public boolean add(Ride ride)throws BlaException {
-		boolean valid = false;
+		boolean isValid = false;
 		if(ride.getTimeEnd().isEqual(this.start)) {
 			if (this.before != null) {
 				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
 			} else {
 				this.before = ride;
-				valid = true;
+				isValid = true;
 			}
 		} else if (ride.getTimeStart().isEqual(this.end)) {
 			if (this.after != null) {
 				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
 			} else {
 				this.after = ride;
-				valid = true;
+				isValid = true;
 			}
 		} else {
 			throw new BlaException("Error: This ride does not exist in this kid");
 		}
-		return valid;
+		return isValid;
 	}
 	/*
 	 * @return Information of the activity

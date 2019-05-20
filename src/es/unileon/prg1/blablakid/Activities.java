@@ -36,6 +36,16 @@ public class Activities{
 					this.next--;
 			}
 	}
+	public boolean addRide(String activityName, Ride ride, WeekDays day) throws BlaException {	
+		Activity activity = search(activityName, day);
+		boolean isCorrect = false;
+		if (activity == null) {
+			throw new BlaException("Error: The activity "+activityName+" does not exist in this kid");
+		} else {
+			isCorrect = activity.add(ride);	
+		}
+		return isCorrect;
+	}
 	/*
 	 * Check if the activity exists
 	 * @param Name of the activity

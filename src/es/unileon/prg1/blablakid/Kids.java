@@ -55,6 +55,17 @@ public class Kids{
 		}
 		return (i-1);
 	}
+	public boolean addRide(String activity,String nameKid,Ride ride, WeekDays day) throws BlaException {
+		Kid kid = search(nameKid);
+		boolean isCorrect = false;
+		if(kid == null){
+			throw new BlaException("Error: The kid "+nameKid+" does not exist");
+		} else {
+			kid.addRide(activity, ride, day);
+			isCorrect = true;
+		}
+		return isCorrect;
+	}
 	/*
 	 * Search a kid in the collection
 	 * @param Name of the kid to search
