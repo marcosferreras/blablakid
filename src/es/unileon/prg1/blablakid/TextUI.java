@@ -11,29 +11,11 @@ public class TextUI {
 		int number = 0;
 		String name;
 		Teclado teclado = new Teclado ();
-
+	
 		do{
-		     try{
-
-			System.out.println ("---------");	
-			System.out.println ("Blablakid");
-			System.out.println ("---------");
-
-			System.out.println ("Select an option:");
-
-			System.out.println ("1 - Add kid"); 
-			System.out.println ("2 - Remove kid"); 
-			System.out.println ("3 - Add parent");
-			System.out.println ("4 - Remove parent");
-			System.out.println ("5 - Add activity");
-			System.out.println ("6 - Remove activity");
-			System.out.println ("7 - Add ride");
-			System.out.println ("8 - Remove ride");
-			System.out.println ("9 - Show summary");
-			System.out.println ("10 -Check status");
-
-			System.out.println ("0 - Exit");
-			number= Teclado.readInteger();//recogemos ese valor en int numero	
+		    try{
+		    showMenu();
+		    number= Teclado.readInteger();//recogemos ese valor en int numero
 			selectOption(number);
 			} catch (BlaException e) {
 				System.out.println(e.getMessage());
@@ -41,19 +23,42 @@ public class TextUI {
 		}while (number != 0);
 
 	}
+	
+	public void showMenu() {
+		System.out.println ("---------");	
+		System.out.println ("Blablakid");
+		System.out.println ("---------");
+
+		System.out.println ("Select an option:");
+
+		System.out.println ("1 - Add kid"); 
+		System.out.println ("2 - Remove kid"); 
+		System.out.println ("3 - Add parent");
+		System.out.println ("4 - Remove parent");
+		System.out.println ("5 - Add activity");
+		System.out.println ("6 - Remove activity");
+		System.out.println ("7 - Add ride");
+		System.out.println ("8 - Remove ride");
+		System.out.println ("9 - Show summary");
+		System.out.println ("10 -Check status");
+
+		System.out.println ("0 - Exit");
+	
+	}
 	public void selectOption(int number)throws BlaException{
 
 			switch (number){
 				case 1: 
-						askKid();
+						this.blablakid.add(askKid());
+						
 					break;
 				case 2: removeKid();
 					break;
-				case 3: askParent();
+				case 3: askParent(); //igual que el askkid (mas el add)
 					break;
 				case 4: removeParent();
 					break;
-				case 5: askActivity();
+				case 5: //askActivity();
 					break;
 				case 6: removeActivity();
 					break;
@@ -73,15 +78,12 @@ public class TextUI {
 
 			}
 	}
-	private void blablakid(Kid askKid) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public Kid askKid(){
+
+	public Kid askKid()throws BlaException{
 		String name;
 		System.out.println ("Name the kid to add:");
-		name = Teclado.readString();//me crea un niÃ±o con el nombre introducido  (constructor de Kid)
+		name = Teclado.readString();
 		return new Kid(name);
 	}
 
@@ -91,21 +93,31 @@ public class TextUI {
 		name = Teclado.readString();
 		blablakid.removeKid(name);
 	}
-	public void askParent(){ //pregunta por todos los datos del parent
+	public void askParent()throws BlaException{ //pregunta por todos los datos del parent
 		String name;
-		int numberkids, numberrides, kidnumber;
+		int numberkids;
+		int numberrides;
+		String kidname;
+		Kids kids;
 		System.out.println ("Name of the parent to add:");
 		name = Teclado.readString();
 		//blablakid.addParent(new Parent(teclado.readString()); 
 	
 		System.out.println ("How many kids does Pedro have?:");
 		numberkids = Teclado.readInteger();
+		kids = new Kids (numberkids);
+		
 		
 		System.out.println ("How many rides can Pedro make per day?:");
 		numberrides = Teclado.readInteger();
 		
-		System.out.println ("Who is's kid number?:");
-		kidnumber = Teclado.readInteger();
+		for(int i=0; i<numberkids; i++) {
+			System.out.println ("Who is's kid number"+i+"?");
+			kidname = Teclado.readString();
+			kids.add(new Kid (kidname));
+		}
+		
+	//blablakid.add(new Parent(name,//arrayhijos));
 	}
 	
 	public void removeParent(){
@@ -115,10 +127,13 @@ public class TextUI {
 		//blablakid.removeParent????
 	}
 
-	public void askActivity(){
+	/*public void askActivity(){
 		String name;
 		String place;
 		int hour, minute;
+		
+		blablakid.add(new Activity(//activity y namekid));
+		
 		System.out.println ("Name of the activity:");
 		name = Teclado.readString();
 		System.out.println ("Where does the activity Baloncesto takes place?");
@@ -139,9 +154,13 @@ public class TextUI {
 		hour = Teclado.readInteger();
 		System.out.println ("Insert minute:");
 		minute = Teclado.readInteger();
+<<<<<<< HEAD
 		
 		return new Activity(name);
 	}
+=======
+	}*/
+>>>>>>> branch 'master' of https://github.com/ULE-Informatica/p-blablakid-2h.git
 	
 	public void removeActivity() {
 		String name, activity;
@@ -217,10 +236,10 @@ public class TextUI {
 	}
 	
 	public void showSummary() {
-	//La opción de mostrar el resumen muestra por pantalla la información del estado de la aplicación en todo momento y que coincide con lo que estamos mostrando cada vez que mostramos el menú principal
+	//La opciï¿½n de mostrar el resumen muestra por pantalla la informaciï¿½n del estado de la aplicaciï¿½n en todo momento y que coincide con lo que estamos mostrando cada vez que mostramos el menï¿½ principal
 	}
 	public void checkStatus() {
-	//Esta opción deberá mostrar información sobre los trayectos que faltan por cubrir.
+	//Esta opciï¿½n deberï¿½ mostrar informaciï¿½n sobre los trayectos que faltan por cubrir.
 	}
 }
 
