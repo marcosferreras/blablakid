@@ -139,6 +139,8 @@ public class TextUI {
 		hour = Teclado.readInteger();
 		System.out.println ("Insert minute:");
 		minute = Teclado.readInteger();
+		
+		return new Activity(name);
 	}
 	
 	public void removeActivity() {
@@ -150,6 +152,8 @@ public class TextUI {
 		activity = Teclado.readString();
 		System.out.println ("Insert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday ");
 		day = Teclado.readInteger();
+		
+		blablakid.removeActivity(name);
 	}
 	
 	public void addRide() {
@@ -175,6 +179,16 @@ public class TextUI {
 		endminute = Teclado.readInteger();
 		System.out.println ("Day of the week for the ride:\nInsert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday");
 		day = Teclado.readInteger();
+		
+		switch(day) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+	
+	}
+
 	}
 	
 	public void removeRide() {
@@ -184,10 +198,22 @@ public class TextUI {
 		parent = Teclado.readString();
 		System.out.println ("Day of the week for the ride:\nInsert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday");
 		day = Teclado.readInteger();
-		System.out.println ("");
+		
+		switch(day) {
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+		
+		}
+		System.out.println ("Where does the ride start?");
 		startplace = Teclado.readString();
-		System.out.println ("");
+		System.out.println ("Where does the ride end");
 		endplace = Teclado.readString();
+		
+
+		//blablakid.removeRide();
 	}
 	
 	public void showSummary() {
