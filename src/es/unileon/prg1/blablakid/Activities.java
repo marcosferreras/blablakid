@@ -2,15 +2,15 @@ package es.unileon.prg1.blablakid;
 public class Activities{
 	private Activity[] activities;
 	private int next;
-	/*
+	/**
 	 * Constructor of the class
 	 */
 	protected Activities() {
 		activities = new Activity[3];
 	}
-	/*
+	/**
 	 * Add an activity to the collection 
-	 * @param The activity to add
+	 * @param activity The activity to add
 	 */
 	public void add(Activity activity) throws BlaException {
 		if(this.next >= 2) {
@@ -22,9 +22,10 @@ public class Activities{
 			this.next++;
 		}
 	}
-	/*
+	/**
 	 * Remove an activity from the collection
-	 * @param Name of the activity to remove
+	 * @param name Name of the activity to remove
+	 * @param day Day of the activity
 	 */
 	public void remove(String name, WeekDays day) throws BlaException {
 		Activity activity = search(name, day);
@@ -46,10 +47,11 @@ public class Activities{
 		}
 		return isCorrect;
 	}
-	/*
+	/**
 	 * Check if the activity exists
-	 * @param Name of the activity
-	 * @return False-It doesn't exist True
+	 * @param name Name of the activity to remove
+	 * @param day Day of the activity
+	 * @return True if the activity exists or False if not
 	 */
 	public Activity search(String name, WeekDays day) {
 		Activity activity = null;
@@ -64,7 +66,10 @@ public class Activities{
 		}
 		return activity;
 	}
-	
+	/**
+	 * Organizes the array in order to delete the gaps
+	 * @param position Position of the element to organize
+	 */
 	private void organize(int position){
 		
 		while((position+1) < activities.length){
@@ -73,9 +78,9 @@ public class Activities{
 		}
 		activities[(activities.length)-1] = null;
 	}
-	/*
+	/**
 	 * Find the position in the list of an Activity object
-	 * @param The activity to find position
+	 * @param activity The activity to find his position
 	 * @return Position of the activity
 	 */
 	public int position(Activity activity) {
@@ -89,6 +94,7 @@ public class Activities{
 		}
 		return (i-1);
 	}
+	@Override
 	public String toString() {
 		StringBuffer salida= new StringBuffer();
 		for(int i = 0; i < this.next ; i++) {
