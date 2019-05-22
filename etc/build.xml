@@ -1,19 +1,19 @@
 <project name="Blablakid" basedir="." default="todo">
     <property name="src" value="../src"/>
-    <property name="test" value="../test"/>
-    <property name="lib" value="../lib/junit-4.8.2.jar"/>
     <property name="classes" value="../classes"/>
-
-    <property name="paquetes" value="es.unileon.prg1.blablakid"/>
+	<property name="doc" value="../doc"/>
+    <property name="paquetes" value="es.unileon.prg1.blablakid.*"/>
+	<property name="titulo" value="Blablakid APP"/>
 
     <target name="clean">
       <delete dir="${classes}"/>
+    	<delete dir="${doc}"/>
     </target>
 
     <target name="compile" depends="clean">
       <mkdir dir="${classes}"/>
-      <javac srcdir="${src}" destdir="${classes}" classpath="${lib}" includeantruntime="false"/>
-      <echo message="Compilation...done"/>
+      <javac includeantruntime="false" srcdir="${src}" destdir="${classes}"/>
+      <echo message="Compiling...done"/>
     </target>
 
     <target name="compileTests" depends="compile">
@@ -30,18 +30,27 @@
 			</classpath>
 			<arg value="es.unileon.prg1.blablakid.AllTests"/>
 		</java>
+    	
     </target>
-    <target name="run" depends="test">
+	<target name="documentar" depends="test">
+		<mkdir dir="${doc}"/>
+		<javadoc sourcepath="${src}" classpath="${lib}"
+		destdir="${doc}"
+		packagenames="${paquetes}"
+		verbose="true" author="true"
+		access="private" splitindex="true" version="true"
+		windowtitle="${titulo}" doctitle="${titulo}"/>
+	</target>
+	
+    <target name="run" depends="documentar">
      		 <java classname="es.unileon.prg1.blablakid.MainBlablakid">
 			<arg value="3"/>
         		 <classpath>
         		      <pathelement path="${classes}"/>
         		 </classpath>
      		 </java>
-    </target>
+     </target>
 
     <target name="todo" depends="run"/>
 
 </project>
-
-
