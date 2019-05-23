@@ -54,7 +54,7 @@ public class TextUI {
 					break;
 				case 2: removeKid();
 					break;
-				case 3: askParent(); //igual que el askkid (mas el add)
+				case 3: addParent(); //igual que el askkid (mas el add)
 					break;
 				case 4: removeParent();
 					break;
@@ -93,49 +93,49 @@ public class TextUI {
 		name = Teclado.readString();
 		blablakid.removeKid(name);
 	}
-	public void askParent()throws BlaException{ //pregunta por todos los datos del parent
+	public void addParent()throws BlaException{ //pregunta por todos los datos del parent
 		String name;
-		int numberkids;
-		int numberrides;
-		String kidname;
+		int numberKids;
+		int numberRides;
+		String kidName;
 		Kids kids;
+		Parent parent;
 		System.out.println ("Name of the parent to add:");
 		name = Teclado.readString();
-		//blablakid.addParent(new Parent(teclado.readString()); 
-	
 		System.out.println ("How many kids does Pedro have?:");
-		numberkids = Teclado.readInteger();
-		kids = new Kids (numberkids);
-		
-		
+		numberKids = Teclado.readInteger();
+		kids = new Kids (numberKids);
 		System.out.println ("How many rides can Pedro make per day?:");
-		numberrides = Teclado.readInteger();
+		numberRides = Teclado.readInteger();
+		parent = new Parent(name, numberRides);
 		
-		for(int i=0; i<numberkids; i++) {
+		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is's kid number"+i+"?");
-			kidname = Teclado.readString();
-			kids.add(new Kid (kidname));
+			kidName = Teclado.readString();
+			kids.add(new Kid (kidName));
 		}
 		
-	//blablakid.add(new Parent(name,//arrayhijos));
+		this.blablakid.add(parent, kids);
+	
 	}
 	
-	public void removeParent(){
+	public void removeParent() throws BlaException{
 		String name;
 		System.out.println ("Name of the parent to remove:\n");
 		name = Teclado.readString();
-		//blablakid.removeParent????
+		this.blablakid.remove(name);
 	}
 
-	/*public void askActivity(){
+	public Activity askActivity(){
 		String name;
 		String place;
 		int hour, minute;
 		
-		blablakid.add(new Activity(//activity y namekid));
-		
 		System.out.println ("Name of the activity:");
 		name = Teclado.readString();
+		if(name.trim().length() == 0) { //espacios en blanco
+			
+		}
 		System.out.println ("Where does the activity Baloncesto takes place?");
 		place = Teclado.readString();
 		System.out.println ("Day of the week for the activity:\nInsert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday");
@@ -154,7 +154,8 @@ public class TextUI {
 		hour = Teclado.readInteger();
 		System.out.println ("Insert minute:");
 		minute = Teclado.readInteger();
-	}*/
+		return null;
+	}
 	
 	public void removeActivity() {
 		String name, activity;
@@ -207,9 +208,13 @@ public class TextUI {
 	
 	public void showSummary() {
 	//La opci�n de mostrar el resumen muestra por pantalla la informaci�n del estado de la aplicaci�n en todo momento y que coincide con lo que estamos mostrando cada vez que mostramos el men� principal
+	System.out.println(this.blablakid.toString());
 	}
 	public void checkStatus() {
 	//Esta opci�n deber� mostrar informaci�n sobre los trayectos que faltan por cubrir.
+	toString();
+	
+		
 	}
 }
 

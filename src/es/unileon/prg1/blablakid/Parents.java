@@ -53,7 +53,7 @@ public class Parents {
 		}
 	}
 	
-	public void deleate(String name) throws BlaException{
+	public void remove(String name) throws BlaException{
 		int i=0;
 		if (checkParentExists(name)) {
 			while(this.parent[i].getName()!=name) i++;
@@ -65,7 +65,7 @@ public class Parents {
 			}
 			this.parent[next]=null;
 			next--;
-		} else throw new BlaException("That parent dosent exist");
+		} else throw new BlaException("Error: That parent does not exist");
 	}
 }
 	

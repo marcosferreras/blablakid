@@ -9,7 +9,7 @@ public class Activity{
 	Ride before;
 	Ride after;
 	/*
-	 * Builder
+	 * Constructor
 	 * @param name Name of the activity
 	 * @param place Place where the kid does the activity
 	 * @param day Day of the week of the activity

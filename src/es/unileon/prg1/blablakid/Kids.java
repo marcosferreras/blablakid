@@ -91,6 +91,14 @@ public class Kids{
 		}
 		kids[this.next-1] = null;
 	}
+	
+	public int getSize() {
+		return this.kids.length;
+	}
+	
+	public Kid get(int i) {
+		return this.kids[i];
+	}
 	public String toString(){
 		StringBuffer salida= new StringBuffer();
 		salida.append("KIDS:");

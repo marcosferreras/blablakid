@@ -35,12 +35,12 @@ public class ParentsTests {
 	
 	@Test (expected = BlaException.class)
 	public void testdeleateNotExist() throws BlaException{
-		parents.deleate("Francisco");
+		parents.remove("Francisco");
 	}
 	
 	@Test 
 	public void testdeleate() throws BlaException{
-		this.parents.deleate("Jose");
+		this.parents.remove("Jose");
 		assertEquals(false,parents.checkParentExists("Jose"));
 	}
 	
