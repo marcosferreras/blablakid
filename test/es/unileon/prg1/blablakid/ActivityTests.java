@@ -33,6 +33,22 @@ public class ActivityTests {
 		assertEquals(20, this.activity.getEnd().getHour());
 		assertEquals(00, this.activity.getEnd().getMinute());
 	}
+	@Test (expected = BlaException.class)
+	public void testIncorrectStartEnd() throws BlaException {
+		new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(20,00), new Time(19,00));
+	}
+	@Test (expected = BlaException.class)
+	public void testIncorrectEndPlaceRideBefore() throws BlaException{
+		this.activity.add(new Ride(new Time(15,00), new Time(18,00), "Casa", "Parque"));
+	}
+	@Test (expected = BlaException.class)
+	public void testIncorrectStartPlaceRideAfter() throws BlaException{
+		this.activity.add(new Ride(new Time(21,00), new Time(22,00), "San Mames", "Casa"));
+	} 
+	@Test (expected = BlaException.class)
+	public void testIncorrectRide() throws BlaException{
+		this.activity.add(new Ride(new Time(15,00), new Time(19,00), "Casa", "Palomera"));
+	}
 	@Test
 	public void testGetBefore()throws BlaException {
 		this.activity.add(new Ride(new Time(15,00), new Time(18,00), "Casa", "Palomera"));
@@ -68,7 +84,7 @@ public class ActivityTests {
 	@Test (expected = BlaException.class)
 	public void testAddRideBeforeRepeated()throws BlaException {
 		this.activity.add(new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera"));
-		this.activity.add(new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera"));
+		this.activity.add(new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera")); 
 	}
 	@Test (expected = BlaException.class)
 	public void testAddRideAfterRepeated()throws BlaException {
@@ -76,8 +92,9 @@ public class ActivityTests {
 		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 	}
 	@Test (expected = BlaException.class)
-	public void testAddRideFalse()throws BlaException {
-		this.activity.add(new Ride(new Time(21,00), new Time(22,00),"Palomera", "Casa"));
+	public void testAddIncorrectRide()throws BlaException {
+		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
+		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 	}
 	@Test 
 	public void testToString() throws BlaException {

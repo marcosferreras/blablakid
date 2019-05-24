@@ -21,10 +21,20 @@ public class Kid{
 	public void add(Activity activity)throws BlaException{
 		activities.add(activity);
 	}
-	public boolean addRide(String activityName,Ride ride, WeekDays day)throws BlaException {
-		return activities.addRide(activityName,ride, day);
+	public void addRide(String activityName,Ride ride, WeekDays day)throws BlaException {
+		Activity activity = this.activities.search(activityName, day);
+		if(activity == null) {
+			throw new BlaException("Error: The activity "+activityName+" does not exist");
+		} else {
+			activity.add(ride);
+		}
 	}
-	
+	public void removeActivity(String activityName, WeekDays day) throws BlaException {
+		this.activities.remove(activityName, day);
+	}
+	public String checkStatus() {
+		return this.activities.checkStatus();
+	}
 	public String toString(){
 		StringBuffer salida= new StringBuffer();
 		salida.append("\n****** "+this.name+" ******");

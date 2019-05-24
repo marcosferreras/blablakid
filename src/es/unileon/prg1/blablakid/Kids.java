@@ -55,17 +55,6 @@ public class Kids{
 		}
 		return (i-1);
 	}
-	public boolean addRide(String activity,String nameKid,Ride ride, WeekDays day) throws BlaException {
-		Kid kid = search(nameKid);
-		boolean isCorrect = false;
-		if(kid == null){
-			throw new BlaException("Error: The kid "+nameKid+" does not exist");
-		} else {
-			kid.addRide(activity, ride, day);
-			isCorrect = true;
-		}
-		return isCorrect;
-	}
 	/*
 	 * Search a kid in the collection
 	 * @param Name of the kid to search
@@ -76,7 +65,7 @@ public class Kids{
 		Boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next)) {
-			if(name.equals(kids[i].getName())){
+			if(name.toLowerCase().equals(kids[i].getName().toLowerCase())){
 				kid = kids[i];
 				exist = true;
 			}
@@ -92,12 +81,20 @@ public class Kids{
 		kids[this.next-1] = null;
 	}
 	
-	public int getSize() {
+	public int getLength() {
 		return this.kids.length;
 	}
 	
-	public Kid get(int i) {
+	public Kid getKid(int i) {
 		return this.kids[i];
+	}
+	public String checkStatus() {
+		StringBuffer salida= new StringBuffer();
+		salida.append("RIDES STATUS:");
+		for(int i = 0; i < this.next; i++){
+			salida.append(kids[i].checkStatus());
+		}
+		return salida.toString();
 	}
 	public String toString(){
 		StringBuffer salida= new StringBuffer();

@@ -39,18 +39,11 @@ public class Time{
 		if (time.getHour()>this.hour) {
 			exit=true;
 		} else if (time.getHour()==this.hour) {
-			if (time.getMinute()>this.minute) {
+			if (time.getMinute()>=this.minute) {
 				exit=true;
 			}
 		}
 		return exit;
-	}
-	/*
-	 * Check if the time sent as a parameter is greater than the local variable of the class
-	 * @return True-is greater False- isn't greater
-	 */
-	public boolean isEqual(Time time) {
-		return ((this.hour == time.getHour()) && (this.minute == time.getMinute()));
 	}
 
 	public String toString() {

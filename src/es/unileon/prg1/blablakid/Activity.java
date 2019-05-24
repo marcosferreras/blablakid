@@ -16,7 +16,8 @@ public class Activity{
 	 * @param When start the activity
 	 * @param When end the activity
 	 */
-	public Activity (String name, String place, WeekDays day, Time start, Time end) {
+	public Activity (String name, String place, WeekDays day, Time start, Time end) throws BlaException {
+		setSchedule(start,end);
 		this.name = name;
 		this.place = place;
 		this.day = day;
@@ -34,6 +35,14 @@ public class Activity{
 	}
 	public WeekDays getDay(){
 		return this.day;
+	}
+	private void setSchedule(Time start, Time end) throws BlaException {
+		if(end.isBefore(start)) {
+			throw new BlaException("Error: The start time of the activity is after the end");
+		} else {
+			this.start = start;
+			this.end = end;
+		}
 	}
 	/*
 	 * @return Before ride of the activity
@@ -56,26 +65,36 @@ public class Activity{
 	 * @param A ride to add to the activity of a kid
 	 * @return True if the ride was added or False if not
 	 */
-	public boolean add(Ride ride)throws BlaException {
-		boolean isValid = false;
-		if(ride.getTimeEnd().isEqual(this.start)) {
+	public void add(Ride ride)throws BlaException {
+		if(ride.getTimeEnd().isBefore(this.start)) {
 			if (this.before != null) {
 				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+			} else if (!ride.getEndPlace().toLowerCase().equals(this.place.toLowerCase())){
+				throw new BlaException("Error: The ride have to finish in "+this.place);
 			} else {
 				this.before = ride;
-				isValid = true;
 			}
-		} else if (ride.getTimeStart().isEqual(this.end)) {
+		} else if (this.end.isBefore(ride.getTimeStart())) {
 			if (this.after != null) {
 				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+			} else if (!ride.getStartPlace().toLowerCase().equals(this.place.toLowerCase())) {
+				throw new BlaException("Error: The ride have to start in "+this.place);
 			} else {
 				this.after = ride;
-				isValid = true;
 			}
 		} else {
-			throw new BlaException("Error: This ride does not exist in this kid");
+			throw new BlaException("Error: The ride is incorrect, must be finish before the start time of the activity or start after the end time of the activity");
 		}
-		return isValid;
+	}
+	public String checkStatus() {
+		StringBuffer salida = new StringBuffer();
+			if (this.before == null) {
+				salida.append("\n"+day.toString()+" To: "+this.place+". Arrive to "+this.place+" before "+this.start.toString());
+			} 
+			if(this.after == null) {
+				salida.append("\n"+day.toString()+" From: "+this.place+". Arrive to "+this.place+" after "+this.end.toString());
+			} 
+		return salida.toString();
 	}
 	/*
 	 * @return Information of the activity

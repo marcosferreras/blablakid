@@ -37,16 +37,7 @@ public class Activities{
 					this.next--;
 			}
 	}
-	public boolean addRide(String activityName, Ride ride, WeekDays day) throws BlaException {	
-		Activity activity = search(activityName, day);
-		boolean isCorrect = false;
-		if (activity == null) {
-			throw new BlaException("Error: The activity "+activityName+" does not exist in this kid");
-		} else {
-			isCorrect = activity.add(ride);	
-		}
-		return isCorrect;
-	}
+
 	/**
 	 * Check if the activity exists
 	 * @param name Name of the activity to remove
@@ -58,7 +49,7 @@ public class Activities{
 		boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next)) {
-			if(name.equals(activities[i].getName()) && day.equals(activities[i].getDay())){
+			if(name.toLowerCase().equals(activities[i].getName().toLowerCase()) && day.equals(activities[i].getDay())){
 				activity = this.activities[i];
 				exist = true;
 			}
@@ -93,6 +84,13 @@ public class Activities{
 			i++;
 		}
 		return (i-1);
+	}
+	public String checkStatus() {
+		StringBuffer salida= new StringBuffer();
+		for(int i = 0; i < this.next ; i++) {
+			salida.append(this.activities[i].checkStatus());
+		}
+		return salida.toString();
 	}
 	@Override
 	public String toString() {

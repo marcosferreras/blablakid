@@ -22,15 +22,28 @@ public class Blablakid{
 			kid.add(activity);
 		}
 	}
-	public void addRide(String nameParent,String activity,String nameKid,Ride ride, WeekDays day) throws BlaException {
-		kids.addRide(activity,nameKid,ride,day);
+	public void removeActivity(String nameKid, String activityName, WeekDays day) throws BlaException {
+		Kid kid = kids.search(nameKid);
+		kid.removeActivity(activityName, day);
+		
+	}
+	public void addRide(String parentName,String activityName,String kidName,Ride ride, WeekDays day) throws BlaException {
+		Kid kid = kids.search(kidName);
+		if(kid == null) {
+			throw new BlaException("Error: The kid "+kidName+" does not exist");
+		} else {
+			kid.addRide(activityName,ride,day);	
+		}
+	}
+	public void removeRide(String nameParent, WeekDays day, String rideStart, String rideEnd) {
+		
 	}
 	public void add(Parent parent, Kids kids) throws BlaException{
 		Kid kid;
-		for(int i = 0; i < kids.getSize(); i++) {
-			kid = this.kids.search(kids.get(i).getName()); 
+		for(int i = 0; i < kids.getLength(); i++) {
+			kid = this.kids.search(kids.getKid(i).getName()); 
 			if(kid == null) {
-				throw new BlaException("Error: the kid "+kids.get(i).getName()+" does not exist");
+				throw new BlaException("Error: the kid "+kids.getKid(i).getName()+" does not exist"); 
 			} else {
 				//parent.addKids(kid);
 			}	
@@ -39,6 +52,9 @@ public class Blablakid{
 	}
 	public void remove(String nameParent) throws BlaException {
 		this.parents.remove(nameParent);
+	}
+	public String checkStatus() {
+		return kids.checkStatus();
 	}
 	public String toString(){
 		return kids.toString();

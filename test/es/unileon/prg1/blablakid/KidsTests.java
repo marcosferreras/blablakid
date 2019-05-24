@@ -6,11 +6,13 @@ import org.junit.Test;
 
 public class KidsTests {
 	private Kids kids;
+	private Kid kid;
 	
 	@Before
 	public void setUp() throws BlaException{
 		kids = new Kids(3);
-		kids.add(new Kid("Beatriz"));
+		kid = new Kid("Beatriz");
+		kids.add(kid);
 		
 	}
 	@Test (expected = BlaException.class)
@@ -43,6 +45,14 @@ public class KidsTests {
 	@Test (expected = BlaException.class)
 	public void testRemoveNotFound()throws BlaException {
 		kids.remove("Angel");
+	}
+	@Test 
+	public void testGetLength()throws BlaException {
+		assertEquals(3, this.kids.getLength());
+	}
+	@Test 
+	public void testGetKid()throws BlaException {
+		assertEquals(this.kid, this.kids.getKid(0));
 	}
 	@Test
 	public void testToString() {

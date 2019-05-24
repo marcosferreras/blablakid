@@ -59,14 +59,6 @@ public class TimeTest {
 		assertEquals(false, this.time.isBefore(new Time(15,00)));
 	}
 	@Test
-	public void testIsEqual() throws BlaException {
-		assertEquals(true, this.time.isEqual(new Time(15,30)));
-	}
-	@Test
-	public void testIsNotEqual()throws BlaException {
-		assertEquals(false, this.time.isEqual(new Time(15,31)));
-	}
-	@Test
 	public void testToString() {
 		assertEquals(time.toString(),"15:30");
 	}
