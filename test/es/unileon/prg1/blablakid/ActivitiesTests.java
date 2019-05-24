@@ -57,6 +57,13 @@ public class ActivitiesTests {
 		this.activities.remove("Baloncesto", WeekDays.MONDAY);
 	}
 	@Test
+	public void testCheckStatus() throws BlaException {
+		Activity activity = new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00));
+		assertEquals("", this.activities.checkStatus());
+		this.activities.add(activity);
+		assertEquals("\nMONDAY To: Palomera. Arrive to Palomera before 18:0\nMONDAY From: Palomera. Arrive to Palomera after 20:0", this.activities.checkStatus());
+	}
+	@Test
 	public void testToString() throws BlaException {
 		Activity activity = new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00));
 		this.activities.add(activity); 

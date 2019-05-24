@@ -55,6 +55,10 @@ public class KidsTests {
 		assertEquals(this.kid, this.kids.getKid(0));
 	}
 	@Test
+	public void testCheckStatus() {
+		assertEquals("RIDES STATUS:", this.kids.checkStatus());
+	}
+	@Test
 	public void testToString() {
 		assertEquals(kids.toString(), "KIDS:\n****** Beatriz ******");
 	}
