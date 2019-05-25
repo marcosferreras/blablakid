@@ -74,9 +74,6 @@ public class TextUI {
 				case 10: 
 					checkStatus();
 					break;
-				case 0:
-					break;
-
 				default:
 					System.out.println("Error: el número introducido no es correcto, introduzca un número del menú");
 
@@ -87,16 +84,14 @@ public class TextUI {
 	public void addKid()throws BlaException{
 		String name;
 		System.out.println ("Name the kid to add:");
-		name = Teclado.readString();
-		isEmptyString(name);
+		name = readString();
 		this.blablakid.add(new Kid(name));
 	}
 
 	public void removeKid() throws BlaException{
 		String name;
 		System.out.println ("Name the kid to remove:\n");
-		name = Teclado.readString();
-		isEmptyString(name);
+		name = readString();
 		blablakid.removeKid(name);
 	}
 	public void addParent()throws BlaException{ //pregunta por todos los datos del parent
@@ -107,8 +102,7 @@ public class TextUI {
 		Kids kids;
 		Parent parent;
 		System.out.println ("Name of the parent to add:");
-		parentName = Teclado.readString();
-		isEmptyString(parentName);
+		parentName = readString();
 		System.out.println ("How many kids does Pedro have?:");
 		numberKids = Teclado.readInteger();
 		kids = new Kids (numberKids);
@@ -118,8 +112,7 @@ public class TextUI {
 		
 		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is "+parentName+"'s kid number"+i+"?");
-			kidName = Teclado.readString();
-			isEmptyString(kidName);
+			kidName = readString();
 			kids.add(new Kid (kidName)); 
 		}
 		
@@ -130,9 +123,8 @@ public class TextUI {
 	public void removeParent() throws BlaException{
 		String name;
 		System.out.println ("Name of the parent to remove:");
-		name = Teclado.readString();
-		isEmptyString(name);
-		this.blablakid.remove(name);
+		name = readString();
+		this.blablakid.removeParent(name);
 	}
 
 	public void addActivity() throws BlaException{
@@ -141,15 +133,12 @@ public class TextUI {
 		Time start, end;
 		
 		System.out.println ("Name of the activity:");
-		nameActivity = Teclado.readString();
-		isEmptyString(nameActivity);
+		nameActivity = readString();
 		System.out.println ("Where does the activity "+nameActivity+" takes place?");
-		place = Teclado.readString();
-		isEmptyString(place);
+		place = readString();
 		day = askWeekDay();
 		System.out.println ("Name of the kid taking the activity:");
-		nameKid = Teclado.readString();
-		isEmptyString(nameKid);
+		nameKid = readString();
 		System.out.println ("When does the activity start?");
 		start = askTime();
 		System.out.println ("When does the activity end?");
@@ -161,11 +150,9 @@ public class TextUI {
 		String nameKid, activityName;
 		WeekDays day;
 		System.out.println ("Name of the kid taking the activity to remove: ");
-		nameKid = Teclado.readString();
-		isEmptyString(nameKid);
+		nameKid = readString();
 		System.out.println ("Name of the activity to remove: ");
-		activityName = Teclado.readString();
-		isEmptyString(activityName);
+		activityName = readString();
 		day = askWeekDay();
 		this.blablakid.removeActivity(nameKid, activityName, day);	
 	}
@@ -176,20 +163,15 @@ public class TextUI {
 		WeekDays day;
 		Ride ride;
 		System.out.println ("Name of the parent in charge of the ride:");
-		parentName = Teclado.readString();
-		isEmptyString(parentName);
+		parentName = readString();
 		System.out.println ("Name of the activity of the ride:");
-		activityName = Teclado.readString();
-		isEmptyString(activityName);
+		activityName = readString();
 		System.out.println ("Name of the kid taking the activity:");
-		kidName = Teclado.readString();
-		isEmptyString(kidName);
+		kidName = readString();
 		System.out.println ("Where does the ride start?");
-		startPlace = Teclado.readString();
-		isEmptyString(startPlace);
+		startPlace = readString();
 		System.out.println ("Where does the ride end?");
-		endPlace = Teclado.readString();
-		isEmptyString(endPlace);
+		endPlace = readString();
 		System.out.println ("When does the ride start?");
 		start = askTime();
 		System.out.println ("When does the ride end?");
@@ -203,29 +185,31 @@ public class TextUI {
 		String parentName, rideStart, rideEnd;
 		WeekDays day;
 		System.out.println ("Name of the parent in charge of the ride:");
-		parentName = Teclado.readString();
-		isEmptyString(parentName);
+		parentName = readString();
 		day = askWeekDay();
 		System.out.println ("Where does the ride start?");
-		rideStart = Teclado.readString();
-		isEmptyString(rideStart);
+		rideStart = readString();
 		System.out.println ("Where does the ride end?");
-		rideEnd = Teclado.readString();
-		isEmptyString(rideEnd);
+		rideEnd = readString();
 		this.blablakid.removeRide(parentName, day, rideStart, rideEnd);
 	}
 	public Time askTime() throws BlaException {
 		int hour, minute;
-		System.out.println("\tInsert hour:");
+		System.out.println("\tInsert hour:"); 
 		hour= Teclado.readInteger();
 		System.out.println ("\tInsert minute:");
 		minute = Teclado.readInteger();
 		return new Time(hour, minute);
 	}
-	public void isEmptyString(String name) throws BlaException {
-		if(name.trim().length() == 0) { //espacios en blanco
-			throw new BlaException("Error: The field can not be empty");
-		}
+	public String readString() throws BlaException {
+		String name;
+		do {
+			name = Teclado.readString();
+			if(name.trim().length() == 0) { //espacios en blanco
+			System.out.println("Error: The field can not be empty. Input it again");
+			}
+		} while (name.trim().length() == 0);
+		return name;
 	} 
 	public WeekDays askWeekDay() throws BlaException{
 		WeekDays day;

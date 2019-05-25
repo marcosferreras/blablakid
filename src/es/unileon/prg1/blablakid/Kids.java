@@ -11,7 +11,7 @@ public class Kids{
 	}
 	private void isNumOfKidsValid(int numKids) throws BlaException {
 		if(numKids <= 0) {
-			throw new BlaException("Error: El numero de niños pasado como parametro en la ejecucion no es valido. Introduca un valor positivo y mayor que 0. ");
+			throw new BlaException("Error: You must indicate how parameter the maximum number of kids when you run the program");
 		} 
 	}
 	/*
@@ -21,9 +21,9 @@ public class Kids{
 	protected boolean add(Kid kid) throws BlaException {
 		boolean saveCorrect = false;
 		if(search(kid.getName()) != null){
-			throw new BlaException("Error: El niño "+kid.getName()+" ya existe");
+			throw new BlaException("Error: The kid "+kid.getName()+" already exists");
 		} else if (this.next >= kids.length){
-			throw new BlaException("Error: Se ha alcanzado el número máximo de niños");
+			throw new BlaException("Error: The limit of "+kids.length+" has been reached. Try to remove a kid");
 		} else {
 			kids[this.next] = kid;
 			saveCorrect = true;
@@ -38,7 +38,7 @@ public class Kids{
 	public void remove(String name)throws BlaException{
 		Kid kid = search(name);
 		if(kid == null) {
-			throw new BlaException("Error: El niño introducido no existe");
+			throw new BlaException("Error: The kid "+name+" does not exist");
 		} else {
 					organize(position(kid));
 					this.next--;				

@@ -45,13 +45,13 @@ public class Blablakid{
 			if(kid == null) {
 				throw new BlaException("Error: the kid "+kids.getKid(i).getName()+" does not exist"); 
 			} else {
-				//parent.addKids(kid);
+				parent.add(kid);
 			}	
 		}
 		this.parents.add(parent);
 	}
-	public void remove(String nameParent) throws BlaException {
-		this.parents.remove(nameParent);
+	public void removeParent(String name) throws BlaException {
+		this.parents.remove(name);
 	}
 	public String checkStatus() {
 		return kids.checkStatus();
