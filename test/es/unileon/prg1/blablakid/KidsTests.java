@@ -51,6 +51,10 @@ public class KidsTests {
 		assertEquals(3, this.kids.getLength());
 	}
 	@Test 
+	public void testGetNext()throws BlaException {
+		assertEquals(1, this.kids.getNext());
+	}
+	@Test 
 	public void testGetKid()throws BlaException {
 		assertEquals(this.kid, this.kids.getKid(0));
 	}

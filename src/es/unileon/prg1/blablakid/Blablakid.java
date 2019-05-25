@@ -40,7 +40,10 @@ public class Blablakid{
 	}
 	public void add(Parent parent, Kids kids) throws BlaException{
 		Kid kid;
-		for(int i = 0; i < kids.getLength(); i++) {
+		if(kids.getLength()>this.kids.getLength()) {
+			throw new BlaException("Error: The maximum number of kids is "+this.kids.getLength());
+		}
+		for(int i = 0; i < kids.getNext(); i++) {
 			kid = this.kids.search(kids.getKid(i).getName()); 
 			if(kid == null) {
 				throw new BlaException("Error: the kid "+kids.getKid(i).getName()+" does not exist"); 

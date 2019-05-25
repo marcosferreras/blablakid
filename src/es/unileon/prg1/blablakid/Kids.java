@@ -81,6 +81,9 @@ public class Kids{
 		kids[this.next-1] = null;
 	}
 	
+	public int getNext() {
+		return this.next;
+	}
 	public int getLength() {
 		return this.kids.length;
 	}
