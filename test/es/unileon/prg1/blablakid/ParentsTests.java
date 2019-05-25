@@ -10,8 +10,8 @@ public class ParentsTests {
 	@Before
 	public void setup() throws BlaException{
 		this.parents = new Parents(6);
-		Parent parent2, parent = new Parent("Jose",2);
-		parent2=new Parent("Carlos",2);
+		Parent parent2, parent = new Parent("Jose",2,10);
+		parent2=new Parent("Carlos",2,10);
 		parent.add(new Kid("Carlos"));
 		this.parents.add(parent);
 		this.parents.add(parent2);
@@ -24,12 +24,12 @@ public class ParentsTests {
 	
 	@Test (expected = BlaException.class)
 	public void testAddRepeated() throws BlaException{
-		parents.add(new Parent("Jose",1));
+		parents.add(new Parent("Jose",1,10));
 	}
 	
 	@Test
 	public void testadd() throws BlaException{
-		parents.add(new Parent("Juan Carlos",1));
+		parents.add(new Parent("Juan Carlos",1,10));
 		assertEquals("Juan Carlos",parents.checkParentExists("Juan Carlos").getName());
 	}
 	

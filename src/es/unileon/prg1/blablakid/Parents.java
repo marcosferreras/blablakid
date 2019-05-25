@@ -61,20 +61,14 @@ public class Parents {
 			next--;
 		} else throw new BlaException("Error: That parent does not exist");
 	}
-
-
-	public void remove(String name,String start, String end,WeekDays weekDay) throws BlaException{
-		Parent aux=checkParentExists(name);
-		if (aux!=null) {
-			aux.remove(start, end, weekDay);
-		}else throw new BlaException("that parent dosent exist");
-	}
 	
-	public void remove(String name,Ride ride,WeekDays weekDay) throws BlaException{
-		Parent aux=checkParentExists(name);
-		if (aux!=null) {
-			aux.add(ride, weekDay);
-		}else throw new BlaException("that parent dosent exist");
+	public String toString() {
+		StringBuffer output= new StringBuffer();
+		output.append("\nPARENTS:");
+		for (int i=0;i<this.next;i++) {
+			output.append(parent[i].toString());
+		}
+		return output.toString();
 	}
 }
 	

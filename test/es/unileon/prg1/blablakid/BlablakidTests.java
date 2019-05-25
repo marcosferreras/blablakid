@@ -47,7 +47,7 @@ public class BlablakidTests {
 	public void testAddParent() throws BlaException {
 		Kids kids = new Kids(3);
 		kids.add(new Kid("Daniel"));
-		this.blablakid.add(new Parent("Pedro",2), kids);
+		this.blablakid.add(new Parent("Pedro",2,4), kids);
 	}
 	
 }

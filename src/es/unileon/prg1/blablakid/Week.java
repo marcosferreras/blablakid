@@ -31,7 +31,7 @@ public class Week{
 		int i=0;
 		do {
 			if(this.day[i].getWeekDay()!=weekDay) {
-				this.day[i].deleate(start, end);
+				this.day[i].remove(start, end);
 			}
 			i++;
 		}while(this.day[i].getWeekDay()!=weekDay && i<5);
@@ -45,5 +45,14 @@ public class Week{
 			}
 			i++;
 		}while(this.day[i].getWeekDay()!=weekDay && i<5);
+	}
+	
+	public String toString() {
+		StringBuffer output=new StringBuffer();
+		output.append("\nRides of the week:");
+		for (int i=0;i<5;i++) {
+			output.append(this.day[i].toString());
+		}
+		return toString();
 	}
 }

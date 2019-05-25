@@ -10,17 +10,10 @@ public class ParentTest {
 	@Before
 	public void setup() throws BlaException{
 
-		this.parent = new Parent("Carlos",1);
+		this.parent = new Parent("Carlos",1,3);
 		this.parent.add(new Kid("Carlos"));
 	}
-	
-	@Test
-	public void getSetNameTest() {
-		this.parent.setName("Rodolfo");
-		assertEquals("Rodolfo", this.parent.getName());
-	}
-
-	
+		
 	@Test
 	public void builderTest() {
 		assertEquals("Carlos",parent.getName());

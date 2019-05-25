@@ -5,10 +5,10 @@ public class Parent{
 	private Week week;
 	private Kids kids;
 	
-	public Parent(String name,int number) throws BlaException {
+	public Parent(String name,int numberRides, int numberKids) throws BlaException {
 		this.name=name;
-		this.kids = new Kids(number);
-		week = new Week(number);
+		this.kids = new Kids(numberKids);
+		week = new Week(numberRides);
 	}
 
 	public void add(Kid kid) throws BlaException {
@@ -19,16 +19,20 @@ public class Parent{
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	public void remove(String start,String end,WeekDays weekDay) throws BlaException{
 		this.week.remove(start, end,weekDay);
 	}
 	
 	public void add(Ride ride, WeekDays weekDay) throws BlaException{
-		this.add(ride, weekDay);
+		this.week.add(ride, weekDay);
+	}
+	
+	public String toString() {
+		StringBuffer output = new StringBuffer();
+		output.append("\n***** "+this.name+" *****\n");
+		output.append(kids.toString());
+		output.append(week.toString());
+		return output.toString();
 	}
 }

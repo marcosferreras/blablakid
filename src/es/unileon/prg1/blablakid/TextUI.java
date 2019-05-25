@@ -108,7 +108,7 @@ public class TextUI {
 		kids = new Kids (numberKids);
 		System.out.println ("How many rides can Pedro make per day?:");
 		numberRides = Teclado.readInteger();
-		parent = new Parent(parentName, numberRides);
+		parent = new Parent(parentName, numberRides, numberKids);
 		
 		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is "+parentName+"'s kid number"+i+"?");
