@@ -6,11 +6,13 @@ public class Ride{
 	private String startPlace;
 	private String endPlace;
 	
-	public Ride(Time timeStart, Time timeEnd, String startPlace, String endPlace ) {
-		this.timeStart=timeStart;
-		this.timeEnd=timeEnd;
-		this.startPlace=startPlace;
-		this.endPlace = endPlace;
+	public Ride(Time timeStart, Time timeEnd, String startPlace, String endPlace ) throws BlaException{
+		if(timeStart.isBefore(timeEnd)) {
+			this.timeStart=timeStart;
+			this.timeEnd=timeEnd;
+			this.startPlace=startPlace;
+			this.endPlace = endPlace;
+		} else throw new BlaException("please change the order of the hours");
 	}
 
 	public Time getTimeStart() {
@@ -22,22 +24,18 @@ public class Ride{
 	public String getEndPlace() {
 		return this.endPlace;
 	}
-	public void setTimeStart(Time timeStart) {
-		this.timeStart = timeStart;
-	}
+
 
 	public Time getTimeEnd() {
 		return timeEnd;
 	}
 
-	public void setTimeEnd(Time timeEnd) {
-		this.timeEnd = timeEnd;
-	}
 	public String toString() {
 		return ("\n"+this.startPlace+" > "+this.endPlace+" : "+timeStart.toString()+" / "+ timeEnd.toString());
 	}
-	/*private boolean isSame() {
+	public boolean isSame(String start,String end) {
 		boolean exit=false;
-		if (timeStart==timeEnd)
-	}*/
+		if (this.startPlace==start && this.endPlace==end) exit=true;
+		return exit;
+	}
 }

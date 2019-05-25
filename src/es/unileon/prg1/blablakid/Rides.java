@@ -13,23 +13,36 @@ public class Rides{
 		}
 	}
 	
-	private void  add(Ride ride) {
+	public void  add(Ride ride) {
 		this.rides[next]=ride;
 		next++;
 	}
 	
-	private void remove(int number) {
-			this.rides[number]=null;
-			reorganice(number);
-			next--;
+	private int find(String start, String end) {
+		int i=0, num=-1;
+		boolean out=false;
+		do {
+			if (rides[i].isSame(start,end)) {
+				out=true;
+				num=i;
+			}
+			else i++;
+		}while (!out);
+		return num;
 	}
 	
-	private void reorganice(int number) {
-		Ride aux;
-		for (int j=number;j<next;j++) {
-			aux=this.rides[j+1];
-			this.rides[j]=aux;
-		}
-		this.rides[next]=null;
+	public void deleate(String start, String end) throws BlaException{
+		int num=find(start,end);
+		if (num!=-1) {
+			this.rides[num]=null;
+			Ride aux;
+			for (int j=num;j<next;j++) {
+				aux=this.rides[j+1];
+				this.rides[j]=aux;
+			}
+			this.rides[next]=null;
+			next--;
+		} else throw new BlaException("That ride dosent exist");
 	}
+
 }

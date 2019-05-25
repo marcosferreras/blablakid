@@ -7,11 +7,12 @@ public class Parent{
 	
 	public Parent(String name,int number) throws BlaException {
 		this.name=name;
+		this.kids = new Kids(number);
 		week = new Week(number);
 	}
 
-	public void addKids(Kids kids) throws BlaException {
-		this.kids=kids;
+	public void add(Kid kid) throws BlaException {
+		this.kids.add(kid);
 	}
 	
 	
@@ -21,5 +22,13 @@ public class Parent{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void remove(String start,String end,WeekDays weekDay) throws BlaException{
+		this.week.remove(start, end,weekDay);
+	}
+	
+	public void add(Ride ride, WeekDays weekDay) throws BlaException{
+		this.add(ride, weekDay);
 	}
 }

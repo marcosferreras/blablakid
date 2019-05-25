@@ -1,5 +1,7 @@
 package es.unileon.prg1.blablakid;
 
+import java.util.Arrays;
+
 public class Parents {
 	int next;
 	private Parent parent[];
@@ -21,32 +23,23 @@ public class Parents {
 		return salida;
 	}
 	
-	public int getNext() {
-		return next;
-	}
 
-	public void setNext(int numOfParents) {
-		this.next = numOfParents;
-	}
-
-	public Parent getParent(int number) {
-		return parent[number];
-	}
-
-	public boolean checkParentExists(String name) {
-		boolean salida=false;
+	public Parent checkParentExists(String name) {
+		boolean out=false;
+		Parent aux=null;
 		int i=0;
-		while (i<this.next) {
+		while (i<this.next && !out) {
 			if (parent[i].getName().equals(name)) {
-				salida=true;
+				out=true;
+				aux=this.parent[i];
 			}
-			i++;
+			else i++;
 		}
-		return salida;
+		return aux;
 	}
 	
 	public void add(Parent parent) throws BlaException{
-		if (checkParentExists(parent.getName())) throw new BlaException("That parent has allready exist");
+		if (checkParentExists(parent.getName())!=null) throw new BlaException("That parent has allready exist");
 		else {
 			this.parent[next]=parent;
 			this.next++;
@@ -54,18 +47,34 @@ public class Parents {
 	}
 	
 	public void remove(String name) throws BlaException{
+		Parent aux1, aux2;
 		int i=0;
-		if (checkParentExists(name)) {
-			while(this.parent[i].getName()!=name) i++;
-			this.parent[i]=null;
-			Parent aux;
+		aux2=checkParentExists(name);
+		if (aux2!=null) {
+			aux2=null;
+			while(this.parent[i]!=null) i++;
 			for (int j=i;j<next;j++) {
-				aux=this.parent[j+1];
-				this.parent[j]=aux;
+				aux1=this.parent[j+1];
+				this.parent[j]=aux1;
 			}
-			this.parent[next]=null;
+			this.parent[next-1]=null;
 			next--;
 		} else throw new BlaException("Error: That parent does not exist");
+	}
+
+
+	public void remove(String name,String start, String end,WeekDays weekDay) throws BlaException{
+		Parent aux=checkParentExists(name);
+		if (aux!=null) {
+			aux.remove(start, end, weekDay);
+		}else throw new BlaException("that parent dosent exist");
+	}
+	
+	public void remove(String name,Ride ride,WeekDays weekDay) throws BlaException{
+		Parent aux=checkParentExists(name);
+		if (aux!=null) {
+			aux.add(ride, weekDay);
+		}else throw new BlaException("that parent dosent exist");
 	}
 }
 	

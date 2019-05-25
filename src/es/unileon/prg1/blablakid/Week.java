@@ -26,4 +26,24 @@ public class Week{
 	public void setNext(int next) {
 		this.next = next;
 	}
+	
+	public void remove(String start, String end,WeekDays weekDay)throws BlaException{
+		int i=0;
+		do {
+			if(this.day[i].getWeekDay()!=weekDay) {
+				this.day[i].deleate(start, end);
+			}
+			i++;
+		}while(this.day[i].getWeekDay()!=weekDay && i<5);
+	}
+	
+	public void add(Ride ride,WeekDays weekDay) {
+		int i=0;
+		do {
+			if(this.day[i].getWeekDay()!=weekDay) {
+				this.day[i].add(ride);
+			}
+			i++;
+		}while(this.day[i].getWeekDay()!=weekDay && i<5);
+	}
 }

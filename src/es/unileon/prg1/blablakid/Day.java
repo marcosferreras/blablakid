@@ -35,5 +35,11 @@ public class Day{
 	public WeekDays getWeekDay() {
 		return this.weekDay;
 	}
-		
+	public void deleate(String start, String end) throws BlaException{
+		this.rides.deleate(start,end);
+	}	
+	
+	public void add(Ride ride) {
+		this.rides.add(ride);
+	}
 }

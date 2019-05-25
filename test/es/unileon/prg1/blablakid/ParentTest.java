@@ -9,10 +9,9 @@ public class ParentTest {
 	
 	@Before
 	public void setup() throws BlaException{
-		Kids kids = new Kids(3);
-		kids.add(new Kid("Godofredo"));
+
 		this.parent = new Parent("Carlos",1);
-		this.parent.addKids(kids);
+		this.parent.add(new Kid("Carlos"));
 	}
 	
 	@Test
