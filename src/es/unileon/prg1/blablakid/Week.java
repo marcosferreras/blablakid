@@ -53,6 +53,6 @@ public class Week{
 		for (int i=0;i<5;i++) {
 			output.append(this.day[i].toString());
 		}
-		return toString();
+		return output.toString();
 	}
 }
