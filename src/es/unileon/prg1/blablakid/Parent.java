@@ -20,18 +20,19 @@ public class Parent{
 		return name;
 	}
 	
-	public void remove(String start,String end,WeekDays weekDay) throws BlaException{
-		this.week.remove(start, end,weekDay);
-	}
-	
-	public void add(Ride ride, WeekDays weekDay) throws BlaException{
-		this.week.add(ride, weekDay);
+	public Week getWeek() {
+		return this.week;
 	}
 	
 	public String toString() {
 		StringBuffer output = new StringBuffer();
-		output.append("\n***** "+this.name+" *****\n");
-		output.append(kids.toString());
+		int i=0;
+		output.append("\n##### "+this.name+" #####\n");
+		output.append("Kids:\n");
+		while(kids.getKid(i)!=null && i<kids.getLength()){
+			output.append(kids.getKid(i)+"\n");
+			i++;
+		}
 		output.append(week.toString());
 		return output.toString();
 	}

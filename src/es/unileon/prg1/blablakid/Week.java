@@ -27,29 +27,23 @@ public class Week{
 		this.next = next;
 	}
 	
-	public void remove(String start, String end,WeekDays weekDay)throws BlaException{
-		int i=0;
-		do {
-			if(this.day[i].getWeekDay()!=weekDay) {
-				this.day[i].remove(start, end);
-			}
-			i++;
-		}while(this.day[i].getWeekDay()!=weekDay && i<5);
-	}
 	
-	public void add(Ride ride,WeekDays weekDay) {
+	
+	public Day getDay(WeekDays weekDay) {
 		int i=0;
-		do {
-			if(this.day[i].getWeekDay()!=weekDay) {
-				this.day[i].add(ride);
+		Day day=null;
+		while(i<5) {
+			if(this.day[i].getWeekDay()==weekDay) {
+				day=this.day[i];
 			}
 			i++;
-		}while(this.day[i].getWeekDay()!=weekDay && i<5);
+		}
+		return day;
 	}
 	
 	public String toString() {
 		StringBuffer output=new StringBuffer();
-		output.append("\nRides of the week:");
+		output.append("\nRIDES:");
 		for (int i=0;i<5;i++) {
 			output.append(this.day[i].toString());
 		}

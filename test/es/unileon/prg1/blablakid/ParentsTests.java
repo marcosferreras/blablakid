@@ -11,16 +11,42 @@ public class ParentsTests {
 	public void setup() throws BlaException{
 		this.parents = new Parents(6);
 		Parent parent2, parent = new Parent("Jose",2,10);
-		parent2=new Parent("Carlos",2,10);
+		parent2=new Parent("Marco",2,10);
 		parent.add(new Kid("Carlos"));
 		this.parents.add(parent);
 		this.parents.add(parent2);
 	}
+	@Test
+	public void toStringTest() {
+		assertEquals("\n" + 
+				"PARENTS:\n" + 
+				"##### Jose #####\n" + 
+				"Kids:\n" + 
+				"\n" + 
+				"****** Carlos ******\n" + 
+				"\n" + 
+				"RIDES:\n" + 
+				"MONDAY rides:\n" + 
+				"TUESDAY rides:\n" + 
+				"WEDNESDAY rides:\n" + 
+				"THURSDAY rides:\n" + 
+				"FRIDAY rides:\n" + 
+				"##### Marco #####\n" + 
+				"Kids:\n" + 
+				"\n" + 
+				"RIDES:\n" + 
+				"MONDAY rides:\n" + 
+				"TUESDAY rides:\n" + 
+				"WEDNESDAY rides:\n" + 
+				"THURSDAY rides:\n" + 
+				"FRIDAY rides:",parents.toString());
+	}
 	
 	@Test (expected = BlaException.class)
 	public void testNumOfParentsValid()throws BlaException{
-		new Parents(-1);
+		new Parents(-10);
 	}
+
 	
 	@Test (expected = BlaException.class)
 	public void testAddRepeated() throws BlaException{
@@ -29,8 +55,8 @@ public class ParentsTests {
 	
 	@Test
 	public void testadd() throws BlaException{
-		parents.add(new Parent("Juan Carlos",1,10));
-		assertEquals("Juan Carlos",parents.checkParentExists("Juan Carlos").getName());
+		parents.add(new Parent("Juan",1,10));
+		assertEquals("Juan",parents.checkParentExists("juan").getName());
 	}
 	
 	@Test (expected = BlaException.class)
@@ -40,8 +66,8 @@ public class ParentsTests {
 	
 	@Test 
 	public void testremove() throws BlaException{
-		this.parents.remove("Carlos");
-		assertEquals(null,parents.checkParentExists("Carlos"));
+		this.parents.remove("Jose");
+		assertEquals(null,parents./*toString()*/checkParentExists("jose"));
 	}
 	
 	@Test 
@@ -51,7 +77,7 @@ public class ParentsTests {
 	
 	@Test 
 	public void testcheckParentExistsError(){
-		assertEquals(null , parents.checkParentExists("Marco"));
+		assertEquals(null , parents.checkParentExists("Juan"));
 	}
 	
 	@Test
@@ -69,8 +95,6 @@ public class ParentsTests {
 		assertEquals("Jose",parents.checkParentExists("Jose").getName());
 	}
 	
-	@Test
-	public void removeRideTest()throws BlaException{
-		
-	}
+	
+	
 }

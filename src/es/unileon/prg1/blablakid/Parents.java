@@ -18,7 +18,7 @@ public class Parents {
 		if (numParents>0) salida=true;
 		else {
 			salida=false;
-			throw new BlaException ("El numero introducido mayor que 0.");
+			throw new BlaException ("Error:The number must be greater than zero");
 		}
 		return salida;
 	}
@@ -29,7 +29,7 @@ public class Parents {
 		Parent aux=null;
 		int i=0;
 		while (i<this.next && !out) {
-			if (parent[i].getName().equals(name)) {
+			if (parent[i].getName().toLowerCase().equals(name.toLowerCase())) {
 				out=true;
 				aux=this.parent[i];
 			}
@@ -39,25 +39,27 @@ public class Parents {
 	}
 	
 	public void add(Parent parent) throws BlaException{
-		if (checkParentExists(parent.getName())!=null) throw new BlaException("That parent has allready exist");
+		if (checkParentExists(parent.getName())!=null) throw new BlaException("Error:That parent has allready exist");
 		else {
-			this.parent[next]=parent;
-			this.next++;
+			this.parent[next++]=parent;
 		}
 	}
 	
 	public void remove(String name) throws BlaException{
 		Parent aux1, aux2;
-		int i=0;
+		int j=0;
 		aux2=checkParentExists(name);
 		if (aux2!=null) {
-			aux2=null;
-			while(this.parent[i]!=null) i++;
-			for (int j=i;j<next;j++) {
-				aux1=this.parent[j+1];
-				this.parent[j]=aux1;
+			while(this.parent[j]!=null) {
+				if (aux2.getName()==this.parent[j].getName()) {
+					this.parent[j]=null;
+				}else j++;
 			}
-			this.parent[next-1]=null;
+			for (int i=j;i<=this.next;i++) {
+				aux1=this.parent[i+1];
+				this.parent[i]=this.parent[i+1];
+				this.parent[i]=aux1;
+			}
 			next--;
 		} else throw new BlaException("Error: That parent does not exist");
 	}

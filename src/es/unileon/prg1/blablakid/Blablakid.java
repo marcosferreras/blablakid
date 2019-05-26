@@ -39,7 +39,7 @@ public class Blablakid{
 		if(parent==null) {
 			throw new BlaException("Error: That parent does not exists");
 		}else {
-			parent.add(ride, day);
+			parent.getWeek().getDay(day).getRides().add(ride);
 		}
 	}
 	public void removeRide(String nameParent, WeekDays day, String rideStart, String rideEnd) throws BlaException{
@@ -48,7 +48,7 @@ public class Blablakid{
 		if(parent==null) {
 			throw new BlaException("Error: That parent does not exists");
 		}else {
-			parent.remove(rideStart, rideEnd, day);
+			parent.getWeek().getDay(day).getRides().remove(rideStart, rideEnd);
 		}
 	}
 	public void add(Parent parent, Kids kids) throws BlaException{
