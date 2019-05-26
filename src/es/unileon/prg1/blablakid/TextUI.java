@@ -74,6 +74,8 @@ public class TextUI {
 				case 10: 
 					checkStatus();
 					break;
+				case 0:
+					break;
 				default:
 					System.out.println("Error: el número introducido no es correcto, introduzca un número del menú");
 
@@ -212,29 +214,31 @@ public class TextUI {
 		return name;
 	} 
 	public WeekDays askWeekDay() throws BlaException{
-		WeekDays day;
+		WeekDays day = null;
 		int number;
 		System.out.println ("Insert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday ");
-		number = Teclado.readInteger();
-		switch(number){
-			case 0:
-				day = WeekDays.MONDAY;
-			break;
-			case 1:
-				day = WeekDays.TUESDAY;
-			break;
-			case 2:
-				day = WeekDays.WEDNESDAY;
-			break;
-			case 3:
-				day = WeekDays.THURSDAY;
-			break;
-			case 4:
-				day = WeekDays.FRIDAY;
-			break;
-			default:
-				throw new BlaException ("Error: The number "+number+" is incorrect. Introduce a 0-4 number");			
-		}
+		do {
+			number = Teclado.readInteger();
+			switch(number){
+				case 0:
+					day = WeekDays.MONDAY;
+					break;
+				case 1:
+					day = WeekDays.TUESDAY;
+					break;
+				case 2:
+					day = WeekDays.WEDNESDAY;
+					break;
+				case 3:
+					day = WeekDays.THURSDAY;
+					break;
+				case 4:
+					day = WeekDays.FRIDAY;
+					break;
+				default:
+					System.out.println("Error: The number "+number+" is incorrect. Introduce a 0-4 number");			
+			}
+		} while (number>4 || number<0);
 		return day;
 	}
 	public void showSummary() {

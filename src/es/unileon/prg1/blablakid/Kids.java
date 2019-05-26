@@ -101,7 +101,7 @@ public class Kids{
 	}
 	public String toString(){
 		StringBuffer salida= new StringBuffer();
-		salida.append("KIDS:");
+		salida.append("KIDS:\n");
 		for(int i = 0; i < this.next; i++){
 			salida.append(kids[i].toString());
 		}

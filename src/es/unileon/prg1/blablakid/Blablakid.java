@@ -74,8 +74,10 @@ public class Blablakid{
 	}
 	public String toString(){
 		StringBuffer output=new StringBuffer();
+		output.append("////////////////////////\n\n");
 		output.append(this.kids.toString());
 		output.append(this.parents.toString());
+		output.append("\n\n////////////////////////");
 		return output.toString();
 	}
 }
