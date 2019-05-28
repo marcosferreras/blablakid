@@ -15,13 +15,22 @@ public class Parent{
 		this.kids.add(kid);
 	}
 	
+	public int find(String name) {
+		int number=-1;
+		number=this.kids.position(new Kid(name));
+		return number;
+	}
+	
+	public void remove(String name) throws BlaException {
+		this.kids.remove(name);
+	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public Week getWeek() {
-		return this.week;
+	public Day getDay(WeekDays day) {
+		return this.week.getDay(day);
 	}
 	
 	public String toString() {

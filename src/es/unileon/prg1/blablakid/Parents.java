@@ -23,38 +23,37 @@ public class Parents {
 		return salida;
 	}
 	
-
-	public Parent checkParentExists(String name) {
-		boolean out=false;
-		Parent aux=null;
-		int i=0;
-		while (i<this.next && !out) {
-			if (parent[i].getName().toLowerCase().equals(name.toLowerCase())) {
-				out=true;
-				aux=this.parent[i];
-			}
-			else i++;
+	public void removeKid(String name) throws BlaException{
+		for (int i=0;i<this.next;i++) {
+			if(parent[i].find(name)!=-1) this.parent[i].remove(name);
 		}
-		return aux;
+	}
+	public int search(String name) {
+		int i=0,out=-1;
+		while (i<this.next && -1==out) {
+			if (parent[i].getName().toLowerCase().equals(name.toLowerCase())) {
+				out=i;
+			}
+			i++;
+		}
+		return out;
+	}
+	
+	public Parent getParent(int number) {
+		return this.parent[number];
 	}
 	
 	public void add(Parent parent) throws BlaException{
-		if (checkParentExists(parent.getName())!=null) throw new BlaException("Error:That parent has allready exist");
+		if (search(parent.getName())!=-1) throw new BlaException("Error:That parent has allready exist");
 		else {
 			this.parent[next++]=parent;
 		}
 	}
 	
 	public void remove(String name) throws BlaException{
-		Parent aux1, aux2;
-		int j=0;
-		aux2=checkParentExists(name);
-		if (aux2!=null) {
-			while(this.parent[j]!=null) {
-				if (aux2.getName()==this.parent[j].getName()) {
-					this.parent[j]=null;
-				}else j++;
-			}
+		Parent aux1;
+		int j=search(name);
+		if (j!=-1) {
 			for (int i=j;i<=this.next;i++) {
 				aux1=this.parent[i+1];
 				this.parent[i]=this.parent[i+1];

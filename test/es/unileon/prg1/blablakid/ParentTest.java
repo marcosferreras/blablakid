@@ -34,14 +34,4 @@ public class ParentTest {
 				"THURSDAY rides:\n" + 
 				"FRIDAY rides:",parent.toString());
 	}
-	@Test
-	public void getWeekTest() {
-		assertEquals(parent.getWeek().toString(),"\n" + 
-				"RIDES:\n" + 
-				"MONDAY rides:\n" + 
-				"TUESDAY rides:\n" + 
-				"WEDNESDAY rides:\n" + 
-				"THURSDAY rides:\n" + 
-				"FRIDAY rides:");
-	}
 }

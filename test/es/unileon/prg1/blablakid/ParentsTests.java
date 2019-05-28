@@ -56,7 +56,7 @@ public class ParentsTests {
 	@Test
 	public void testadd() throws BlaException{
 		parents.add(new Parent("Juan",1,10));
-		assertEquals("Juan",parents.checkParentExists("juan").getName());
+		assertEquals(2,parents.search("juan"));
 	}
 	
 	@Test (expected = BlaException.class)
@@ -67,33 +67,29 @@ public class ParentsTests {
 	@Test 
 	public void testremove() throws BlaException{
 		this.parents.remove("Jose");
-		assertEquals(null,parents./*toString()*/checkParentExists("jose"));
+		assertEquals(-1,parents.search("jose"));
 	}
 	
 	@Test 
 	public void testcheckParentExists(){
-		assertEquals("Jose",parents.checkParentExists("Jose").getName());
+		assertEquals(0,parents.search("Jose"));
 	}
 	
 	@Test 
 	public void testcheckParentExistsError(){
-		assertEquals(null , parents.checkParentExists("Juan"));
+		assertEquals(-1 , parents.search("Juan"));
 	}
 	
 	@Test
 	public void testIsCorrectNumberFalseTest(){
-		assertEquals(null , parents.checkParentExists("m"));
+		assertEquals(-1 , parents.search("m"));
 	}
 	
 	@Test
 	public void testIsCorrectNumberTrueTest(){
-		assertEquals("Jose" , parents.checkParentExists("Jose").getName());
+		assertEquals(0 , parents.search("Jose"));
 	}
-	
-	@Test
-	public void getParentTest() {
-		assertEquals("Jose",parents.checkParentExists("Jose").getName());
-	}
+
 	
 	
 	

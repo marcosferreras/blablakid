@@ -2,7 +2,6 @@ package es.unileon.prg1.blablakid;
 public class Week{
 	
 	private Day []day;
-	private int next=0;
 	
 	public Week(int number)  throws BlaException{
 		day = new Day[5];
@@ -11,34 +10,17 @@ public class Week{
 		}
 	}
 	
-	private int found(Day day) {
+	public int search(WeekDays weekDay) {
 		int output=-1;
-		for (int i=0;i<next;i++) {
-			if (this.day[i].getWeekDay()==day.getWeekDay()) output=i;
+		for (int i=0;i<5;i++) {
+			if (this.day[i].getWeekDay()==weekDay) output=i;
 		}
 		return output;
 	}
 	
-	public int getNext() {
-		return next;
-	}
-
-	public void setNext(int next) {
-		this.next = next;
-	}
-	
-	
-	
 	public Day getDay(WeekDays weekDay) {
-		int i=0;
-		Day day=null;
-		while(i<5) {
-			if(this.day[i].getWeekDay()==weekDay) {
-				day=this.day[i];
-			}
-			i++;
-		}
-		return day;
+		int i=search(weekDay);
+		return this.day[i];
 	}
 	
 	public String toString() {

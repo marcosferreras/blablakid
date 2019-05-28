@@ -12,7 +12,7 @@ public class Blablakid{
 	
 	public void removeKid(String name) throws BlaException {
 		this.kids.remove(name);
-		//this.parents.removeKid(name);
+		this.parents.removeKid(name);
 	}
 	
 	public void add(Activity activity, String nameKid) throws BlaException {
@@ -49,26 +49,25 @@ public class Blablakid{
 	}
 	public void addRide(String parentName,String activityName,String kidName,Ride ride, WeekDays day) throws BlaException {
 		Kid kid = kids.search(kidName);
-		Parent parent;
+		int number=parents.search(parentName);
 		if(kid == null) {
 			throw new BlaException("Error: The kid "+kidName+" does not exist");
 		} else {
 			kid.addRide(activityName,ride,day);	
 		}
-		parent=this.parents.checkParentExists(parentName);
-		if(parent==null) {
+		
+		if(number==-1) {
 			throw new BlaException("Error: That parent does not exists");
 		}else {
-			parent.getWeek().getDay(day).getRides().add(ride);
+			parents.getParent(number).getDay(day).add(ride);
 		}
 	}
-	public void removeRide(String nameParent, WeekDays day, String rideStart, String rideEnd) throws BlaException{
-		Parent parent;		
-		parent=this.parents.checkParentExists(nameParent);
-		if(parent==null) {
+	public void removeRide(String nameParent, WeekDays day, String rideStart, String rideEnd) throws BlaException{		
+		int number=this.parents.search(nameParent);
+		if(number==-1) {
 			throw new BlaException("Error: That parent does not exists");
-		} else {
-			parent.getWeek().getDay(day).getRides().remove(rideStart, rideEnd);
+		}else {
+			parents.getParent(number).getDay(day).remove(rideStart, rideEnd);;
 		}
 		
 	}
