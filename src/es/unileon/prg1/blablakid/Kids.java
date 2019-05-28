@@ -44,7 +44,7 @@ public class Kids{
 					this.next--;				
 		}
 	}
-	private int position(Kid kid) {
+	public int position(Kid kid) {
 		boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next)) {
