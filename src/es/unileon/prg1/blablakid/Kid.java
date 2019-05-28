@@ -14,9 +14,10 @@ public class Kid{
 	 * @param name Name of the kid
 	 */
 	public Kid (String name){
+		logger.entry();
 		this.name = name;
 		activities = new Activities();
-		logger.trace("Kid added to the collection");
+		logger.info("Kid "+name+" added");
 	}
 	/**
 	 * Gets the name of a kid

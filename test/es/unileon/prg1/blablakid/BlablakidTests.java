@@ -10,7 +10,10 @@ public class BlablakidTests {
 	@Before
 	public void setUp() throws BlaException {
 		blablakid = new Blablakid(3);
+		Kids kids = new Kids(1);
+		kids.add(new Kid("Daniel"));
 		this.blablakid.add(new Kid("Daniel"));
+		this.blablakid.add(new Parent("Pedro",1,1),kids);
 	}
 	@Test (expected = BlaException.class)
 	public void testNumOfKidsNegative() throws BlaException {
@@ -43,11 +46,6 @@ public class BlablakidTests {
 		this.blablakid.add(new Activity("Baloncesto","Palomera",WeekDays.MONDAY,new Time(18,00),new Time(20,00)), "Daniel");
 		this.blablakid.addRide("Pedro", "Baloncesto", "Manuel", new Ride(new Time(17,00),new Time(18,00), "Casa", "Palomera"), WeekDays.MONDAY);
 	}
-	@Test 
-	public void testAddParent() throws BlaException {
-		Kids kids = new Kids(3);
-		kids.add(new Kid("Daniel"));
-		this.blablakid.add(new Parent("Pedro",2,4), kids);
-	}
+
 	
 }

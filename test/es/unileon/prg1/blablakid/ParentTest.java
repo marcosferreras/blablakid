@@ -27,11 +27,6 @@ public class ParentTest {
 				"\n" + 
 				"****** Carlos ******\n" + 
 				"\n" + 
-				"RIDES:\n" + 
-				"MONDAY rides:\n" + 
-				"TUESDAY rides:\n" + 
-				"WEDNESDAY rides:\n" + 
-				"THURSDAY rides:\n" + 
-				"FRIDAY rides:",parent.toString());
+				"RIDES:",parent.toString());
 	}
 }

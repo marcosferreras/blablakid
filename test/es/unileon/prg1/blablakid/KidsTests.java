@@ -64,6 +64,6 @@ public class KidsTests {
 	}
 	@Test
 	public void testToString() {
-		assertEquals(kids.toString(), "KIDS:\n****** Beatriz ******");
+		assertEquals(kids.toString(), "KIDS:\n\n****** Beatriz ******");
 	}
 }
