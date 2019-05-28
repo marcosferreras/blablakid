@@ -18,6 +18,10 @@ public class Rides{
 		next++;
 	}
 	
+	public Ride search(String start, String end) {
+		return this.ride[find(start,end)];
+	}
+	
 	private int find(String start, String end) {
 		int i=0, num=-1;
 		boolean out=false;
