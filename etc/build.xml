@@ -3,18 +3,28 @@
     <property name="classes" value="classes"/>
     <property name="doc" value="doc"/>
     <property name="test" value="test"/>
-     <property name="lib" value="lib/junit-4.8.2.jar"/>
+    <property name="logs" value="logs"/>
+    <property name="lib" value="lib/junit-4.8.2.jar"/>
+    <property name="lib1" value="lib/log4j-api-2.5.jar"/>
+    <property name="lib2" value="lib/log4j-core-2.5.jar"/>
     <property name="paquetes" value="es.unileon.prg1.blablakid.*"/>
 	<property name="titulo" value="Blablakid APP"/>
 
     <target name="clean">
       <delete dir="${classes}"/>
-    	<delete dir="${doc}"/>
+      <delete dir="${doc}"/>
+      <delete dir="${logs}"/>
     </target>
 
     <target name="compile" depends="clean">
       <mkdir dir="${classes}"/>
-      <javac includeantruntime="false" srcdir="${src}" destdir="${classes}"/>
+      <javac includeantruntime="false" srcdir="${src}" destdir="${classes}">
+			 <classpath>
+        		      <pathelement path="${classes}"/>
+        		      <pathelement path="${lib1}"/>
+        		      <pathelement path="${lib2}"/>
+        		 </classpath>
+      </javac>
       <echo message="Compiling...done"/>
     </target>
 
@@ -34,21 +44,34 @@
 		</java>
     	
     </target>
-	<target name="documentar" depends="test">
+	
+
+
+    <target name="documentar" depends="test">
 		<mkdir dir="${doc}"/>
-		<javadoc sourcepath="${src}" classpath="${lib}"
-		destdir="${doc}"
-		packagenames="${paquetes}"
-		verbose="true" author="true"
-		access="private" splitindex="true" version="true"
-		windowtitle="${titulo}" doctitle="${titulo}"/>
+		<javadoc sourcepath="${src}"
+		   destdir="${doc}"
+		   packagenames="${paquetes}"
+		   verbose="true" author="true"
+		   access="private" splitindex="true" version="true"
+		   windowtitle="${titulo}" doctitle="${titulo}">
+			<classpath>
+        		      <pathelement path="${classes}"/>
+        		      <pathelement path="${lib1}"/>
+        		      <pathelement path="${lib2}"/>
+        		</classpath>
+		</javadoc>
 	</target>
 	
     <target name="run" depends="documentar">
-     		 <java classname="es.unileon.prg1.blablakid.MainBlablakid">
+     		 <java fork="true" classname="es.unileon.prg1.blablakid.MainBlablakid" >
 			<arg value="3"/>
         		 <classpath>
         		      <pathelement path="${classes}"/>
+			      <pathelement path="${lib}"/>
+        		      <pathelement path="${lib1}"/>
+        		      <pathelement path="${lib2}"/>
+			      <pathelement path="."/>
         		 </classpath>
      		 </java>
      </target>

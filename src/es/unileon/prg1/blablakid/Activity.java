@@ -1,4 +1,8 @@
 package es.unileon.prg1.blablakid;
+/**
+ * @author Marcos Ferreras Rodriguez
+ *
+ */
 public class Activity{
 	int next;
 	WeekDays day;
@@ -8,13 +12,14 @@ public class Activity{
 	Time end;
 	Ride before;
 	Ride after;
-	/*
+	/**
 	 * Constructor
 	 * @param name Name of the activity
 	 * @param place Place where the kid does the activity
 	 * @param day Day of the week of the activity
-	 * @param When start the activity
-	 * @param When end the activity
+	 * @param start When start the activity
+	 * @param end When end the activity
+	 * @throws If the end time is before that the start time
 	 */
 	public Activity (String name, String place, WeekDays day, Time start, Time end) throws BlaException {
 		setSchedule(start,end);
@@ -24,15 +29,21 @@ public class Activity{
 		this.start = start;
 		this.end = end;
 	}
-	/*
+	/**
 	 * @return Name of the activity
 	 */
 	public String getName(){
 		return this.name;
 	}
+	/**
+	 * @return Name of the place where takes place the activity
+	 */
 	public String getPlace(){
 		return this.place;
 	}
+	/**
+	 * @return Weekday of the activity
+	 */
 	public WeekDays getDay(){
 		return this.day;
 	}
@@ -44,25 +55,34 @@ public class Activity{
 			this.end = end;
 		}
 	}
-	/*
-	 * @return Before ride of the activity
+	/**
+	 * @return Time when start the activity
 	 */
 	public Time getStart(){
 		return this.start;
 	}
+	/**
+	 * @return Time when end the activity
+	 */
 	public Time getEnd(){
 		return this.end;
 	}
+	/**
+	 * @return Ride before the activity
+	 */
 	public Ride getBefore(){
 		return this.before;
 	}
+	/**
+	 * @return Ride after the activity
+	 */
 	public Ride getAfter(){
 		return this.after;
 	}
 	
-	/*
+	/**
 	 * Add a ride to the activity
-	 * @param A ride to add to the activity of a kid
+	 * @param ride A ride to add to the activity of a kid
 	 * @return True if the ride was added or False if not
 	 */
 	public void add(Ride ride)throws BlaException {
@@ -86,6 +106,9 @@ public class Activity{
 			throw new BlaException("Error: The ride is incorrect, must be finish before the start time of the activity or start after the end time of the activity");
 		}
 	}
+	/**
+	 * @return The state of a kid rides
+	 */
 	public String checkStatus() {
 		StringBuffer salida = new StringBuffer();
 			if (this.before == null) {
@@ -96,9 +119,10 @@ public class Activity{
 			} 
 		return salida.toString();
 	}
-	/*
+	/**
 	 * @return Information of the activity
 	 */
+	@Override
 	public String toString() {
 		StringBuffer salida = new StringBuffer();
 		salida.append("\n"+this.name+"("+this.place+" - "+day.toString()+")"+this.start.toString()+">"+this.end.toString());

@@ -1,4 +1,9 @@
 package es.unileon.prg1.blablakid;
+/**
+ * 
+ * @author Marcos Ferreras Rodriguez
+ *
+ */
 public class Activities{
 	private Activity[] activities;
 	private int next;
@@ -85,6 +90,10 @@ public class Activities{
 		}
 		return (i-1);
 	}
+	/**
+	 * Obtain the state of the kid's rides
+	 * @return The state of the kid's rides
+	 */
 	public String checkStatus() {
 		StringBuffer salida= new StringBuffer();
 		for(int i = 0; i < this.next ; i++) {
@@ -92,6 +101,10 @@ public class Activities{
 		}
 		return salida.toString();
 	}
+	/**
+	 * Generate all the information about the activities of a kid
+	 * @return All the information about the activities of a kid
+	 */
 	@Override
 	public String toString() {
 		StringBuffer salida= new StringBuffer();
