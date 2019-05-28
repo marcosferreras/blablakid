@@ -27,7 +27,7 @@ public class Day{
 				this.weekDay = WeekDays.FRIDAY;
 			break;
 			default:
-				throw new BlaException ("that day doesnt a correct number for the week day");
+				throw new BlaException ("That day does not a correct number for the week day");
 				
 		}
 	}

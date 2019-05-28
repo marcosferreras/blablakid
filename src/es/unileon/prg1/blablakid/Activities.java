@@ -14,7 +14,7 @@ public class Activities{
 	 */
 	public void add(Activity activity) throws BlaException {
 		if(this.next >= 2) {
-			throw new BlaException("Error: El niño ha llegado a su límite de 3 actividades. Pruebe a eliminar alguna actividad.");
+			throw new BlaException("Error: The child has reached his limit of 3 activities. Try to delete some activity.");
 		} else if (search(activity.getName(), activity.getDay()) != null) {
 			throw new BlaException("Error: Activity "+activity.getName()+" is already added in "+activity.getDay()+". Try to remove it before");
 		} else {
@@ -30,7 +30,7 @@ public class Activities{
 	public void remove(String name, WeekDays day) throws BlaException {
 		Activity activity = search(name, day);
 		if(activity == null) {
-			throw new BlaException("Error: El niño introducido no existe");
+			throw new BlaException("Error: the child introduced does not exist");
 		} else {
 					organize(position(activity));
 					this.activities[this.next]=null;
