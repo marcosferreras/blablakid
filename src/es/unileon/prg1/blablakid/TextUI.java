@@ -13,6 +13,7 @@ public class TextUI {
 		    showMenu();
 		    number= Teclado.readInteger();//recogemos ese valor en int numero
 			selectOption(number);
+			showSummary();
 			} catch (BlaException e) {
 				System.out.println(e.getMessage());
 				}

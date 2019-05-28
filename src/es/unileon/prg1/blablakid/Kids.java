@@ -70,7 +70,7 @@ public class Kids{
 		boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next)) {
-			if(kid.getName().equals(this.kids[i].getName())){
+			if(kid.getName().toLowerCase().equals(this.kids[i].getName().toLowerCase())){
 				exist = true;
 			}
 			i++;
