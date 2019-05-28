@@ -35,12 +35,22 @@ public class Day{
 	public WeekDays getWeekDay() {
 		return this.weekDay;
 	}
-	public Rides getRides() {
-		return this.rides;
+	
+	public void add(Ride ride)throws BlaException {
+		this.rides.add(ride);
 	}
+	
+	public void remove(String start, String end)throws BlaException{
+		this.rides.remove(start, end);
+	}
+	
 	public String toString() {
 		StringBuffer output = new StringBuffer();
-		output.append("\n"+weekDay+" rides:");
+		output.append("");
+		if (this.rides.haveInformation()) {
+			output.append("\n"+weekDay+" rides:");
+			output.append(this.rides.toString());
+		}
 		return output.toString();
 	}
 }

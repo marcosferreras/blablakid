@@ -45,4 +45,28 @@ public class DayTest {
 	public void wrongGetSetWeekDaysTest() throws BlaException{
 		this.day.setWeekDay(9);
 	}
+	
+	@Test 
+	public void addTest() throws BlaException{
+		Time startTime = new Time(12,30);
+		Time endTime = new Time(15,30);
+		Ride ride = new Ride(startTime,endTime,"casa", "palomera");
+		day.add(ride);
+		assertEquals(day.toString(),"\n" + 
+				"THURSDAY rides:\n" + 
+				"casa > palomera : 12:30 / 15:30");
+	}
+	
+	@Test 
+	public void removeTest() throws BlaException{
+		Time startTime = new Time(12,30);
+		Time endTime = new Time(15,30);
+		Ride ride = new Ride(startTime,endTime,"casa", "palomera");
+		day.add(ride);
+		assertEquals(day.toString(),"\n" + 
+				"THURSDAY rides:\n" + 
+				"casa > palomera : 12:30 / 15:30");
+		day.remove(ride.getStartPlace(), ride.getEndPlace());
+		assertEquals(day.toString(),"");
+	}
 }
