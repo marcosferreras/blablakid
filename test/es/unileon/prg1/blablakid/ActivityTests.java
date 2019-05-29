@@ -91,11 +91,31 @@ public class ActivityTests {
 		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 	}
+	
 	@Test (expected = BlaException.class)
 	public void testAddIncorrectRide()throws BlaException {
 		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 	}
+	@Test 
+	public void testRemoveRideBefore()throws BlaException {
+		Ride ride = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
+		this.activity.add(ride);
+		assertTrue(this.activity.removeRide(ride));
+	} 
+	@Test 
+	public void testRemoveFalseRide()throws BlaException {
+		Ride ride = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
+		Ride ride1 = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
+		this.activity.add(ride);
+		assertFalse(this.activity.removeRide(ride1));
+	} 
+	@Test 
+	public void testRemoveRideAfter()throws BlaException {
+		Ride ride = new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa");
+		this.activity.add(ride);
+		assertTrue(this.activity.removeRide(ride));
+	} 
 	@Test 
 	public void testToString() throws BlaException {
 		assertEquals("\nBaloncesto(Palomera - MONDAY)18:0>20:0\nNo ride before Baloncesto assigned\nNo ride after Baloncesto assigned",this.activity.toString());
@@ -109,5 +129,17 @@ public class ActivityTests {
 		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
 		assertEquals("\nBaloncesto(Palomera - MONDAY)18:0>20:0\nNo ride before Baloncesto assigned\nPalomera > Casa : 20:0 / 21:0",this.activity.toString());
 	}
+	@Test 
+	public void testCheckStatusOnlyBefore() throws BlaException {
+		this.activity.add(new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa"));
+		assertEquals("\n" + 
+				"MONDAY To: Palomera. Arrive to Palomera before 18:0",this.activity.checkStatus());
+	}
+	@Test 
+	public void testCheckStatusOnlyAfter() throws BlaException {
+		this.activity.add(new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera"));
+		assertEquals("\nMONDAY From: Palomera. Arrive to Palomera after 20:0",this.activity.checkStatus());
+	}
+	
 	
 }

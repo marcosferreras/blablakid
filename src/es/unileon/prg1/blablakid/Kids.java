@@ -47,13 +47,12 @@ public class Kids{
 	 */
 	public void remove(String name)throws BlaException{
 		Kid kid = search(name);
-		if(kid == null) {
+		if(kid == null) { 
 			throw new BlaException("Error: The kid "+name+" does not exist");
-		} else {
-					organize(position(kid));
-					kids[this.next-1] = null;
-					this.next--;				
-		}
+		} 
+		organize(position(kid));
+		kids[this.next-1] = null;
+		this.next--;				
 	}
 	private void organize(int position){
 		while(position < this.next){
@@ -94,6 +93,15 @@ public class Kids{
 			i++;
 		}
 		return kid;
+	}
+	public boolean removeRide(Ride ride) {
+		boolean deleted = false;
+		int i = 0;
+		while(i<this.next && !deleted) {
+			deleted = kids[i].removeRide(ride);
+			i++;
+		}
+		return deleted;
 	}
 	/**
 	 * Get the first empty position in the array

@@ -56,12 +56,34 @@ public class ActivitiesTests {
 	public void testRemoveActivityNotFound() throws BlaException {
 		this.activities.remove("Baloncesto", WeekDays.MONDAY);
 	}
-	@Test
-	public void testCheckStatus() throws BlaException {
+	
+	@Test 
+	public void testRemoveRideBefore()throws BlaException {
 		Activity activity = new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00));
-		assertEquals("", this.activities.checkStatus());
 		this.activities.add(activity);
-		assertEquals("\nMONDAY To: Palomera. Arrive to Palomera before 18:0\nMONDAY From: Palomera. Arrive to Palomera after 20:0", this.activities.checkStatus());
+		Ride ride = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
+		activity.add(ride);
+		assertTrue(this.activities.removeRide(ride));
+	} 
+	@Test 
+	public void testGetRides()throws BlaException {
+		Activity activity = new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00));
+		this.activities.add(activity);
+		Ride ride = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
+		Ride ride1 = new Ride(new Time(20,00), new Time(22,00), "Palomera", "Casa");
+		activity.add(ride);
+		activity.add(ride1);
+		assertEquals("\n" + 
+				"Palomera > Casa : 20:0 / 22:0\n" + 
+				"Casa > Palomera : 11:0 / 18:0",this.activities.getRides().toString());
+	} 
+	@Test 
+	public void testCheckStatusOnlyAfter() throws BlaException {
+		Activity activity = new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00));
+		this.activities.add(activity);
+		assertEquals("\n" + 
+				"MONDAY To: Palomera. Arrive to Palomera before 18:0\n" + 
+				"MONDAY From: Palomera. Arrive to Palomera after 20:0",this.activities.checkStatus());
 	}
 	@Test
 	public void testToString() throws BlaException {

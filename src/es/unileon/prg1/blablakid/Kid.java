@@ -65,6 +65,12 @@ public class Kid{
 		}
 		return activity;
 	}
+	public Rides getRides() throws BlaException {
+		return this.activities.getRides();
+	}
+	public boolean removeRide(Ride ride) {
+		return this.activities.removeRide(ride);
+	}
 	/**
 	 * Obtain the state of the kid's rides
 	 * @return The state of the kid's rides

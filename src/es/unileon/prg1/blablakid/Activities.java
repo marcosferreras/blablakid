@@ -73,7 +73,7 @@ public class Activities{
 			position++;
 		}
 		activities[(activities.length)-1] = null;
-	}
+	} 
 	/**
 	 * Find the position in the list of an Activity object
 	 * @param activity The activity to find his position
@@ -89,6 +89,27 @@ public class Activities{
 			i++;
 		}
 		return (i-1);
+	}
+	public Rides getRides() throws BlaException {
+		Rides rides = new Rides(this.next+1);
+		for(int i = 0; i < this.next; i++) {
+			if (this.activities[i].getAfter() != null) {
+				rides.add(this.activities[i].getAfter());
+			}
+			if (this.activities[i].getBefore() != null) {
+			rides.add(this.activities[i].getBefore());
+			}
+		}
+		return rides;
+	}
+	public boolean removeRide(Ride ride) {
+		boolean deleted = false;
+		int i = 0;
+		while(i<this.next && !deleted) {
+			deleted = this.activities[i].removeRide(ride);
+			i++;
+		}
+		return deleted;
 	}
 	/**
 	 * Obtain the state of the kid's rides

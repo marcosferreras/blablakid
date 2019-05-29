@@ -46,6 +46,25 @@ public class KidsTests {
 	public void testRemoveNotFound()throws BlaException {
 		kids.remove("Angel");
 	}
+	@Test
+	public void testRemoveRide() throws BlaException {
+		kid = new Kid("Daniel");
+		kids.add(kid);
+		kid.add(new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00)));
+		Ride ride = new Ride(new Time(15,00), new Time(16,00), "Casa", "Palomera");
+		kid.addRide("Baloncesto",ride,WeekDays.MONDAY);
+		assertTrue(kid.removeRide(ride));
+	}
+	@Test
+	public void testRemoveFalseRide() throws BlaException {
+		kid = new Kid("Daniel");
+		kids.add(kid);
+		kid.add(new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00)));
+		Ride ride = new Ride(new Time(15,00), new Time(16,00), "Casa", "Palomera");
+		kid.addRide("Baloncesto",ride,WeekDays.MONDAY);
+		Ride ride1 = new Ride(new Time(15,00), new Time(16,00), "Casa", "Palomera");
+		assertFalse(kids.removeRide(ride1));
+	}
 	@Test 
 	public void testGetLength()throws BlaException {
 		assertEquals(3, this.kids.getLength());

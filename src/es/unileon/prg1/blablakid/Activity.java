@@ -81,7 +81,7 @@ public class Activity{
 	}
 	
 	/**
-	 * Add a ride to the activity
+	 * Add a ride to the activity 
 	 * @param ride A ride to add to the activity of a kid
 	 * @return True if the ride was added or False if not
 	 */
@@ -96,7 +96,7 @@ public class Activity{
 			}
 		} else if (this.end.isBefore(ride.getTimeStart())) {
 			if (this.after != null) {
-				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+				throw new BlaException("Error: This ride is already assigned to. Try to remove it before");
 			} else if (!ride.getStartPlace().toLowerCase().equals(this.place.toLowerCase())) {
 				throw new BlaException("Error: The ride have to start in "+this.place);
 			} else {
@@ -105,6 +105,17 @@ public class Activity{
 		} else {
 			throw new BlaException("Error: The ride is incorrect, must be finish before the start time of the activity or start after the end time of the activity");
 		}
+	}
+	public boolean removeRide(Ride ride) {
+		boolean deleted = false;
+		if (this.before == ride) {
+			this.before = null;
+			deleted = true;
+		} else if (this.after == ride) {
+			this.after = null;
+			deleted = true;
+		}
+		return deleted;
 	}
 	/**
 	 * @return The state of a kid rides
