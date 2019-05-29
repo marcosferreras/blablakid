@@ -162,5 +162,12 @@ public class Kids{
 		}
 		return salida.toString();	
 	}
+	public String nameOfKids() {
+		StringBuffer salida= new StringBuffer();
+		for(int i = 0; i < this.next; i++){
+			salida.append("\n****** "+kids[i].getName()+" ******");
+		}
+		return nameOfKids();
+	}
 			
 }
