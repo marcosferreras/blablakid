@@ -25,7 +25,7 @@ public class Parents {
 	
 	public void removeKid(String name) throws BlaException{
 		for (int i=0;i<this.next;i++) {
-			if(parent[i].find(name)!=-1) this.parent[i].remove(name);
+			if(parent[i].find(name)) this.parent[i].remove(name);
 		}
 	}
 	public int search(String name) {

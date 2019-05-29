@@ -12,7 +12,7 @@ public class Blablakid{
 	
 	public void removeKid(String name) throws BlaException {
 		this.kids.remove(name);
-		//this.parents.removeKid(name);
+		this.parents.removeKid(name);
 	}
 	
 	public void add(Activity activity, String nameKid) throws BlaException {

@@ -15,10 +15,10 @@ public class Parent{
 		this.kids.add(kid);
 	}
 	
-	public int find(String name) {
-		int number=-1;
-		number=this.kids.position(new Kid(name));
-		return number;
+	public boolean find(String name) {
+		boolean output=false;
+		if (null==this.kids.search(name)) output=true;
+		return output;
 	}
 	
 	public void remove(String name) throws BlaException {

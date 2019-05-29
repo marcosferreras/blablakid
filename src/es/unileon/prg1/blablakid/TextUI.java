@@ -106,10 +106,10 @@ public class TextUI {
 		Parent parent;
 		System.out.println ("Name of the parent to add:");
 		parentName = readString();
-		System.out.println ("How many kids does Pedro have?:");
+		System.out.println ("How many kids does "+parentName+" have?:");
 		numberKids = Teclado.readInteger();
 		kids = new Kids (numberKids);
-		System.out.println ("How many rides can Pedro make per day?:");
+		System.out.println ("How many rides can "+parentName+" make per day?:");
 		numberRides = Teclado.readInteger();
 		parent = new Parent(parentName, numberRides, numberKids);
 		
