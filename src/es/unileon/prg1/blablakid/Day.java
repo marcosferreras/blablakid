@@ -41,8 +41,9 @@ public class Day{
 	}
 	
 	public Ride remove(String start, String end)throws BlaException{
+		Ride ride=this.rides.search(start,end);
 		this.rides.remove(start, end);
-		return this.rides.search(start,end);
+		return ride;
 	}
 	
 	public boolean remove(Ride ride) {

@@ -20,9 +20,16 @@ public class ParentTest {
 	}
 	
 	@Test
+	public void addremoveRideTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		this.parent.add( WeekDays.MONDAY, ride);
+		this.parent.remove(WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace());
+	}
+	@Test
 	public void findTest() {
 		assertEquals(true,parent.find("Carlos"));
 	}
+	
 	@Test
 	public void toStringTest() {
 		assertEquals("\n" + 

@@ -2,14 +2,14 @@ package es.unileon.prg1.blablakid;
 public class Rides{
 	
 	private Ride[] ride;
-	private int next=0;
+	private int next;
 	
 	public Rides(int numRides) throws BlaException {
 		if (numRides<1) {
 			throw new BlaException("the number of rides must be higher than 0");
-		}else {
-			ride = new Ride[numRides];
 		}
+			ride = new Ride[numRides];
+			next=0;
 	}
 	
 	public Ride getRide(int number) {
@@ -30,7 +30,7 @@ public class Rides{
 	public Ride search(String start, String end) {
 		Ride ride=null;
 		int number=find(start,end);
-		if(number==-1) {
+		if(number!=-1) {
 			ride=this.ride[number];
 		}
 		return ride;

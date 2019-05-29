@@ -39,10 +39,6 @@ public class Parents {
 		return out;
 	}
 	
-	public Parent getParent(int number) {
-		return this.parent[number];
-	}
-	
 	public void add(Parent parent) throws BlaException{
 		if (find(parent.getName())!=-1) throw new BlaException("Error:That parent has allready exist");
 		else {
@@ -52,7 +48,7 @@ public class Parents {
 	
 	public void add(String name, WeekDays day,Ride ride) throws BlaException{
 		int number=find(name);
-		if (number!=-1) {
+		if (number==-1) {
 			throw new BlaException("Error:That parent does not exist");
 		}
 		this.parent[number].add(day, ride);
@@ -60,10 +56,11 @@ public class Parents {
 	
 	public Ride remove(String name, WeekDays day,String start,String end) throws BlaException{
 		int number=find(name);
-		if (number!=-1) {
+		if (number==-1) {
 			throw new BlaException("Error:That parent does not exist");
 		}
 		return this.parent[number].remove(day,start,end);
+		
 	}
 	
 	public void remove(Rides rides) {
@@ -82,17 +79,16 @@ public class Parents {
 	public void remove(String name) throws BlaException{
 		Parent parent;
 		int number=find(name);
-		if (number!=-1) {
-			this.parent[number]=null;
-			for (int i=number;i<=this.next;i++) {
-				parent=this.parent[i+1];
-				this.parent[i]=this.parent[i+1];
-				this.parent[i]=parent;
-			}
-			next--;
-		} else {
+		if (number==-1) {
 			throw new BlaException("Error: That parent does not exist");
 		}
+		this.parent[number]=null;
+		for (int i=number;i<=this.next;i++) {
+			parent=this.parent[i+1];
+			this.parent[i]=this.parent[i+1];
+			this.parent[i]=parent;
+		}
+		next--;
 	}
 	
 	public String toString() {

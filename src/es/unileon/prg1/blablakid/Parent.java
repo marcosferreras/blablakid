@@ -16,9 +16,9 @@ public class Parent{
 	}
 	
 	public boolean find(String name) {
-		boolean output=true;
-		if (null==this.kids.search(name)) {
-			output=false;
+		boolean output=false;
+		if (null!=this.kids.search(name)) {
+			output=true;
 		}
 		return output;
 	}

@@ -79,8 +79,44 @@ public class ParentsTests {
 	public void testIsCorrectNumberTrueTest(){
 		assertEquals(0 , parents.find("Jose"));
 	}
-
 	
+	@Test
+	public void removeKidTest() throws BlaException{
+		parents.removeKid("Carlos");
+	}
 	
+	@Test (expected= BlaException.class)
+	public void addRideNotExistParentTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		this.parents.add("Jse", WeekDays.MONDAY, ride);
+	}
 	
+	@Test (expected= BlaException.class)
+	public void addRepeatedRideNotExistParentTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		this.parents.add("Jose", WeekDays.MONDAY, ride);
+		this.parents.add("Jose", WeekDays.MONDAY, ride);
+	}
+	
+	@Test
+	public void addRemoveRideTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		this.parents.add("Jose", WeekDays.MONDAY, ride);
+		assertSame(ride,this.parents.remove("Jose",WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace()));
+	}
+	
+	@Test (expected= BlaException.class)
+	public void removeNotExistParentTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		this.parents.remove("Joe",WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace());
+	}
+	
+	@Test
+	public void removeRideTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		Rides rides=new Rides(5);
+		rides.add(ride);
+		this.parents.add("Jose", WeekDays.MONDAY, ride);
+		this.parents.remove(rides);
+	}
 }
