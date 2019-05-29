@@ -61,17 +61,15 @@ public class Kids{
 			logger.error("The kid "+name+" does not exist");
 			throw new BlaException("Error: The kid "+name+" does not exist");
 		} 
-		organize(position(kid));
+		organize(position(kid)); 
 		kids[this.next-1] = null;
 		logger.info("The kid "+name+" was deleted");
 		this.next--;				
 	}
 	private void organize(int position){
-		if(this.kids.length > 1) {
-			while(position < this.next){
-				kids[position] = kids[position+1];
-				position++;
-			}
+		while((position+1) < this.next){
+			kids[position] = kids[position+1];
+			position++;
 		}
 	}
 	/**
@@ -165,11 +163,11 @@ public class Kids{
 		return salida.toString();	
 	}
 	public String nameOfKids() {
-		StringBuffer salida= new StringBuffer();
+		StringBuffer output= new StringBuffer();
 		for(int i = 0; i < this.next; i++){
-			salida.append("\n****** "+kids[i].getName()+" ******");
+			output.append("\n****** "+kids[i].getName()+" ******");
 		}
-		return nameOfKids();
+		return output.toString();
 	}
 			
 }

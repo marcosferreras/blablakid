@@ -78,7 +78,6 @@ public class Activities{
 	 * @param position Position of the element to organize
 	 */
 	private void organize(int position){
-		
 		while((position+1) < activities.length){
 			activities[position] = activities[position+1];
 			position++;
