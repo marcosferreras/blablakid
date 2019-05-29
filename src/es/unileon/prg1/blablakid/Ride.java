@@ -1,18 +1,26 @@
 package es.unileon.prg1.blablakid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Ride{
 	
 	private Time timeStart;
 	private Time timeEnd;
 	private String startPlace;
 	private String endPlace;
+	private static final Logger logger= LogManager.getLogger(Ride.class);
 	
 	public Ride(Time timeStart, Time timeEnd, String startPlace, String endPlace ) throws BlaException{
-		if(timeStart.isBefore(timeEnd)) {
-			this.timeStart=timeStart;
-			this.timeEnd=timeEnd;
-			this.startPlace=startPlace;
-			this.endPlace = endPlace;
-		} else throw new BlaException("Error:Please change the order of the hours");
+		if(!timeStart.isBefore(timeEnd)) {
+			logger.error("Error:Please change the order of the hours");
+			throw new BlaException("Error:Please change the order of the hours");
+		}
+		this.timeStart=timeStart;
+		this.timeEnd=timeEnd;
+		this.startPlace=startPlace;
+		this.endPlace = endPlace;
+		logger.info("A ride object from "+startPlace+" at "+timeStart.toString()+" to "+endPlace+" at "+timeEnd.toString());
 	}
 
 	public Time getTimeStart() {

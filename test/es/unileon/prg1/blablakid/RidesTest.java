@@ -17,28 +17,28 @@ public class RidesTest {
 		}
 		
 		@Test (expected= BlaException.class)
-		public void negativeNumberTests() throws BlaException{
+		public void testNegativeNumber() throws BlaException{
 		new Rides(-1);	
 		}
 		
 		@Test
-		public void findTest() {
+		public void testFind() {
 			assertEquals(0,rides.find("casa", "palomera"));
 		}
 		
 		@Test (expected = BlaException.class)
-		public void removeNotExist() throws BlaException{
+		public void testRemoveNotExist() throws BlaException{
 			this.rides.remove("c", "palomera");
 		}
 		
 		@Test
-		public void removeTest() throws BlaException{
+		public void testRemove() throws BlaException{
 			this.rides.remove("casa", "palomera");
 			assertEquals(false,this.rides.haveInformation());
 		}
 		
 		@Test 
-		public void addTest() throws BlaException{
+		public void testAdd() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera");
 			this.rides.add(ride);
 			assertEquals(1,rides.find("csa", "palmera"));
@@ -46,28 +46,28 @@ public class RidesTest {
 		}
 		
 		@Test (expected = BlaException.class)
-		public void addRepeatedTest() throws BlaException{
+		public void testAddRepeated() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 			this.rides.add(ride);
 		}
 		
 		@Test
-		public void searchTest() {
+		public void testSearch() {
 			assertSame(rides.getRide(0),rides.search("casa", "palomera"));
 		}
 		
 		@Test
-		public void notFoundTest() {
+		public void TestnotFound() {
 			assertEquals(null,rides.search("asa", "palomera"));
 		}
 		
 		@Test
-		public void haveInformationTest() {
+		public void testHaveInformation() {
 			assertTrue(rides.haveInformation());
 		}
 		
 		@Test 
-		public void renoveTest() throws BlaException{
+		public void Testrenove() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera");
 			this.rides.add(ride);
 			this.rides.remove("csa","palmera");
@@ -75,7 +75,7 @@ public class RidesTest {
 		}
 		
 		@Test 
-		public void removeCompleatedTest() throws BlaException{
+		public void testRemoveCompleated() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera"), ride2=new Ride(new Time(10,30),new Time(12,30),"csa","palmer");
 			this.rides.add(ride);
 			this.rides.add(ride2);
@@ -85,7 +85,7 @@ public class RidesTest {
 		}
 		
 		@Test 
-		public void renoveUnknowTest() throws BlaException{
+		public void testRenoveUnknow() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera");
 			this.rides.add(ride);
 			this.rides.remove(ride);
@@ -93,7 +93,7 @@ public class RidesTest {
 		}
 		
 		@Test 
-		public void removeUnknowCompleatedTest() throws BlaException{
+		public void testRemoveUnknowCompleated() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera"), ride2=new Ride(new Time(10,30),new Time(12,30),"csa","palmer");
 			this.rides.add(ride);
 			this.rides.add(ride2);
@@ -105,14 +105,14 @@ public class RidesTest {
 		}
 		
 		@Test 
-		public void renoveNotUnknowTest() throws BlaException{
+		public void testRenoveNotUnknow() throws BlaException{
 			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera");
 			this.rides.remove(ride);
 			assertEquals(1,rides.getNext());
 		}
 		
 		@Test
-		public void toStringTest() {
+		public void testToString() {
 			assertEquals("\n" + 
 					"casa > palomera : 12:30 / 15:30",rides.toString());
 		}

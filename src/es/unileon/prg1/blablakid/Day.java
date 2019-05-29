@@ -1,12 +1,17 @@
 package es.unileon.prg1.blablakid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Day{
 	private WeekDays weekDay;
 	private Rides rides;
+	private static final Logger logger= LogManager.getLogger(Day.class);
 	
 	public Day(int numberRides,int numberDay)  throws BlaException {
 		setWeekDay(numberDay);
 		rides = new Rides(numberRides);
+		logger.info("A day "+weekDay+" was created");
 	}
 	
 	public void setWeekDay(int number) throws BlaException{
@@ -27,7 +32,8 @@ public class Day{
 				this.weekDay = WeekDays.FRIDAY;
 			break;
 			default:
-				throw new BlaException ("That day does not a correct number for the week day");
+				logger.error("Error:That day does not a correct number for the week day");
+				throw new BlaException ("Error:That day does not a correct number for the week day");
 				
 		}
 	}

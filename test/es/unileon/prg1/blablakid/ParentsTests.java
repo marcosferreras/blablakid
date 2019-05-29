@@ -17,7 +17,7 @@ public class ParentsTests {
 		this.parents.add(parent2);
 	}
 	@Test
-	public void toStringTest() {
+	public void testToString() {
 		assertEquals("\n" + 
 				"PARENTS:\n" + 
 				"##### Jose #####\n" + 
@@ -28,6 +28,7 @@ public class ParentsTests {
 				"RIDES:\n" + 
 				"##### Marco #####\n" + 
 				"Kids:\n" + 
+				"\n" + 
 				"\n" + 
 				"RIDES:",parents.toString());
 	}
@@ -81,38 +82,38 @@ public class ParentsTests {
 	}
 	
 	@Test
-	public void removeKidTest() throws BlaException{
+	public void testRemoveKid() throws BlaException{
 		parents.removeKid("Carlos");
 	}
 	
 	@Test (expected= BlaException.class)
-	public void addRideNotExistParentTest() throws BlaException{
+	public void TestAddRideNotExistParent() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.parents.add("Jse", WeekDays.MONDAY, ride);
 	}
 	
 	@Test (expected= BlaException.class)
-	public void addRepeatedRideNotExistParentTest() throws BlaException{
+	public void testAddRepeatedRideNotExistParentt() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.parents.add("Jose", WeekDays.MONDAY, ride);
 		this.parents.add("Jose", WeekDays.MONDAY, ride);
 	}
 	
 	@Test
-	public void addRemoveRideTest() throws BlaException{
+	public void testAddRemoveRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.parents.add("Jose", WeekDays.MONDAY, ride);
 		assertSame(ride,this.parents.remove("Jose",WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace()));
 	}
 	
 	@Test (expected= BlaException.class)
-	public void removeNotExistParentTest() throws BlaException{
+	public void testRemoveNotExistParent() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.parents.remove("Joe",WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace());
 	}
 	
 	@Test
-	public void removeRideTest() throws BlaException{
+	public void testRemoveRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		Rides rides=new Rides(5);
 		rides.add(ride);
@@ -121,7 +122,7 @@ public class ParentsTests {
 	}
 	
 	@Test (expected = BlaException.class)
-	public void maxNumberOfParentsTest() throws BlaException{
+	public void testMaxNumberOfParents() throws BlaException{
 		Parent parent = new Parent("ose",2,10);
 		this.parents.add(parent);
 		parent = new Parent("jos",2,10);

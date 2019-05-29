@@ -1,13 +1,18 @@
 package es.unileon.prg1.blablakid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Parents {
 	int next;
 	private Parent parent[];
+	private static final Logger logger= LogManager.getLogger(Parents.class);
 	
 	public Parents(int numParents) throws BlaException {
 		if (isCorrectNumber(numParents)) {
 			parent = new Parent[numParents];
 			this.next=0;
+			logger.info("Has been created a Parents object whose length is "+numParents);
 		}
 	}
 	
@@ -16,6 +21,7 @@ public class Parents {
 		if (numParents>0) salida=true;
 		else {
 			salida=false;
+			logger.error("Error:The number must be greater than zero");
 			throw new BlaException ("Error:The number must be greater than zero");
 		}
 		return salida;
@@ -41,17 +47,21 @@ public class Parents {
 	
 	public void add(Parent parent) throws BlaException{
 		if (this.next==this.parent.length) {
-			throw new BlaException("Error:there are not enougth space for a new ride");
+			logger.error("Error:there are not enougth space for a new parent");
+			throw new BlaException("Error:there are not enougth space for a new parent");
 		}
 		if (find(parent.getName())!=-1) {
+			logger.error("Error:That parent has already exist");
 			throw new BlaException("Error:That parent has already exist");
 		}
 			this.parent[next++]=parent;
+			logger.info("The parent "+parent.getName()+" was added");
 	}
 	
 	public void add(String name, WeekDays day,Ride ride) throws BlaException{
 		int number=find(name);
 		if (number==-1) {
+			logger.error("Error:That parent does not exist");
 			throw new BlaException("Error:That parent does not exist");
 		}
 		this.parent[number].add(day, ride);
@@ -60,6 +70,7 @@ public class Parents {
 	public Ride remove(String name, WeekDays day,String start,String end) throws BlaException{
 		int number=find(name);
 		if (number==-1) {
+			logger.error("Error:That parent does not exist");
 			throw new BlaException("Error:That parent does not exist");
 		}
 		return this.parent[number].remove(day,start,end);
@@ -82,6 +93,7 @@ public class Parents {
 	public void remove(String name) throws BlaException{
 		int number=find(name);
 		if (number==-1) {
+			logger.error("Error: That parent does not exist");
 			throw new BlaException("Error: That parent does not exist");
 		}
 		this.parent[number]=null;
@@ -91,7 +103,8 @@ public class Parents {
 		
 		}
 		this.parent[next-1]=null;
-	this.next--;
+		this.next--;
+		logger.info("The parent called "+name+" was remove from the app");
 	}
 	
 	public String toString() {

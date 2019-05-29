@@ -1,15 +1,22 @@
 package es.unileon.prg1.blablakid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Rides{
 	
 	private Ride[] ride;
 	private int next;
+	private static final Logger logger= LogManager.getLogger(Rides.class);
 	
 	public Rides(int numRides) throws BlaException {
 		if (numRides<1) {
-			throw new BlaException("The number of rides must be higher than 0");
+			logger.error("Error:The number of rides must be higher than 0");
+			throw new BlaException("Error:The number of rides must be higher than 0");
 		}
 			ride = new Ride[numRides];
 			next=0;
+			logger.info("Has been created a rides object whith a max number of rides of"+numRides);
 	}
 	
 	public Ride getRide(int number) {
@@ -21,13 +28,16 @@ public class Rides{
 	}
 	public void  add(Ride ride) throws BlaException{
 		if (this.next==this.ride.length) {
+			logger.error("Error:there are not enougth space for a new ride");
 			throw new BlaException("Error:there are not enougth space for a new ride");
 		}
 		if (find(ride.getStartPlace(),ride.getEndPlace())!=-1) {
+			logger.error("Error: That ride has already exist");
 			throw new BlaException("Error: That ride has already exist");
 		}
 		this.ride[next]=ride;
 		this.next++;
+		logger.info("A ride from"+ride.getStartPlace()+" to "+ride.getEndPlace()+" was added");
 	} 
 	
 	public Ride search(String start, String end) {
@@ -63,6 +73,7 @@ public class Rides{
 			}
 		}
 		if (out) {
+			logger.info("A ride from"+this.ride[number].getStartPlace()+" to "+this.ride[number].getEndPlace()+" was remove");
 			this.ride[number]=null;
 			if (number<(this.ride.length-1)) {
 				for (int i=number;i<next-1;i++) {
@@ -81,16 +92,15 @@ public class Rides{
 	public void remove(String start, String end) throws BlaException{
 		int number=find(start,end);
 		if (number==-1) {
-			throw new BlaException("That ride does not exist");
+			logger.error("Error:That ride does not exist");
+			throw new BlaException("Error:That ride does not exist");
 		}
+		logger.info("A ride from"+this.ride[number].getStartPlace()+" to "+this.ride[number].getEndPlace()+" was remove");
 		this.ride[number]=null;
-
-			for (int i=number;i<next-1;i++) {
-				
-				this.ride[i]=this.ride[i+1];
-			
-			}
-			this.ride[next-1]=null;
+		for (int i=number;i<next-1;i++) {
+			this.ride[i]=this.ride[i+1];			
+		}
+		this.ride[next-1]=null;
 		this.next--;
 	}
 

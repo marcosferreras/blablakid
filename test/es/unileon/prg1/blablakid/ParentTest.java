@@ -15,18 +15,18 @@ public class ParentTest {
 	}
 		
 	@Test
-	public void builderTest() {
+	public void testBuilder() {
 		assertEquals("Carlos",parent.getName());
 	}
 	
 	@Test
-	public void addremoveRideTest() throws BlaException{
+	public void testAddremoveRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.parent.add( WeekDays.MONDAY, ride);
 		assertSame(ride,this.parent.remove(WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace()));
 	}
 	@Test
-	public void removeRide() throws BlaException{
+	public void testRemoveRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		Rides rides=new Rides(3);
 		rides.add(ride);
@@ -34,12 +34,12 @@ public class ParentTest {
 		this.parent.remove(ride);
 	}
 	@Test
-	public void findTest() {
+	public void testFind() {
 		assertEquals(true,parent.find("Carlos"));
 	}
 	
 	@Test
-	public void toStringTest() {
+	public void testToString() {
 		assertEquals("\n" + 
 				"##### Carlos #####\n" + 
 				"Kids:\n" + 

@@ -13,29 +13,29 @@ public class RideTest {
 	}
 	
 	@Test
-	public void getTimeTest() throws BlaException{
+	public void testGetTime() throws BlaException{
 		assertEquals(new Time(12,30).getMinute(),ride.getTimeStart().getMinute());
 		assertEquals(new Time(12,30).getHour(),ride.getTimeStart().getHour());
 	}
 	
 	@Test
-	public void getTimeEndTest() throws BlaException{
+	public void testGetTimeEnd() throws BlaException{
 		assertEquals(new Time(15,30).getMinute(),ride.getTimeEnd().getMinute());
 		assertEquals(new Time(15,30).getHour(),ride.getTimeEnd().getHour());
 	}
 	
 	@Test
-	public void getStartPalceEndTest() {
+	public void testGetStartPalceEnd() {
 		assertEquals("casa",ride.getStartPlace());
 	}
 	
 	@Test
-	public void getStartEndTest() {
+	public void testGetStartEnd() {
 		assertEquals("palomera",ride.getEndPlace());
 	}
 	
 	@Test
-	public void isSameTest() {
+	public void testIsSame() {
 		assertTrue(this.ride.isSame(ride.getStartPlace(), ride.getEndPlace()));
 		assertFalse(this.ride.isSame(ride.getStartPlace(),"p"));
 	}

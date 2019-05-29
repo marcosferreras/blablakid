@@ -13,21 +13,21 @@ public class weekTest {
 	}
 	
 	@Test
-	public void addRemoveRideTest() throws BlaException{
+	public void testAddRemoveRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.week.add( WeekDays.MONDAY, ride);
 		assertSame(ride,this.week.remove(WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace()));
 	}
 	
 	@Test
-	public void addRemoveUnknowRideTest() throws BlaException{
+	public void testAddRemoveUnknowRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.week.add( WeekDays.MONDAY, ride);
 		this.week.remove(ride);
 	}
 	
 	@Test
-	public void toStringTest() throws BlaException{
+	public void testToString() throws BlaException{
 		assertEquals("\nRIDES:",week.toString());
 	}
 }

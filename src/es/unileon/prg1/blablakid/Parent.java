@@ -1,18 +1,25 @@
 package es.unileon.prg1.blablakid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Parent{
 	
 	private String name;
 	private Week week;
 	private Kids kids;
+	private static final Logger logger= LogManager.getLogger(Parent.class);
 	
 	public Parent(String name,int numberRides, int numberKids) throws BlaException {
 		this.name=name;
 		this.kids = new Kids(numberKids);
 		week = new Week(numberRides);
+		logger.info("A parent called "+name+" who can made "+numberRides+" and with "+numberKids+" was created");
 	}
 
 	public void add(Kid kid) throws BlaException {
 		this.kids.add(kid);
+		logger.info("A kid called "+kid.getName()+" was added to the parent called "+this.name);
 	}
 	 
 	public boolean find(String name) {
@@ -44,13 +51,9 @@ public class Parent{
 		
 	public String toString() {
 		StringBuffer output = new StringBuffer();
-		int i=0;
 		output.append("\n##### "+this.name+" #####\n");
 		output.append("Kids:\n");
-		while(i<kids.getNext()){
-			output.append(kids.getKid(i)+"\n");
-			i++;
-		}
+		output.append(kids.nameOfKids()+"\n");
 		output.append(week.toString());
 		return output.toString();
 	}
