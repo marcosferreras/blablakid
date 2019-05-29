@@ -2,7 +2,12 @@ package es.unileon.prg1.blablakid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+/**
+ * 
+ * @author Marcos Ferreras Rodriguez
+ * @author Mario Alvarez Iglesias
+ *
+ */
 public class Time{
 	
 	private int hour;
