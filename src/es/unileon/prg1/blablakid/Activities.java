@@ -17,7 +17,7 @@ public class Activities{
 	 */
 	protected Activities() {
 		activities = new Activity[3];
-		logger.info("Has been created an activities object with 3 maximum activities");
+		logger.info("Has been created an activities object with 3 max");
 	}
 	/**
 	 * Add an activity to the collection 
@@ -78,6 +78,7 @@ public class Activities{
 	 * @param position Position of the element to organize
 	 */
 	private void organize(int position){
+		
 		while((position+1) < activities.length){
 			activities[position] = activities[position+1];
 			position++;

@@ -60,8 +60,8 @@ public class Kid{
 	public Activity searchActivity(String activityName, WeekDays day) throws BlaException {
 		Activity activity = this.activities.search(activityName, day);
 		if(activity == null) {
-			logger.error("The activity "+activityName+" doesn't exist");
-			throw new BlaException("Error: The activity "+activityName+" does not exist");
+			logger.error("The activity "+activityName+" does not exist in kid "+this.name);
+			throw new BlaException("Error: The activity "+activityName+" does not exist in kid "+this.name);
 		}
 		return activity;
 	}

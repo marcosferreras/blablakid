@@ -103,7 +103,7 @@ public class Activity{
 				this.before = ride;
 				logger.info("Ride before "+ride.toString()+" added to activity "+this.name);
 			}
-		} else if (this.end.isBefore(ride.getTimeStart())) {
+		} else if (this.end.isBefore(ride.getTimeStart())) { 
 			if (this.after != null) {
 				logger.error("Error: This ride is already assigned to this kid. Try to remove it before");
 				throw new BlaException("Error: This ride is already assigned to tis kid. Try to remove it before");
