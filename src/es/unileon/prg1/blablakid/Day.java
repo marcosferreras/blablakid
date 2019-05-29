@@ -40,8 +40,13 @@ public class Day{
 		this.rides.add(ride);
 	}
 	
-	public void remove(String start, String end)throws BlaException{
+	public Ride remove(String start, String end)throws BlaException{
 		this.rides.remove(start, end);
+		return this.rides.search(start,end);
+	}
+	
+	public boolean remove(Ride ride) {
+		return this.rides.remove(ride);
 	}
 	
 	public String toString() {

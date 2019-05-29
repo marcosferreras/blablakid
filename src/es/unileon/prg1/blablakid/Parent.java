@@ -16,11 +16,24 @@ public class Parent{
 	}
 	
 	public boolean find(String name) {
-		boolean output=false;
-		if (null==this.kids.search(name)) output=true;
+		boolean output=true;
+		if (null==this.kids.search(name)) {
+			output=false;
+		}
 		return output;
 	}
 	
+	public void add(WeekDays day, Ride ride) throws BlaException{
+		this.week.add(day,ride);
+	}
+	
+	public Ride remove(WeekDays day, String start, String end) throws BlaException{
+		return this.week.remove(day,start,end);
+	}
+	
+	public boolean remove(Ride ride) {
+		return this.week.remove(ride);
+	}
 	public void remove(String name) throws BlaException {
 		this.kids.remove(name);
 	}
@@ -28,11 +41,7 @@ public class Parent{
 	public String getName() {
 		return name;
 	}
-	
-	public Day getDay(WeekDays day) {
-		return this.week.getDay(day);
-	}
-	
+		
 	public String toString() {
 		StringBuffer output = new StringBuffer();
 		int i=0;

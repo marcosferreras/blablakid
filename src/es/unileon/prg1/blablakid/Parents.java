@@ -1,7 +1,5 @@
 package es.unileon.prg1.blablakid;
 
-import java.util.Arrays;
-
 public class Parents {
 	int next;
 	private Parent parent[];
@@ -25,10 +23,12 @@ public class Parents {
 	
 	public void removeKid(String name) throws BlaException{
 		for (int i=0;i<this.next;i++) {
-			if(parent[i].find(name)) this.parent[i].remove(name);
+			if(parent[i].find(name)) {
+				this.parent[i].remove(name);
+			}
 		}
 	}
-	public int search(String name) {
+	public int find(String name) {
 		int i=0,out=-1;
 		while (i<this.next && -1==out) {
 			if (parent[i].getName().toLowerCase().equals(name.toLowerCase())) {
@@ -44,23 +44,55 @@ public class Parents {
 	}
 	
 	public void add(Parent parent) throws BlaException{
-		if (search(parent.getName())!=-1) throw new BlaException("Error:That parent has allready exist");
+		if (find(parent.getName())!=-1) throw new BlaException("Error:That parent has allready exist");
 		else {
 			this.parent[next++]=parent;
 		}
 	}
 	
+	public void add(String name, WeekDays day,Ride ride) throws BlaException{
+		int number=find(name);
+		if (number!=-1) {
+			throw new BlaException("Error:That parent does not exist");
+		}
+		this.parent[number].add(day, ride);
+	}
+	
+	public Ride remove(String name, WeekDays day,String start,String end) throws BlaException{
+		int number=find(name);
+		if (number!=-1) {
+			throw new BlaException("Error:That parent does not exist");
+		}
+		return this.parent[number].remove(day,start,end);
+	}
+	
+	public void remove(Rides rides) {
+		Ride ride;
+		int number=0;
+		boolean outRide=false;
+		for (int i=0;i<rides.getNext();i++) {
+			ride = rides.getRide(i);
+			while(number<this.next && !outRide) {
+				outRide=this.parent[number].remove(ride);
+				number++;
+			}
+		}
+		
+	}
 	public void remove(String name) throws BlaException{
-		Parent aux1;
-		int j=search(name);
-		if (j!=-1) {
-			for (int i=j;i<=this.next;i++) {
-				aux1=this.parent[i+1];
+		Parent parent;
+		int number=find(name);
+		if (number!=-1) {
+			this.parent[number]=null;
+			for (int i=number;i<=this.next;i++) {
+				parent=this.parent[i+1];
 				this.parent[i]=this.parent[i+1];
-				this.parent[i]=aux1;
+				this.parent[i]=parent;
 			}
 			next--;
-		} else throw new BlaException("Error: That parent does not exist");
+		} else {
+			throw new BlaException("Error: That parent does not exist");
+		}
 	}
 	
 	public String toString() {

@@ -20,6 +20,10 @@ public class ParentTest {
 	}
 	
 	@Test
+	public void findTest() {
+		assertEquals(true,parent.find("Carlos"));
+	}
+	@Test
 	public void toStringTest() {
 		assertEquals("\n" + 
 				"##### Carlos #####\n" + 

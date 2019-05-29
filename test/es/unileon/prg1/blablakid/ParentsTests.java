@@ -26,20 +26,10 @@ public class ParentsTests {
 				"****** Carlos ******\n" + 
 				"\n" + 
 				"RIDES:\n" + 
-				"MONDAY rides:\n" + 
-				"TUESDAY rides:\n" + 
-				"WEDNESDAY rides:\n" + 
-				"THURSDAY rides:\n" + 
-				"FRIDAY rides:\n" + 
 				"##### Marco #####\n" + 
 				"Kids:\n" + 
 				"\n" + 
-				"RIDES:\n" + 
-				"MONDAY rides:\n" + 
-				"TUESDAY rides:\n" + 
-				"WEDNESDAY rides:\n" + 
-				"THURSDAY rides:\n" + 
-				"FRIDAY rides:",parents.toString());
+				"RIDES:",parents.toString());
 	}
 	
 	@Test (expected = BlaException.class)
@@ -56,7 +46,7 @@ public class ParentsTests {
 	@Test
 	public void testadd() throws BlaException{
 		parents.add(new Parent("Juan",1,10));
-		assertEquals(2,parents.search("juan"));
+		assertEquals(2,parents.find("juan"));
 	}
 	
 	@Test (expected = BlaException.class)
@@ -67,27 +57,27 @@ public class ParentsTests {
 	@Test 
 	public void testremove() throws BlaException{
 		this.parents.remove("Jose");
-		assertEquals(-1,parents.search("jose"));
+		assertEquals(-1,parents.find("jose"));
 	}
 	
 	@Test 
 	public void testcheckParentExists(){
-		assertEquals(0,parents.search("Jose"));
+		assertEquals(0,parents.find("Jose"));
 	}
 	
 	@Test 
 	public void testcheckParentExistsError(){
-		assertEquals(-1 , parents.search("Juan"));
+		assertEquals(-1 , parents.find("Juan"));
 	}
 	
 	@Test
 	public void testIsCorrectNumberFalseTest(){
-		assertEquals(-1 , parents.search("m"));
+		assertEquals(-1 , parents.find("m"));
 	}
 	
 	@Test
 	public void testIsCorrectNumberTrueTest(){
-		assertEquals(0 , parents.search("Jose"));
+		assertEquals(0 , parents.find("Jose"));
 	}
 
 	

@@ -10,17 +10,22 @@ public class Week{
 		}
 	}
 	
-	public int search(WeekDays weekDay) {
-		int output=-1;
-		for (int i=0;i<5;i++) {
-			if (this.day[i].getWeekDay()==weekDay) output=i;
-		}
-		return output;
+	public void add(WeekDays day,Ride ride) throws BlaException{
+		this.day[day.ordinal()].add(ride);
 	}
 	
-	public Day getDay(WeekDays weekDay) {
-		int i=search(weekDay);
-		return this.day[i];
+	public Ride remove(WeekDays day,String start, String end) throws BlaException{
+		return this.day[day.ordinal()].remove(start,end);
+	}
+	
+	public boolean remove(Ride ride) {
+		int number=0;
+		boolean out=false;
+		while(number<5 && !out) {
+			out=this.day[number].remove(ride);
+			number++;
+		}
+		return out;
 	}
 	
 	public String toString() {
