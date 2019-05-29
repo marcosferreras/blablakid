@@ -19,7 +19,7 @@ public class Kids{
 	public Kids(int numKids) throws BlaException{
 		this.isNumOfKidsValid(numKids);
 		kids = new Kid[numKids];
-		logger.info("Has been created a kids class whose length is "+numKids);
+		logger.info("Has been created a kids object whose length is "+numKids);
 		
 	}
 	private void isNumOfKidsValid(int numKids) throws BlaException {

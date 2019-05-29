@@ -17,7 +17,7 @@ public class Activities{
 	 */
 	protected Activities() {
 		activities = new Activity[3];
-		logger.info("Has been created a kids object");
+		logger.info("Has been created an activities object with 3 maximum activities");
 	}
 	/**
 	 * Add an activity to the collection 

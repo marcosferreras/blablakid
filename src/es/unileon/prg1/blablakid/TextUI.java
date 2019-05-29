@@ -134,7 +134,7 @@ public class TextUI {
 				logger.error("The value entered in: how many rides can "+parentName+" make per day? is not numeric. Requesting again");
 				System.out.println("Error: Please, enter a numeric value");
 			}
-		} while (numberRides == Integer.MIN_VALUE);
+		} while (numberRides == Integer.MIN_VALUE);  
 		parent = new Parent(parentName, numberRides, numberKids);	
 		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is "+parentName+"'s kid number"+i+"?");

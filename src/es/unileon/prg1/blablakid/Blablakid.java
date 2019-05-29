@@ -32,7 +32,7 @@ public class Blablakid{
 	public void removeActivity(String nameKid, String activityName, WeekDays day) throws BlaException {
 		Kid kid = kids.search(nameKid);
 		Activity activity;
-		Ride rideAfter;
+		Ride rideAfter; 
 		Ride rideBefore;
 		Rides rides = new Rides(2);
 		if (kid == null) {
@@ -71,7 +71,7 @@ public class Blablakid{
 		//A partir de aqui borrado del ride de la actividad
 		/*
 		this.kids.removeRide(ride);
-		 */
+		 */ 
 	}
 	public void add(Parent parent, Kids kids) throws BlaException{
 		Kid kid;

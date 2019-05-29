@@ -54,8 +54,8 @@ public class Activity{
 	}
 	private void setSchedule(Time start, Time end) throws BlaException {
 		if(end.isBefore(start)) {
-			logger.error("The start time of the activity is after the end");
-			throw new BlaException("Error: The start time of the activity is after the end");
+			logger.error("The start time of the activity("+start.toString()+") is after the end("+end.toString());
+			throw new BlaException("Error: The start time of the activity("+start.toString()+") is after the end("+end.toString());
 		} else {
 			this.start = start;
 			this.end = end;
@@ -94,30 +94,39 @@ public class Activity{
 	public void add(Ride ride)throws BlaException {
 		if(ride.getTimeEnd().isBefore(this.start)) {
 			if (this.before != null) {
-				throw new BlaException("Error: This ride is already assigned. Try to remove it before");
+				logger.error("Error: This ride is already assigned to this kid. Try to remove it before");
+				throw new BlaException("Error: This ride is already assigned to this kid. Try to remove it before");
 			} else if (!ride.getEndPlace().toLowerCase().equals(this.place.toLowerCase())){
-				throw new BlaException("Error: The ride have to finish in "+this.place);
+				logger.error("The ride have to finish in "+this.place+" but end in "+ride.getEndPlace());
+				throw new BlaException("Error: The ride have to finish in "+this.place+" but end in "+ride.getEndPlace());
 			} else {
 				this.before = ride;
+				logger.info("Ride before "+ride.toString()+" added to activity "+this.name);
 			}
 		} else if (this.end.isBefore(ride.getTimeStart())) {
 			if (this.after != null) {
-				throw new BlaException("Error: This ride is already assigned to. Try to remove it before");
+				logger.error("Error: This ride is already assigned to this kid. Try to remove it before");
+				throw new BlaException("Error: This ride is already assigned to tis kid. Try to remove it before");
 			} else if (!ride.getStartPlace().toLowerCase().equals(this.place.toLowerCase())) {
+				logger.error("The ride have to start in "+this.place+" but start in "+ride.getStartPlace());
 				throw new BlaException("Error: The ride have to start in "+this.place);
 			} else {
 				this.after = ride;
+				logger.info("Ride after"+ride.toString()+" added to activity "+this.name);
 			}
 		} else {
-			throw new BlaException("Error: The ride is incorrect, must be finish before the start time of the activity or start after the end time of the activity");
+			logger.error("The ride "+ride.toString()+" is incorrect for activity "+this.name);
+			throw new BlaException("Error: The ride "+ride.toString()+" is incorrect, must be finish before the start time of the activity or start after the end time of the activity");
 		}
 	}
-	public boolean removeRide(Ride ride) {
+	public boolean removeRide(Ride ride) { 
 		boolean deleted = false;
 		if (this.before == ride) {
+			logger.info("The ride before "+before.toString()+" of activity "+this.name+" was deleted");
 			this.before = null;
 			deleted = true;
 		} else if (this.after == ride) {
+			logger.info("The ride after "+after.toString()+" of activity "+this.name+" was deleted");
 			this.after = null;
 			deleted = true;
 		}
