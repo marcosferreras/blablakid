@@ -51,7 +51,7 @@ public class BlablakidTests {
 		this.blablakid.add(new Activity("Baloncesto","Palomera",WeekDays.MONDAY,new Time(18,00),new Time(20,00)), "Daniel");
 		this.blablakid.addRide("Pedro", "Baloncesto", "Daniel", new Ride(new Time(17,00),new Time(18,00), "Casa", "Palomera"), WeekDays.MONDAY);
 		this.blablakid.addRide("Pedro", "Baloncesto", "Daniel", new Ride(new Time(21,00),new Time(22,00), "Palomera", "Casa"), WeekDays.MONDAY);
-		this.blablakid.removeActivity("Daniel", "Baloncesto", WeekDays.MONDAY);
+		this.blablakid.removeActivity("Daniel", "Baloncesto", WeekDays.MONDAY); 
 	}
 	@Test 
 	public void testAddRide() throws BlaException {

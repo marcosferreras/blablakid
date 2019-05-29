@@ -101,6 +101,10 @@ public class Activities{
 		}
 		return (i-1);
 	}
+	/**
+	 * Obtain all the rides of the kid
+	 * @return The rides of the kid
+	 */
 	public Rides getRides() throws BlaException {
 		Rides rides = new Rides(this.next+1);
 		for(int i = 0; i < this.next; i++) {
@@ -113,6 +117,11 @@ public class Activities{
 		}
 		return rides;
 	}
+	/**
+	 * Remove a ride from an activity
+	 * ride Ride to remove
+	 * @return True if was deleted, False if not
+	 */
 	public boolean removeRide(Ride ride) {
 		boolean deleted = false;
 		int i = 0;

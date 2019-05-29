@@ -22,6 +22,7 @@ public class Kids{
 		logger.info("Has been created a kids object whose length is "+numKids);
 		
 	}
+	
 	private void isNumOfKidsValid(int numKids) throws BlaException {
 		if(numKids <= 0) {
 			logger.error("The maximum number of kids wasn't indicated at runtime");
@@ -66,6 +67,10 @@ public class Kids{
 		logger.info("The kid "+name+" was deleted");
 		this.next--;				
 	}
+	/**
+	 * Organizes the array in order to delete the gaps
+	 * @param position Position of the element to organize
+	 */
 	private void organize(int position){
 		while((position+1) < this.next){
 			kids[position] = kids[position+1];
@@ -106,6 +111,11 @@ public class Kids{
 		}
 		return kid;
 	}
+	/**
+	 * Remove a ride from an activity of a kid
+	 * ride Ride to remove
+	 * @return True if was deleted, False if not
+	 */
 	public boolean removeRide(Ride ride) {
 		boolean deleted = false;
 		int i = 0;
@@ -150,8 +160,8 @@ public class Kids{
 		return salida.toString();
 	}
 	/**
-	 * Generate all the information about all the kids
-	 * @return Shows all the information about all the kids
+	 * Obtain all the information about all the kids
+	 * @return All the information about all the kids
 	 */
 	@Override
 	public String toString(){
@@ -162,6 +172,10 @@ public class Kids{
 		}
 		return salida.toString();	
 	}
+	/**
+	 * Obtain only the names of all the kids
+	 * @return The names of all the kids
+	 */
 	public String nameOfKids() {
 		StringBuffer output= new StringBuffer();
 		for(int i = 0; i < this.next; i++){

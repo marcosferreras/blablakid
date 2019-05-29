@@ -65,9 +65,19 @@ public class Kid{
 		}
 		return activity;
 	}
+	/**
+	 * Obtain all the rides of the kid
+	 * @return The rides of the kid
+	 */
 	public Rides getRides() throws BlaException {
 		return this.activities.getRides();
 	}
+	/**
+	 * 
+	 * Remove a ride from the activity of a kid
+	 * ride Ride to remove
+	 * @return True if was deleted, False if not
+	 */
 	public boolean removeRide(Ride ride) {
 		return this.activities.removeRide(ride);
 	}

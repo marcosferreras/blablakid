@@ -8,7 +8,12 @@ public class Time{
 	private int hour;
 	private int minute;
 	private static final Logger logger= LogManager.getLogger(Kid.class);
-	
+	/**
+	 * Constructor
+	 * @param hour Hour of the time
+	 * @param minute Minute of the time
+	 * @throws BlaException If the time is incorrect
+	 */
 	public Time(int hour,int minute) throws BlaException{
 		if (hour<0) { 
 			logger.error("The hour entered ("+hour+") don't exist");
@@ -31,16 +36,22 @@ public class Time{
 		}
 		logger.info("Time "+toString()+" added");
 	}
-
+	/**
+	 * Obtain the hour of the time
+	 * @return The hour
+	 */
 	public int getHour() {
 		return hour;
 	}
-
+	/**
+	 * Obtain the minute of the time
+	 * @return The minute
+	 */
 	public int getMinute() {
 		return minute;
 	}
 	
-	/*
+	/**
 	 * Check if the time sent as a parameter is greater than the local variable of the class
 	 * @return True-is greater False- isn't greater
 	 */
@@ -55,7 +66,11 @@ public class Time{
 		}
 		return exit;
 	}
-
+	/**
+	 * Generate the time in format H:M
+	 * @return The time
+	 */
+	@Override
 	public String toString() {
 		StringBuffer salida = new StringBuffer();
 		salida.append(this.hour+":"+this.minute);

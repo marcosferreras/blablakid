@@ -52,6 +52,12 @@ public class Activity{
 	public WeekDays getDay(){
 		return this.day;
 	}
+	/**
+	 * 
+	 * @param start When start the activity
+	 * @param end When end the activity
+	 * @throws BlaException If the end is before to the start
+	 */
 	private void setSchedule(Time start, Time end) throws BlaException {
 		if(end.isBefore(start)) {
 			logger.error("The start time of the activity("+start.toString()+") is after the end("+end.toString()+" )");
@@ -119,6 +125,11 @@ public class Activity{
 			throw new BlaException("Error: The ride "+ride.toString()+" is incorrect, must be finish before the start time of the activity or start after the end time of the activity");
 		}
 	}
+	/**
+	 * Remove a ride to the activity
+	 * @param ride Ride to remove
+	 * @return boolean True if was found and deleted, false if not
+	 */
 	public boolean removeRide(Ride ride) { 
 		boolean deleted = false;
 		if (this.before == ride) {
