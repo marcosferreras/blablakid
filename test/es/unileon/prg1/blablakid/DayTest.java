@@ -69,4 +69,11 @@ public class DayTest {
 		day.remove(ride.getStartPlace(), ride.getEndPlace());
 		assertEquals(day.toString(),"");
 	}
+	
+	@Test
+	public void removeUnknowRideTest() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		this.day.add( ride);
+		this.day.remove(ride);
+	}
 }

@@ -12,7 +12,7 @@ public class Ride{
 			this.timeEnd=timeEnd;
 			this.startPlace=startPlace;
 			this.endPlace = endPlace;
-		} else throw new BlaException("Please change the order of the hours");
+		} else throw new BlaException("Error:Please change the order of the hours");
 	}
 
 	public Time getTimeStart() {
@@ -24,7 +24,6 @@ public class Ride{
 	public String getEndPlace() {
 		return this.endPlace;
 	}
-
 
 	public Time getTimeEnd() {
 		return timeEnd;

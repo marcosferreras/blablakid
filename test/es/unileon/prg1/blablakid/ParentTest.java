@@ -10,7 +10,7 @@ public class ParentTest {
 	@Before
 	public void setup() throws BlaException{
 
-		this.parent = new Parent("Carlos",1,3);
+		this.parent = new Parent("Carlos",2,3);
 		this.parent.add(new Kid("Carlos"));
 	}
 		
@@ -23,7 +23,15 @@ public class ParentTest {
 	public void addremoveRideTest() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
 		this.parent.add( WeekDays.MONDAY, ride);
-		this.parent.remove(WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace());
+		assertSame(ride,this.parent.remove(WeekDays.MONDAY,ride.getStartPlace(),ride.getEndPlace()));
+	}
+	@Test
+	public void removeRide() throws BlaException{
+		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
+		Rides rides=new Rides(3);
+		rides.add(ride);
+		this.parent.add( WeekDays.MONDAY, ride);
+		this.parent.remove(ride);
 	}
 	@Test
 	public void findTest() {

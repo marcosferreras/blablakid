@@ -20,6 +20,9 @@ public class Rides{
 		return this.next;
 	}
 	public void  add(Ride ride) throws BlaException{
+		if (this.next==this.ride.length) {
+			throw new BlaException("Error:there are not enougth space for a new ride");
+		}
 		if (find(ride.getStartPlace(),ride.getEndPlace())!=-1) {
 			throw new BlaException("Error:That ride has already exist");
 		}
@@ -61,12 +64,13 @@ public class Rides{
 		}
 		if (out) {
 			this.ride[number]=null;
-			if (number<=(this.ride.length-1)) {
-				for (int i=number;i<next;i++) {
-					ride=this.ride[i+1];
+			if (number<(this.ride.length-1)) {
+				for (int i=number;i<next-1;i++) {
+					
 					this.ride[i]=this.ride[i+1];
-					this.ride[i+1]=ride;
+				
 				}
+				this.ride[next-1]=null;
 			}
 			this.next--;
 			
@@ -75,17 +79,18 @@ public class Rides{
 	}
 	
 	public void remove(String start, String end) throws BlaException{
-		Ride ride;
 		int number=find(start,end);
 		if (number==-1) {
 			throw new BlaException("That ride dosent exist");
 		}
 		this.ride[number]=null;
-		for (int i=number;i<next;i++) {
-			ride=this.ride[i+1];
-			this.ride[i]=this.ride[i+1];
-			this.ride[i+1]=ride;
-		}
+
+			for (int i=number;i<next-1;i++) {
+				
+				this.ride[i]=this.ride[i+1];
+			
+			}
+			this.ride[next-1]=null;
 		this.next--;
 	}
 

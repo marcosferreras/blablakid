@@ -40,10 +40,13 @@ public class Parents {
 	}
 	
 	public void add(Parent parent) throws BlaException{
-		if (find(parent.getName())!=-1) throw new BlaException("Error:That parent has allready exist");
-		else {
-			this.parent[next++]=parent;
+		if (this.next==this.parent.length) {
+			throw new BlaException("Error:there are not enougth space for a new ride");
 		}
+		if (find(parent.getName())!=-1) {
+			throw new BlaException("Error:That parent has already exist");
+		}
+			this.parent[next++]=parent;
 	}
 	
 	public void add(String name, WeekDays day,Ride ride) throws BlaException{
@@ -77,20 +80,18 @@ public class Parents {
 		
 	}
 	public void remove(String name) throws BlaException{
-		Parent parent;
 		int number=find(name);
 		if (number==-1) {
 			throw new BlaException("Error: That parent does not exist");
 		}
 		this.parent[number]=null;
-		if (number<=(this.parent.length-1)) {
-			for (int i=number;i<=this.next;i++) {
-				parent=this.parent[i+1];
-				this.parent[i]=this.parent[i+1];
-				this.parent[i]=parent;
-			}
+		for (int i=number;i<next-1;i++) {
+			
+			this.parent[i]=this.parent[i+1];
+		
 		}
-		next--;
+		this.parent[next-1]=null;
+	this.next--;
 	}
 	
 	public String toString() {

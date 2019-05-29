@@ -9,7 +9,7 @@ public class ParentsTests {
 	
 	@Before
 	public void setup() throws BlaException{
-		this.parents = new Parents(6);
+		this.parents = new Parents(3);
 		Parent parent2, parent = new Parent("Jose",2,10);
 		parent2=new Parent("Marco",2,10);
 		parent.add(new Kid("Carlos"));
@@ -119,4 +119,14 @@ public class ParentsTests {
 		this.parents.add("Jose", WeekDays.MONDAY, ride);
 		this.parents.remove(rides);
 	}
+	
+	@Test (expected = BlaException.class)
+	public void maxNumberOfParentsTest() throws BlaException{
+		Parent parent = new Parent("ose",2,10);
+		this.parents.add(parent);
+		parent = new Parent("jos",2,10);
+		this.parents.add(parent);
+	}
+	
+	
 }
