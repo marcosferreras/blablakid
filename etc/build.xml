@@ -13,7 +13,6 @@
     <target name="clean">
       <delete dir="${classes}"/>
       <delete dir="${doc}"/>
-      <delete dir="${logs}"/>
     </target>
 
     <target name="compile" depends="clean">
@@ -27,27 +26,8 @@
       </javac>
       <echo message="Compiling...done"/>
     </target>
-
-    <target name="compileTests" depends="compile">
-      <mkdir dir="${classes}"/>
-      <javac srcdir="${test}" destdir="${classes}" classpath="${lib}" includeantruntime="false"/>
-      <echo message="Test compilation...done"/>
-    </target>
-
-    <target name="test" depends="compileTests">
-		<java classname="org.junit.runner.JUnitCore">
-			<classpath>
-				<pathelement path="${classes}"/>
-				<pathelement path="${lib}"/>
-			</classpath>
-			<arg value="es.unileon.prg1.blablakid.AllTests"/>
-		</java>
-    	
-    </target>
 	
-
-
-    <target name="documentar" depends="test">
+    <target name="documentar" depends="compile">
 		<mkdir dir="${doc}"/>
 		<javadoc sourcepath="${src}"
 		   destdir="${doc}"
@@ -63,7 +43,27 @@
 		</javadoc>
 	</target>
 	
-    <target name="run" depends="documentar">
+    <target name="compileTests" depends="documentar">
+      <mkdir dir="${classes}"/>
+      <javac srcdir="${test}" destdir="${classes}" classpath="${lib}" includeantruntime="false"/>
+      <echo message="Test compilation...done"/>
+    </target>
+
+    <target name="test" depends="compileTests">
+		<java fork="true" classname="org.junit.runner.JUnitCore">
+			<classpath>
+				<pathelement path="${classes}"/>
+				<pathelement path="${lib}"/>
+				<pathelement path="${lib1}"/>
+        		     	<pathelement path="${lib2}"/>
+				<pathelement path="./etcLogsTest"/>
+			</classpath>
+			<arg value="es.unileon.prg1.blablakid.AllTests"/>
+		</java>
+    	
+    </target>
+	
+    <target name="run" depends="test">
      		 <java fork="true" classname="es.unileon.prg1.blablakid.MainBlablakid" >
 			<arg value="3"/>
         		 <classpath>

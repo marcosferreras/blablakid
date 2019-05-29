@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="error" name="Blablakid" packages="">
+<Configuration status="error" name="Blablakid" packages="es.unileon.prg1.blablakid">
 	<Appenders>
 		<File name="MyFile" fileName="logs/blablakid.log">
      		   	<PatternLayout>
