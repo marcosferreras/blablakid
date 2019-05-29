@@ -6,7 +6,7 @@ public class Rides{
 	
 	public Rides(int numRides) throws BlaException {
 		if (numRides<1) {
-			throw new BlaException("the number of rides must be higher than 0");
+			throw new BlaException("The number of rides must be higher than 0");
 		}
 			ride = new Ride[numRides];
 			next=0;
@@ -24,7 +24,7 @@ public class Rides{
 			throw new BlaException("Error:there are not enougth space for a new ride");
 		}
 		if (find(ride.getStartPlace(),ride.getEndPlace())!=-1) {
-			throw new BlaException("Error:That ride has already exist");
+			throw new BlaException("Error: That ride has already exist");
 		}
 		this.ride[next]=ride;
 		this.next++;
@@ -81,7 +81,7 @@ public class Rides{
 	public void remove(String start, String end) throws BlaException{
 		int number=find(start,end);
 		if (number==-1) {
-			throw new BlaException("That ride dosent exist");
+			throw new BlaException("That ride does not exist");
 		}
 		this.ride[number]=null;
 

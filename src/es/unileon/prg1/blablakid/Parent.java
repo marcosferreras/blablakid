@@ -14,7 +14,7 @@ public class Parent{
 	public void add(Kid kid) throws BlaException {
 		this.kids.add(kid);
 	}
-	
+	 
 	public boolean find(String name) {
 		boolean output=false;
 		if (null!=this.kids.search(name)) {
@@ -47,7 +47,7 @@ public class Parent{
 		int i=0;
 		output.append("\n##### "+this.name+" #####\n");
 		output.append("Kids:\n");
-		while(kids.getKid(i)!=null && i<kids.getLength()){
+		while(i<kids.getNext()){
 			output.append(kids.getKid(i)+"\n");
 			i++;
 		}
