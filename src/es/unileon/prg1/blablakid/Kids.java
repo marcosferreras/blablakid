@@ -1,10 +1,15 @@
 package es.unileon.prg1.blablakid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author Marcos Ferreras Rodriguez
  */
 public class Kids{
 	private Kid kids[];
 	private int next;
+	private static final Logger logger= LogManager.getLogger(Kid.class);
 	
 	/**
 	 * Constructor
@@ -14,10 +19,12 @@ public class Kids{
 	public Kids(int numKids) throws BlaException{
 		this.isNumOfKidsValid(numKids);
 		kids = new Kid[numKids];
+		logger.info("Has been created a kids class whose length is "+numKids);
 		
 	}
 	private void isNumOfKidsValid(int numKids) throws BlaException {
 		if(numKids <= 0) {
+			logger.error("The maximum number of kids wasn't indicated at runtime");
 			throw new BlaException("Error: You must indicate how parameter the maximum number of kids when you run the program");
 		} 
 	}
@@ -30,11 +37,14 @@ public class Kids{
 	protected boolean add(Kid kid) throws BlaException {
 		boolean saveCorrect = false;
 		if(search(kid.getName()) != null){
+			logger.error("The kid "+kid.getName()+" already exists");
 			throw new BlaException("Error: The kid "+kid.getName()+" already exists");
 		} else if (this.next >= kids.length){
-			throw new BlaException("Error: The limit of "+kids.length+" has been reached. Try to remove a kid");
+			logger.error("The limit of "+kids.length+" kids has been reached");
+			throw new BlaException("Error: The limit of "+kids.length+" kids has been reached. Try to remove a kid");
 		} else {
 			kids[this.next] = kid;
+			logger.info("The kid "+kid.getName()+" was added");
 			saveCorrect = true;
 			this.next++;
 		}
@@ -48,10 +58,12 @@ public class Kids{
 	public void remove(String name)throws BlaException{
 		Kid kid = search(name);
 		if(kid == null) { 
+			logger.error("The kid "+name+" does not exist");
 			throw new BlaException("Error: The kid "+name+" does not exist");
 		} 
 		organize(position(kid));
 		kids[this.next-1] = null;
+		logger.info("The kid "+name+" was deleted");
 		this.next--;				
 	}
 	private void organize(int position){

@@ -1,4 +1,8 @@
 package es.unileon.prg1.blablakid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * 
  * @author Marcos Ferreras Rodriguez
@@ -7,11 +11,13 @@ package es.unileon.prg1.blablakid;
 public class Activities{
 	private Activity[] activities;
 	private int next;
+	private static final Logger logger= LogManager.getLogger(Kid.class);
 	/**
 	 * Constructor of the class
 	 */
 	protected Activities() {
 		activities = new Activity[3];
+		logger.info("Has been created a kids object");
 	}
 	/**
 	 * Add an activity to the collection 
@@ -19,11 +25,14 @@ public class Activities{
 	 */
 	public void add(Activity activity) throws BlaException {
 		if(this.next >= 2) {
+			logger.error("The child has reached his limit of 3 activities");
 			throw new BlaException("Error: The child has reached his limit of 3 activities. Try to delete some activity.");
 		} else if (search(activity.getName(), activity.getDay()) != null) {
+			logger.error("Activity "+activity.getName()+" is already added in "+activity.getDay());
 			throw new BlaException("Error: Activity "+activity.getName()+" is already added in "+activity.getDay()+". Try to remove it before");
 		} else {
 			this.activities[this.next]=activity;
+			logger.info("The activity "+activity.getName()+" was added");
 			this.next++;
 		}
 	}
@@ -35,10 +44,12 @@ public class Activities{
 	public void remove(String name, WeekDays day) throws BlaException {
 		Activity activity = search(name, day);
 		if(activity == null) {
-			throw new BlaException("Error: the child introduced does not exist");
+			logger.error("The activity "+name+" does not exist");
+			throw new BlaException("Error: The activity "+name+" does not exist in "+day.toString());
 		} else {
 					organize(position(activity));
 					this.activities[this.next]=null;
+					logger.info("The activity "+name+" was deleted from "+day.toString());
 					this.next--;
 			}
 	}

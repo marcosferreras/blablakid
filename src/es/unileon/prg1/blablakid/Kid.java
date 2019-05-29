@@ -14,10 +14,9 @@ public class Kid{
 	 * @param name Name of the kid
 	 */
 	public Kid (String name){
-		logger.entry();
 		this.name = name;
 		activities = new Activities();
-		logger.info("Kid "+name+" added");
+		logger.info("Kid '"+name+"' created");
 	}
 	/**
 	 * Gets the name of a kid
@@ -61,6 +60,7 @@ public class Kid{
 	public Activity searchActivity(String activityName, WeekDays day) throws BlaException {
 		Activity activity = this.activities.search(activityName, day);
 		if(activity == null) {
+			logger.error("The activity "+activityName+" doesn't exist");
 			throw new BlaException("Error: The activity "+activityName+" does not exist");
 		}
 		return activity;

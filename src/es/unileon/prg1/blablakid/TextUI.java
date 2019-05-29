@@ -1,15 +1,21 @@
 package es.unileon.prg1.blablakid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class TextUI {
 	private Blablakid blablakid;//esta declarado ya para todos los blablakid (todos sus metodos)
+	private static final Logger logger= LogManager.getLogger(Kid.class);
 	public TextUI (Blablakid blablakid) {
 		this.blablakid = blablakid;
 	}
 	
 	protected void start() {
+		logger.info("Starting aplication");
 		int number = 0;
 		do{
 		    try{
+		    	logger.info("Showing menu");
 		    showMenu();
 		    number= Teclado.readInteger();//recogemos ese valor en int numero
 			selectOption(number);
@@ -43,7 +49,7 @@ public class TextUI {
 	
 	}
 	public void selectOption(int number)throws BlaException{
-
+		logger.info("Selected option "+number);
 			switch (number){
 				case 1: 
 					addKid();	
@@ -78,26 +84,32 @@ public class TextUI {
 				case 0:
 					break;
 				default:
-					System.out.println("Error: el número introducido no es correcto, introduzca un número del menú");
+					logger.error("The user has introduced a incorrect option ("+number+")");
+					System.out.println("Error: The number entered is not correct. Enter a menu option");
 
 			}
 	}
 
 
 	public void addKid()throws BlaException{
+		logger.info("Running add kid");
 		String name;
 		System.out.println ("Name the kid to add:");
 		name = readString();
+		logger.info("Adding kid "+name);
 		this.blablakid.add(new Kid(name));
 	}
 
 	public void removeKid() throws BlaException{
+		logger.info("Running remove kid");
 		String name;
 		System.out.println ("Name the kid to remove:\n");
 		name = readString();
+		logger.info("Removing kid "+name);
 		blablakid.removeKid(name);
 	}
-	public void addParent()throws BlaException{ //pregunta por todos los datos del parent
+	public void addParent()throws BlaException{ 
+		logger.info("Running add parent");
 		String parentName;
 		int numberKids;
 		int numberRides;
@@ -106,35 +118,49 @@ public class TextUI {
 		Parent parent;
 		System.out.println ("Name of the parent to add:");
 		parentName = readString();
-		System.out.println ("How many kids does "+parentName+" have?:");
-		numberKids = Teclado.readInteger();
+		do {
+			System.out.println ("How many kids does "+parentName+" have?:");
+			numberKids = Teclado.readInteger();
+			if(numberKids == Integer.MIN_VALUE) {
+				logger.error("The value entered in: how many kids does "+parentName+" have? is not numeric. Requesting again");
+				System.out.println("Error: Please, enter a numeric value");
+			}
+		} while (numberKids == Integer.MIN_VALUE);
 		kids = new Kids (numberKids);
-		System.out.println ("How many rides can "+parentName+" make per day?:");
-		numberRides = Teclado.readInteger();
-		parent = new Parent(parentName, numberRides, numberKids);
-		
+		do {
+			System.out.println ("How many rides can "+parentName+" make per day?:");
+			numberRides = Teclado.readInteger();
+			if(numberRides == Integer.MIN_VALUE) {
+				logger.error("The value entered in: how many rides can "+parentName+" make per day? is not numeric. Requesting again");
+				System.out.println("Error: Please, enter a numeric value");
+			}
+		} while (numberRides == Integer.MIN_VALUE);
+		parent = new Parent(parentName, numberRides, numberKids);	
 		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is "+parentName+"'s kid number"+i+"?");
 			kidName = readString();
+			logger.info("Adding "+kidName+" to "+parentName);
 			kids.add(new Kid (kidName)); 
 		}
-		
+		logger.info("Adding parent "+parentName+" with "+numberRides+" rides per day and "+numberKids+" kids");
 		this.blablakid.add(parent, kids);
 	
 	}
 	
 	public void removeParent() throws BlaException{
+		logger.info("Running remove parent");
 		String name;
 		System.out.println ("Name of the parent to remove:");
 		name = readString();
+		logger.info("Removing parent "+name);
 		this.blablakid.removeParent(name);
 	}
 
 	public void addActivity() throws BlaException{
+		logger.info("Running add activity");
 		String nameKid, nameActivity, place;
 		WeekDays day = null;
 		Time start, end;
-		
 		System.out.println ("Name of the activity:");
 		nameActivity = readString();
 		System.out.println ("Where does the activity "+nameActivity+" takes place?");
@@ -146,10 +172,12 @@ public class TextUI {
 		start = askTime();
 		System.out.println ("When does the activity end?");
 		end = askTime();
+		logger.info("Adding activity "+nameActivity+" that takes place in "+place+"("+day.toString()+") to kid "+nameKid+".Start "+start.toString()+".End"+end.toString());
 		this.blablakid.add(new Activity(nameActivity, place, day, start, end), nameKid);
 	}
 	
 	public void removeActivity() throws BlaException {
+		logger.info("Running remove Activity");
 		String nameKid, activityName;
 		WeekDays day;
 		System.out.println ("Name of the kid taking the activity to remove: ");
@@ -157,10 +185,12 @@ public class TextUI {
 		System.out.println ("Name of the activity to remove: ");
 		activityName = readString();
 		day = askWeekDay();
+		logger.info("Removing activity "+activityName+" from "+nameKid+" activities");
 		this.blablakid.removeActivity(nameKid, activityName, day);	
 	}
 	
 	public void addRide() throws BlaException {
+		logger.info("Running add ride");
 		String parentName, activityName, kidName, startPlace, endPlace;
 		Time start, end;
 		WeekDays day;
@@ -180,11 +210,13 @@ public class TextUI {
 		System.out.println ("When does the ride end?");
 		end = askTime();
 		day = askWeekDay();
-		ride = new Ride(start, end, startPlace, endPlace );
+		ride = new Ride(start, end, startPlace, endPlace);
+		logger.info("Adding ride to "+parentName+". Kid: "+kidName+". Activity: "+activityName+". Start Place: "+startPlace+".End Place: "+endPlace+".Start Time: "+start.toString()+"End Time: "+end.toString());
 		this.blablakid.addRide(parentName, activityName, kidName, ride, day);
 	}
 	
 	public void removeRide() throws BlaException {
+		logger.info("Running remove ride");
 		String parentName, rideStart, rideEnd;
 		WeekDays day;
 		System.out.println ("Name of the parent in charge of the ride:");
@@ -194,21 +226,36 @@ public class TextUI {
 		rideStart = readString();
 		System.out.println ("Where does the ride end?");
 		rideEnd = readString();
+		logger.info("Removing ride of parent "+parentName+" in "+day.toString()+".Start Place: "+rideStart+".End Place: "+rideEnd);
 		this.blablakid.removeRide(parentName, day, rideStart, rideEnd);
 	}
 	public Time askTime() throws BlaException {
+		logger.info("Asking and checking Time");
 		int hour, minute;
 		System.out.println("\tInsert hour:"); 
-		hour= Teclado.readInteger();
-		System.out.println ("\tInsert minute:");
-		minute = Teclado.readInteger();
+		do {
+			hour= Teclado.readInteger();
+			if(hour == Integer.MIN_VALUE) {
+				logger.error("The hour entered is not numeric. Requesting again");
+				System.out.println("Error: Please, enter a numeric value");
+			}
+		}while (hour == Integer.MIN_VALUE);
+		do {
+			System.out.println ("\tInsert minute:");
+			minute = Teclado.readInteger();
+			if(minute == Integer.MIN_VALUE) {
+				logger.error("The minute entered is not numeric. Requesting again");
+				System.out.println("Error: Please, enter a numeric value");
+			}
+		} while (minute == Integer.MIN_VALUE);
 		return new Time(hour, minute);
 	}
 	public String readString() throws BlaException {
 		String name;
 		do {
 			name = Teclado.readString();
-			if(name.trim().length() == 0) { //espacios en blanco
+			if(name.trim().length() == 0) { 
+			logger.error("Has been entered a empty field");
 			System.out.println("Error: The field can not be empty. Input it again");
 			}
 		} while (name.trim().length() == 0);
@@ -237,6 +284,7 @@ public class TextUI {
 					day = WeekDays.FRIDAY;
 					break;
 				default:
+					logger.error("Has been entered an incorrect numeric value "+number+" for WeekDay");
 					System.out.println("Error: The number "+number+" is incorrect. Introduce a 0-4 number");			
 			}
 		} while (number>4 || number<0);
