@@ -3,6 +3,14 @@ package es.unileon.prg1.blablakid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
+/**
+ * User interface
+ * @author Marcos García
+ *
+ */
+
 public class TextUI {
 	private Blablakid blablakid;//esta declarado ya para todos los blablakid (todos sus metodos)
 	private static final Logger logger= LogManager.getLogger(Kid.class);
@@ -10,6 +18,10 @@ public class TextUI {
 		this.blablakid = blablakid;
 	}
 	
+	
+	/**
+	 * program start method
+	 */
 	protected void start() {
 		logger.info("Starting aplication");
 		int number = 0;
@@ -26,6 +38,10 @@ public class TextUI {
 
 	}
 	
+	/**
+	 * UI menu that is displayed by
+	 * screen to choose what we want to do.
+	 */
 	public void showMenu() {
 		showSummary();
 		System.out.println ("---------");	
@@ -48,6 +64,11 @@ public class TextUI {
 		System.out.println ("0 - Exit");
 	
 	}
+	/**
+	 * Method to choose option within the program.
+	 * @param number
+	 * @throws BlaException
+	 */
 	public void selectOption(int number)throws BlaException{
 		logger.info("Selected option "+number);
 			switch (number){
@@ -91,6 +112,10 @@ public class TextUI {
 	}
 
 
+	/**
+	 * Ask for a name to add a kid.
+	 * @throws BlaException
+	 */
 	public void addKid()throws BlaException{
 		logger.info("Running add kid");
 		String name;
@@ -100,6 +125,10 @@ public class TextUI {
 		this.blablakid.add(new Kid(name));
 	}
 
+	/**
+	 * The method asks for a name to remove a kid.
+	 * @throws BlaException
+	 */
 	public void removeKid() throws BlaException{
 		logger.info("Running remove kid");
 		String name;
@@ -108,6 +137,12 @@ public class TextUI {
 		logger.info("Removing kid "+name);
 		blablakid.removeKid(name);
 	}
+	/**
+	 * This method asks for a lot of information (name of the parent,
+	 * number of children, number of rides per day and name of
+	 * children) to add a parent.
+	 * @throws BlaException
+	 */
 	public void addParent()throws BlaException{ 
 		logger.info("Running add parent");
 		String parentName;
@@ -147,6 +182,10 @@ public class TextUI {
 	
 	}
 	
+	/**
+	 * After entering a name, you delete a parent.
+	 * @throws BlaException
+	 */
 	public void removeParent() throws BlaException{
 		logger.info("Running remove parent");
 		String name;
@@ -156,6 +195,10 @@ public class TextUI {
 		this.blablakid.removeParent(name);
 	}
 
+	/**
+	 * The method asks for several data in order to add an activity.
+	 * @throws BlaException
+	 */
 	public void addActivity() throws BlaException{
 		logger.info("Running add activity");
 		String nameKid, nameActivity, place;
@@ -176,6 +219,11 @@ public class TextUI {
 		this.blablakid.add(new Activity(nameActivity, place, day, start, end), nameKid);
 	}
 	
+	/**
+	 * After entering the kid's name, activity and day, the
+	 * method eliminates the activity saved previously.
+	 * @throws BlaException
+	 */
 	public void removeActivity() throws BlaException {
 		logger.info("Running remove Activity");
 		String nameKid, activityName;
@@ -189,6 +237,10 @@ public class TextUI {
 		this.blablakid.removeActivity(nameKid, activityName, day);	
 	}
 	
+	/**
+	 * 	A ride is added in this method.
+	 *  @throws BlaException
+	 */
 	public void addRide() throws BlaException {
 		logger.info("Running add ride");
 		String parentName, activityName, kidName, startPlace, endPlace;
@@ -215,6 +267,10 @@ public class TextUI {
 		this.blablakid.addRide(parentName, activityName, kidName, ride, day);
 	}
 	
+	/**
+	 * In this method we eliminate the previous ride.
+	 * @throws BlaException
+	 */
 	public void removeRide() throws BlaException {
 		logger.info("Running remove ride");
 		String parentName, rideStart, rideEnd;
@@ -229,6 +285,13 @@ public class TextUI {
 		logger.info("Removing ride of parent "+parentName+" in "+day.toString()+".Start Place: "+rideStart+".End Place: "+rideEnd);
 		this.blablakid.removeRide(parentName, day, rideStart, rideEnd);
 	}
+	/**
+	 * This method serves to ask about time. Returns
+	 * one hour, and if the time entered is not
+	 * correct an error appears.
+	 * @return
+	 * @throws BlaException
+	 */
 	public Time askTime() throws BlaException {
 		logger.info("Asking and checking Time");
 		int hour, minute;
@@ -250,6 +313,12 @@ public class TextUI {
 		} while (minute == Integer.MIN_VALUE);
 		return new Time(hour, minute);
 	}
+	/**
+	 * Read read a text string checking that
+	 * it is not empty.
+	 * @return
+	 * @throws BlaException
+	 */
 	public String readString() throws BlaException {
 		String name;
 		do {
@@ -261,6 +330,12 @@ public class TextUI {
 		} while (name.trim().length() == 0);
 		return name;
 	} 
+	/**
+	 * Ask for a day of the week using a switch, and
+	 * each number from 0 to 4 is assigned a day.
+	 * @return
+	 * @throws BlaException
+	 */
 	public WeekDays askWeekDay() throws BlaException{
 		WeekDays day = null;
 		int number;
@@ -290,12 +365,22 @@ public class TextUI {
 		} while (number>4 || number<0);
 		return day;
 	}
+	
+	/**
+	 *This method displays the information on the screen of the status
+	 *of the application at all times and that matches what
+	 *we are showing every time we show the main menu.
+	 */
 	public void showSummary() {
-	//La opciï¿½n de mostrar el resumen muestra por pantalla la informaciï¿½n del estado de la aplicaciï¿½n en todo momento y que coincide con lo que estamos mostrando cada vez que mostramos el menï¿½ principal
+	
 	System.out.println(this.blablakid.toString());
 	}
+	
+	/**
+	 * This method shows information about the journeys
+	 * missing to cover.
+	 */
 	public void checkStatus() {
-	//Esta opciï¿½n deberï¿½ mostrar informaciï¿½n sobre los trayectos que faltan por cubrir.
 	System.out.println(this.blablakid.checkStatus());	
 	}
 }
