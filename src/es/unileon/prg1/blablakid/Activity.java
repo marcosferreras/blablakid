@@ -54,8 +54,8 @@ public class Activity{
 	}
 	private void setSchedule(Time start, Time end) throws BlaException {
 		if(end.isBefore(start)) {
-			logger.error("The start time of the activity("+start.toString()+") is after the end("+end.toString());
-			throw new BlaException("Error: The start time of the activity("+start.toString()+") is after the end("+end.toString());
+			logger.error("The start time of the activity("+start.toString()+") is after the end("+end.toString()+" )");
+			throw new BlaException("Error: The start time of the activity("+start.toString()+") is after the end("+end.toString()+" )");
 		} else {
 			this.start = start;
 			this.end = end;

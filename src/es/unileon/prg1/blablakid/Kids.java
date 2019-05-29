@@ -67,9 +67,11 @@ public class Kids{
 		this.next--;				
 	}
 	private void organize(int position){
-		while(position < this.next){
-			kids[position] = kids[position+1];
-			position++;
+		if(this.kids.length > 1) {
+			while(position < this.next){
+				kids[position] = kids[position+1];
+				position++;
+			}
 		}
 	}
 	/**

@@ -18,8 +18,8 @@ public class Blablakid{
 		} 
 		rides = kid.getRides();
 		this.kids.remove(name);
-		//this.parents.removeKid(name);
-		//this.parents.remove(rides);
+		this.parents.removeKid(name);
+		this.parents.remove(rides);
 	}
 	
 	public void add(Activity activity, String nameKid) throws BlaException {
@@ -43,7 +43,7 @@ public class Blablakid{
 			throw new BlaException("Error: The activity "+activityName+" does not exist in "+nameKid+" in "+ day.toString());
 		} 
 		rideAfter = activity.getAfter();
-		rideBefore = activity.getBefore();
+		rideBefore = activity.getBefore(); 
 		if(rideAfter != null) {
 			rides.add(rideAfter);
 		}
@@ -68,10 +68,7 @@ public class Blablakid{
 	}
 	public void removeRide(String nameParent, WeekDays day, String rideStart, String rideEnd) throws BlaException{		
 		Ride ride=this.parents.remove(nameParent, day, rideStart, rideEnd);
-		//A partir de aqui borrado del ride de la actividad
-		/*
 		this.kids.removeRide(ride);
-		 */ 
 	}
 	public void add(Parent parent, Kids kids) throws BlaException{
 		Kid kid;
