@@ -13,13 +13,13 @@ public class Blablakid{
 	public void removeKid(String name) throws BlaException {
 		Kid kid = this.kids.search(name);
 		Rides rides;
-		if(kid == null) { 
+		if(kid == null) {  
 			throw new BlaException("Error: The kid "+name+" does not exist");
 		} 
 		rides = kid.getRides();
 		this.kids.remove(name);
-		this.parents.removeKid(name);
-		this.parents.remove(rides);
+		//this.parents.removeKid(name);
+		//this.parents.remove(rides);
 	}
 	
 	public void add(Activity activity, String nameKid) throws BlaException {

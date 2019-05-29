@@ -1,17 +1,22 @@
 package es.unileon.prg1.blablakid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author Marcos Ferreras Rodriguez
  *
  */
 public class Activity{
-	int next;
-	WeekDays day;
-	String name;
-	String place;
-	Time start;
-	Time end;
-	Ride before;
-	Ride after;
+	private WeekDays day;
+	private String name;
+	private String place;
+	private Time start;
+	private Time end;
+	private Ride before;
+	private Ride after;
+	private static final Logger logger= LogManager.getLogger(Kid.class);
+	
 	/**
 	 * Constructor
 	 * @param name Name of the activity
@@ -49,6 +54,7 @@ public class Activity{
 	}
 	private void setSchedule(Time start, Time end) throws BlaException {
 		if(end.isBefore(start)) {
+			logger.error("The start time of the activity is after the end");
 			throw new BlaException("Error: The start time of the activity is after the end");
 		} else {
 			this.start = start;
