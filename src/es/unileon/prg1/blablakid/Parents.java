@@ -83,10 +83,12 @@ public class Parents {
 			throw new BlaException("Error: That parent does not exist");
 		}
 		this.parent[number]=null;
-		for (int i=number;i<=this.next;i++) {
-			parent=this.parent[i+1];
-			this.parent[i]=this.parent[i+1];
-			this.parent[i]=parent;
+		if (number<=(this.parent.length-1)) {
+			for (int i=number;i<=this.next;i++) {
+				parent=this.parent[i+1];
+				this.parent[i]=this.parent[i+1];
+				this.parent[i]=parent;
+			}
 		}
 		next--;
 	}

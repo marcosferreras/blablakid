@@ -61,12 +61,15 @@ public class Rides{
 		}
 		if (out) {
 			this.ride[number]=null;
-			for (int i=number;i<next;i++) {
-				ride=this.ride[i+1];
-				this.ride[i]=this.ride[i+1];
-				this.ride[i+1]=ride;
+			if (number<=(this.ride.length-1)) {
+				for (int i=number;i<next;i++) {
+					ride=this.ride[i+1];
+					this.ride[i]=this.ride[i+1];
+					this.ride[i+1]=ride;
+				}
 			}
 			this.next--;
+			
 		}
 		return out;
 	}
