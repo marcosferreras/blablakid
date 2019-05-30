@@ -99,11 +99,11 @@ public class Blablakid{
 	
 	/**
 	 * Add a ride
-	 * @param A kidName of the kid who has the activity of type String
-	 * @param A activityName of the activity to remove of type String
-	 * @param A name of the parent of type String
-	 * @param An object of type WeekDays to add the ride in that day
-	 * @param An object of type Ride to add it
+	 * @param kidName A kidName of the kid who has the activity of type String
+	 * @param Activity name A activityName of the activity to remove of type String
+	 * @param parentNameA name of the parent of type String
+	 * @param day An object of type WeekDays to add the ride in that day
+	 * @param ride An object of type Ride to add it
 	 * @throws If the ride has already exist
 	 * @throws If the parent has not exist
 	 * @throws If the kid does not exist
@@ -123,10 +123,10 @@ public class Blablakid{
 	
 	/**
 	 * Remove a ride
-	 * @param A name of the parent of type String
-	 * @param An object of type WeekDays to add the ride in that day
-	 * @param A start place of type String
-	 * @param A end place of type String
+	 * @param nameParent A name of the parent of type String
+	 * @param day An object of type WeekDays to add the ride in that day
+	 * @param rideStart A start place of type String
+	 * @param rideEnd A end place of type String
 	 * @throws If the ride has not exist
 	 * @throws If the parent has not exist
 	 */
@@ -137,8 +137,8 @@ public class Blablakid{
 	
 	/**
 	 * Add a parent
-	 * @param An object Kids to add to the parent
-	 * @param An object of type parent to add
+	 * @param parent An object Kids to add to the parent
+	 * @param kids An object of type parent to add
 	 * @throws If the array of parents is compleat
 	 * @throws If the parent has already exist
 	 */
@@ -162,7 +162,7 @@ public class Blablakid{
 	
 	/**
 	 * Remove a parent
-	 * @param A name of the parent to remove of type String
+	 * @param name A name of the parent to remove of type String
 	 * @throws If the parent does not exist
 	 */
 	public void removeParent(String name) throws BlaException {

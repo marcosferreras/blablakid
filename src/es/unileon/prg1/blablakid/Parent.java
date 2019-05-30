@@ -17,9 +17,9 @@ public class Parent{
 	
 	/**
 	 * Constructor
-	 * @param A name of the parent of type String
-	 * @param the numberRides that the parent can make per day of type int
-	 * @param the numberKids that the parent has of type int
+	 * @param name A name of the parent of type String
+	 * @param numberRides the numberRides that the parent can make per day of type int
+	 * @param numberKids the numberKids that the parent has of type int
 	 * @throws If the number of kids is less or equal than 0
 	 * @throws If the number of rides is less or equal than 0
 	 */
@@ -39,7 +39,7 @@ public class Parent{
 	}
 	/**
 	 * Add a kid
-	 * @param An object of type Kid to add
+	 * @param Kid An object of type Kid to add
 	 */
 	public void add(Kid kid) throws BlaException {
 		this.kids.add(kid);
@@ -47,7 +47,7 @@ public class Parent{
 	}
 	/**
 	 * Find a kid
-	 * @param The name of the kid of type String
+	 * @param name The name of the kid of type String
 	 * @return A boolean which is true if the kid is inside Kids
 	 */
 	public boolean find(String name) {
@@ -60,8 +60,8 @@ public class Parent{
 	
 	/**
 	 * Add a ride
-	 * @param An object of type WeekDays to add the ride in that day
-	 * @param An object of type Ride to add it
+	 * @param day An object of type WeekDays to add the ride in that day
+	 * @param ride An object of type Ride to add it
 	 * @throws If the ride has already exist
 	 */
 	public void add(WeekDays day, Ride ride) throws BlaException{
@@ -70,9 +70,9 @@ public class Parent{
 	
 	/**
 	 * Remove a ride
-	 * @param An object of type WeekDays to add the ride in that day
-	 * @param A start place of type String
-	 * @param A end place of type String
+	 * @param day An object of type WeekDays to add the ride in that day
+	 * @param start A start place of type String
+	 * @param end A end place of type String
 	 * @throws If the ride has not exist
 	 * @return The object ride before been remove
 	 */
@@ -82,7 +82,7 @@ public class Parent{
 	
 	/**
 	 * Remove a Ride
-	 * @param An object of type Rides
+	 * @param ride An object of type Rides
 	 * @return A boolean which is true if the ride was remove
 	 */
 	public boolean remove(Ride ride) {
@@ -91,7 +91,7 @@ public class Parent{
 	
 	/**
 	 * Remove a kid of this.Kids
-	 * @param A name of the kid to remove of type String
+	 * @param name A name of the kid to remove of type String
 	 * @throws BlaException If the kid does not exist
 	 */
 	public void remove(String name) throws BlaException {

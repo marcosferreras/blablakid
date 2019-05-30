@@ -16,7 +16,7 @@ public class Week{
 	
 	/**
 	 * Constructor of week and create the days
-	 * @param A number of rides per day of type int
+	 * @param number A number of rides per day of type int
 	 */
 	public Week(int number)  throws BlaException{
 		day = new Day[5];
@@ -28,8 +28,8 @@ public class Week{
 	
 	/**
 	 * Add a ride
-	 * @param An object of type WeekDays to add the ride in that day
-	 * @param An object of type Ride to add it
+	 * @param day An object of type WeekDays to add the ride in that day
+	 * @param ride An object of type Ride to add it
 	 * @throws If the ride has already exist
 	 */
 	public void add(WeekDays day,Ride ride) throws BlaException{
@@ -38,9 +38,9 @@ public class Week{
 	
 	/**
 	 * Remove a ride
-	 * @param An object of type WeekDays to add the ride in that day
-	 * @param A start place of type String
-	 * @param A end place of type String
+	 * @param day An object of type WeekDays to add the ride in that day
+	 * @param start A start place of type String
+	 * @param end A end place of type String
 	 * @throws If the ride has not exist
 	 * @return The object ride before been remove
 	 */
@@ -50,7 +50,7 @@ public class Week{
 	
 	/**
 	 * Remove a Ride
-	 * @param An object of type Rides
+	 * @param ride An object of type Rides
 	 * @return A boolean which is true if the ride was remove
 	 */
 	public boolean remove(Ride ride) {

@@ -15,8 +15,8 @@ public class Rides{
 	private static final Logger logger= LogManager.getLogger(Rides.class);
 	/**
 	 * constructor
-	 * @param numRides
-	 * @throws BlaException
+	 * @param numRides max number of rides per day of type int
+	 * @throws if the numberRides is less or equals to 0
 	 */
 	public Rides(int numRides) throws BlaException {
 		if (numRides<1) {
@@ -29,7 +29,7 @@ public class Rides{
 	}
 	
 	/**
-	 * @param The position of the ride of type int
+	 * @param number The position of the ride of type int
 	 * @return An object of type ride
 	 */
 	public Ride getRide(int number) {
@@ -45,7 +45,7 @@ public class Rides{
 	
 	/**
 	 * Add a parent
-	 * @param An object of type ride to add
+	 * @param ride An object of type ride to add
 	 * @throws If the array of rides is compleat
 	 * @throws If the ride has already exist
 	 */
@@ -65,8 +65,8 @@ public class Rides{
 	
 	/**
 	 * Find a ride 
-	 * @param The start place of the ride of type String
-	 * @param The start place of the ride of type String
+	 * @param start The start place of the ride of type String
+	 * @param end The start place of the ride of type String
 	 * @return An object of type ride
 	 */
 	public Ride search(String start, String end) {
@@ -80,7 +80,8 @@ public class Rides{
 	
 	/**
 	 * Find a ride comparing the name
-	 * @param a name of the ride of type String
+	 * @param start a name of the start ride of type String
+	 * @param end a name of end the ride of type String
 	 * @return a number of type int with the position of the ride in the array and if the ride isnt found return -1
 	 */
 	public int find(String start, String end) {
@@ -98,7 +99,7 @@ public class Rides{
 	
 	/**
 	 * Remove a ride
-	 * @param A ride object to remove
+	 * @param ride A ride object to remove
 	 * @return a boolean in true if the ride was remove
 	 */
 	public boolean remove(Ride ride) {
@@ -130,8 +131,8 @@ public class Rides{
 	
 	/**
 	 * Remove a ride
-	 * @param A start place of the ride of type String
-	 * @param A start end of the ride of type String
+	 * @param start A start place of the ride of type String
+	 * @param end A start end of the ride of type String
 	 * @throws If the ride does not exist
 	 */
 	public void remove(String start, String end) throws BlaException{

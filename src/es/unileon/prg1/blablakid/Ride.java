@@ -17,11 +17,11 @@ public class Ride{
 	
 	/**
 	 * Costructor of the class ride
-	 * @param An object of type Time of the start of the ride
-	 * @param An object of type Time of the end of the ride
-	 * @param startPlace
-	 * @param endPlace
-	 * @throws BlaException
+	 * @param start An object of type Time of the start of the ride
+	 * @param end An object of type Time of the end of the ride
+	 * @param startPlace String
+	 * @param endPlace String
+	 * @throws if start>end
 	 */
 	public Ride(Time start, Time end, String startPlace, String endPlace ) throws BlaException{
 		if(!start.isBefore(end)) {
@@ -74,8 +74,8 @@ public class Ride{
 	
 	/**
 	 * Compare two rides
-	 * @param A start place of type String
-	 * @param An end place of type String
+	 * @param start A start place of type String
+	 * @param end An end place of type String
 	 * @return a boolean in true if both are equals
 	 */
 	public boolean isSame(String start,String end) {
