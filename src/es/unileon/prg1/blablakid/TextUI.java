@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * User interface
- * @author Marcos Garc�a
+ * @author Marcos Garcia
  *
  */
 
@@ -40,8 +40,7 @@ public class TextUI {
 	}
 	
 	/**
-	 * UI menu that is displayed by
-	 * screen to choose what we want to do.
+	 * UI menu that is displayed by screen to choose what we want to do.
 	 */
 	public void showMenu() {
 		showSummary();
@@ -67,8 +66,8 @@ public class TextUI {
 	}
 	/**
 	 * Method to choose option within the program.
-	 * @param number
-	 * @throws BlaException
+	 * @param number The option of the menu
+	 * @throws BlaException If the number is not an option of the menu
 	 */
 	public void selectOption(int number)throws BlaException{
 		logger.info("Selected option "+number);
@@ -139,9 +138,7 @@ public class TextUI {
 		blablakid.removeKid(name);
 	}
 	/**
-	 * This method asks for a lot of information (name of the parent,
-	 * number of children, number of rides per day and name of
-	 * children) to add a parent.
+	 * This method asks for information of the parent, and add it.
 	 * @throws BlaException
 	 */
 	public void addParent()throws BlaException{ 
@@ -227,8 +224,7 @@ public class TextUI {
 	}
 	
 	/**
-	 * After entering the kid's name, activity and day, the
-	 * method eliminates the activity saved previously.
+	 * After entering the kid's information, remove the activity.
 	 * @throws BlaException
 	 */
 	public void removeActivity() throws BlaException {
@@ -246,7 +242,7 @@ public class TextUI {
 	}
 	
 	/**
-	 * 	A ride is added in this method.
+	 * 	Add a ride.
 	 *  @throws BlaException
 	 */
 	public void addRide() throws BlaException {
@@ -282,7 +278,7 @@ public class TextUI {
 	}
 	
 	/**
-	 * In this method we eliminate the previous ride.
+	 * This method eliminate the previous ride.
 	 * @throws BlaException
 	 */
 	public void removeRide() throws BlaException {
@@ -302,10 +298,8 @@ public class TextUI {
 		this.blablakid.removeRide(parentName, day, rideStart, rideEnd);
 	}
 	/**
-	 * This method serves to ask about time. Returns
-	 * one hour, and if the time entered is not
-	 * correct an error appears.
-	 * @return
+	 * This method serves to ask about time
+	 * @return a Time object with the hour an minute
 	 * @throws BlaException
 	 */
 	public Time askTime() throws BlaException {
@@ -330,10 +324,9 @@ public class TextUI {
 		return new Time(hour, minute);
 	}
 	/**
-	 * Read read a text string checking that
-	 * it is not empty.
+	 * Read a text from console checking that it is not empty.
 	 * @return
-	 * @throws BlaException
+	 * @throws BlaException If the field is empty
 	 */
 	public String readString() throws BlaException {
 		String name;
@@ -347,10 +340,9 @@ public class TextUI {
 		return name;
 	} 
 	/**
-	 * Ask for a day of the week using a switch, and
-	 * each number from 0 to 4 is assigned a day.
-	 * @return
-	 * @throws BlaException
+	 * Ask for a day of the week using 
+	 * @return Day of the week
+	 * @throws BlaException If the numeric day entered is not [0-5]
 	 */
 	public WeekDays askWeekDay() throws BlaException{
 		WeekDays day = null;
@@ -394,7 +386,7 @@ public class TextUI {
 	}
 	
 	/**
-	 * This method shows information about the journeys
+	 * This method shows information about the rides
 	 * missing to cover.
 	 */
 	public void checkStatus() {
