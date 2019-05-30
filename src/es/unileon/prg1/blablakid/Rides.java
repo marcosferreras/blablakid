@@ -96,6 +96,11 @@ public class Rides{
 		return numero;
 	}
 	
+	/**
+	 * Remove a ride
+	 * @param A ride object to remove
+	 * @return a boolean in true if the ride was remove
+	 */
 	public boolean remove(Ride ride) {
 		int number=0;
 		boolean out=false;
@@ -123,6 +128,12 @@ public class Rides{
 		return out;
 	}
 	
+	/**
+	 * Remove a ride
+	 * @param A start place of the ride of type String
+	 * @param A start end of the ride of type String
+	 * @throws If the ride does not exist
+	 */
 	public void remove(String start, String end) throws BlaException{
 		int number=find(start,end);
 		if (number==-1) {
@@ -138,6 +149,10 @@ public class Rides{
 		this.next--;
 	}
 
+	/**
+	 * To String of the class
+	 * @return the information of the class
+	 */
 	public String toString() {
 		StringBuffer output = new StringBuffer();
 		for(int i=0;i<this.next;i++) {
@@ -145,7 +160,11 @@ public class Rides{
 		}
 		return output.toString();
 	}
-
+	
+	/**
+	 * Check information
+	 * @return A boolean in true if the first ride = null
+	 */
 	public boolean haveInformation() {
 		boolean out=false;
 		if (ride[0]!=null) out=true;
