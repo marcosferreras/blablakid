@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * User interface
- * @author Marcos García
+ * @author Marcos Garcï¿½a
  *
  */
 
@@ -35,6 +35,7 @@ public class TextUI {
 				System.out.println(e.getMessage());
 				}
 		}while (number != 0); 
+		logger.info("Program finished");
 
 	}
 	
@@ -153,6 +154,7 @@ public class TextUI {
 		Parent parent;
 		System.out.println ("Name of the parent to add:");
 		parentName = readString();
+		logger.info("Parent name: "+parentName);
 		do {
 			System.out.println ("How many kids does "+parentName+" have?:");
 			numberKids = Teclado.readInteger();
@@ -161,6 +163,7 @@ public class TextUI {
 				System.out.println("Error: Please, enter a numeric value");
 			}
 		} while (numberKids == Integer.MIN_VALUE);
+		logger.info("Kids of "+parentName+": "+numberKids);
 		kids = new Kids (numberKids);
 		do {
 			System.out.println ("How many rides can "+parentName+" make per day?:");
@@ -170,6 +173,7 @@ public class TextUI {
 				System.out.println("Error: Please, enter a numeric value");
 			}
 		} while (numberRides == Integer.MIN_VALUE);  
+		logger.info("Limit of rides for "+parentName+": "+numberRides);
 		parent = new Parent(parentName, numberRides, numberKids);	
 		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is "+parentName+"'s kid number"+i+"?");
@@ -177,7 +181,6 @@ public class TextUI {
 			logger.info("Adding "+kidName+" to "+parentName);
 			kids.add(new Kid (kidName)); 
 		}
-		logger.info("Adding parent "+parentName+" with "+numberRides+" rides per day and "+numberKids+" kids");
 		this.blablakid.add(parent, kids);
 	
 	}
@@ -206,16 +209,20 @@ public class TextUI {
 		Time start, end;
 		System.out.println ("Name of the activity:");
 		nameActivity = readString();
+		logger.info("Activity name: "+nameActivity);
 		System.out.println ("Where does the activity "+nameActivity+" takes place?");
 		place = readString();
+		logger.info("Place: "+place);
 		day = askWeekDay();
 		System.out.println ("Name of the kid taking the activity:");
 		nameKid = readString();
+		logger.info("Kid Name: "+nameKid);
+		logger.info("Asking when start");
 		System.out.println ("When does the activity start?");
 		start = askTime();
+		logger.info("Asking when end");
 		System.out.println ("When does the activity end?");
 		end = askTime();
-		logger.info("Adding activity "+nameActivity+" that takes place in "+place+"("+day.toString()+") to kid "+nameKid+".Start "+start.toString()+".End"+end.toString());
 		this.blablakid.add(new Activity(nameActivity, place, day, start, end), nameKid);
 	}
 	
@@ -230,10 +237,11 @@ public class TextUI {
 		WeekDays day;
 		System.out.println ("Name of the kid taking the activity to remove: ");
 		nameKid = readString();
+		logger.info("Kid name: "+nameKid);
 		System.out.println ("Name of the activity to remove: ");
 		activityName = readString();
+		logger.info("Activity name: "+activityName);
 		day = askWeekDay();
-		logger.info("Removing activity "+activityName+" from "+nameKid+" activities");
 		this.blablakid.removeActivity(nameKid, activityName, day);	
 	}
 	
@@ -249,21 +257,27 @@ public class TextUI {
 		Ride ride;
 		System.out.println ("Name of the parent in charge of the ride:");
 		parentName = readString();
+		logger.info("Parent name: "+parentName);
 		System.out.println ("Name of the activity of the ride:");
 		activityName = readString();
+		logger.info("Activity name: "+activityName);
 		System.out.println ("Name of the kid taking the activity:");
 		kidName = readString();
+		logger.info("Kid name: "+kidName);
 		System.out.println ("Where does the ride start?");
 		startPlace = readString();
+		logger.info("Start place: "+startPlace);
 		System.out.println ("Where does the ride end?");
 		endPlace = readString();
+		logger.info("End place: "+endPlace);
+		logger.info("Asking when start");
 		System.out.println ("When does the ride start?");
 		start = askTime();
+		logger.info("Asking when end");
 		System.out.println ("When does the ride end?");
 		end = askTime();
 		day = askWeekDay();
 		ride = new Ride(start, end, startPlace, endPlace);
-		logger.info("Adding ride to "+parentName+". Kid: "+kidName+". Activity: "+activityName+". Start Place: "+startPlace+".End Place: "+endPlace+".Start Time: "+start.toString()+"End Time: "+end.toString());
 		this.blablakid.addRide(parentName, activityName, kidName, ride, day);
 	}
 	
@@ -277,12 +291,14 @@ public class TextUI {
 		WeekDays day;
 		System.out.println ("Name of the parent in charge of the ride:");
 		parentName = readString();
+		logger.info("Parent name: "+parentName);
 		day = askWeekDay();
+		logger.info("Asking when start");
 		System.out.println ("Where does the ride start?");
 		rideStart = readString();
+		logger.info("Asking when end");
 		System.out.println ("Where does the ride end?");
 		rideEnd = readString();
-		logger.info("Removing ride of parent "+parentName+" in "+day.toString()+".Start Place: "+rideStart+".End Place: "+rideEnd);
 		this.blablakid.removeRide(parentName, day, rideStart, rideEnd);
 	}
 	/**
@@ -293,7 +309,7 @@ public class TextUI {
 	 * @throws BlaException
 	 */
 	public Time askTime() throws BlaException {
-		logger.info("Asking and checking Time");
+		logger.info("Asking Time");
 		int hour, minute;
 		System.out.println("\tInsert hour:"); 
 		do {
@@ -342,6 +358,7 @@ public class TextUI {
 		System.out.println ("Insert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday ");
 		do {
 			number = Teclado.readInteger();
+			logger.info("Day :"+number);
 			switch(number){
 				case 0:
 					day = WeekDays.MONDAY;

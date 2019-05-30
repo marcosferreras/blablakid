@@ -38,7 +38,7 @@ public class Kid{
 	 * @param ride Ride to add
 	 * @param day Weekday
 	 */
-	public void addRide(String activityName,Ride ride, WeekDays day)throws BlaException {
+	public void add(String activityName,Ride ride, WeekDays day)throws BlaException {
 		Activity activity = searchActivity(activityName, day);
 		activity.add(ride);
 	}
@@ -47,7 +47,7 @@ public class Kid{
 	 * @param activityName Name of the activity
 	 * @param day Weekday
 	 */
-	public void removeActivity(String activityName, WeekDays day) throws BlaException {
+	public void remove(String activityName, WeekDays day) throws BlaException {
 		this.activities.remove(activityName, day);
 	}
 	/**
