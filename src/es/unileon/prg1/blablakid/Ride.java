@@ -42,7 +42,9 @@ public class Ride{
 	}
 	public boolean isSame(String start,String end) {
 		boolean exit=false;
-		if (this.startPlace.toLowerCase()==start.toLowerCase() && this.endPlace.toLowerCase()==end.toLowerCase()) exit=true;
+		if (this.startPlace.toLowerCase().equals(start.toLowerCase()) && this.endPlace.toLowerCase().equals(end.toLowerCase())){
+			exit=true;
+		}
 		return exit;
 	}
 }
