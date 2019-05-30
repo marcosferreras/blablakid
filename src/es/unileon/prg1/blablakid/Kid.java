@@ -55,7 +55,7 @@ public class Kid{
 	 * @param activityName Name of the activity
 	 * @param day Weekday
 	 * @return The activity
-	 * @throws If the activity does not exist
+	 * @throws  If the activity does not exist
 	 */
 	public Activity searchActivity(String activityName, WeekDays day) throws BlaException {
 		Activity activity = this.activities.search(activityName, day);
