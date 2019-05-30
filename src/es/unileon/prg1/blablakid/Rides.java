@@ -153,6 +153,7 @@ public class Rides{
 	 * To String of the class
 	 * @return the information of the class
 	 */
+	@Override
 	public String toString() {
 		StringBuffer output = new StringBuffer();
 		for(int i=0;i<this.next;i++) {

@@ -51,6 +51,16 @@ public class RidesTests {
 			this.rides.add(ride);
 		}
 		
+		@Test (expected = BlaException.class)
+		public void testAddALot() throws BlaException{
+			Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palmera");
+			Ride ride2=new Ride(new Time(10,30),new Time(12,30),"csa","palomera");
+			Ride ride3=new Ride(new Time(10,30),new Time(12,30),"csa","palmera");
+			this.rides.add(ride);
+			this.rides.add(ride2);
+			this.rides.add(ride3);
+		}
+		
 		@Test
 		public void testSearch() {
 			assertSame(rides.getRide(0),rides.search("casa", "palomera"));

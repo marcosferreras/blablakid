@@ -109,6 +109,7 @@ public class Parent{
 	 * ToString of the class
 	 * @return the information of the class in a String
 	 */
+	@Override
 	public String toString() {
 		StringBuffer output = new StringBuffer();
 		output.append("\n##### "+this.name+" #####\n");

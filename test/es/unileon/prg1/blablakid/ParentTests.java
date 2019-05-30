@@ -19,6 +19,16 @@ public class ParentTests {
 		assertEquals("Carlos",parent.getName());
 	}
 	
+	@Test (expected=BlaException.class)
+	public void testBuilderExceptionRides() throws BlaException{
+		new Parent("c",-1,5);
+	}
+	
+	@Test (expected=BlaException.class)
+	public void testBuilderExceptionKids() throws BlaException{
+		new Parent("c",1,-5);
+	}
+	
 	@Test
 	public void testAddremoveRide() throws BlaException{
 		Ride ride=new Ride(new Time(10,30),new Time(12,30),"casa","palomera");
@@ -36,6 +46,12 @@ public class ParentTests {
 	@Test
 	public void testFind() {
 		assertEquals(true,parent.find("Carlos"));
+	}
+	
+	@Test
+	public void testRemoveKid() throws BlaException{
+		this.parent.remove("carlos");
+		assertFalse(this.parent.find("carlos"));
 	}
 	
 	@Test

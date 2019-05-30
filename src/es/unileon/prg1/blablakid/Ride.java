@@ -67,6 +67,7 @@ public class Ride{
 	 * ToString of the class
 	 * @return All the information of the class
 	 */
+	@Override
 	public String toString() {
 		return ("\n"+this.startPlace+" > "+this.endPlace+" : "+timeStart.toString()+" / "+ timeEnd.toString());
 	}

@@ -37,6 +37,7 @@ public class RideTests {
 	@Test
 	public void testIsSame() {
 		assertTrue(this.ride.isSame(ride.getStartPlace(), ride.getEndPlace()));
+		assertFalse(this.ride.isSame("p",ride.getEndPlace()));
 		assertFalse(this.ride.isSame(ride.getStartPlace(),"p"));
 	}
 	

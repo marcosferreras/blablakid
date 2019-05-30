@@ -169,6 +169,7 @@ public class Parents {
 	 * ToString of the class
 	 * @return the information of the class
 	 */
+	@Override
 	public String toString() {
 		StringBuffer output= new StringBuffer();
 		output.append("\nPARENTS:");

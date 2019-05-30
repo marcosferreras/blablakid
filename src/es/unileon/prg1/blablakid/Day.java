@@ -94,6 +94,7 @@ public class Day{
 	 * ToString of the class
 	 * @return the information of the class in a String if rides have at least 1 ride
 	 */
+	@Override
 	public String toString() {
 		StringBuffer output = new StringBuffer();
 		output.append("");
