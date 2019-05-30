@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * User interface
- * @author Marcos García
+ * @author Marcos Garcia
  *
  */
 
@@ -35,12 +35,12 @@ public class TextUI {
 				System.out.println(e.getMessage());
 				}
 		}while (number != 0); 
+		logger.info("Program finished");
 
 	}
 	
 	/**
-	 * UI menu that is displayed by
-	 * screen to choose what we want to do.
+	 * UI menu that is displayed by screen to choose what we want to do.
 	 */
 	public void showMenu() {
 		showSummary();
@@ -66,8 +66,8 @@ public class TextUI {
 	}
 	/**
 	 * Method to choose option within the program.
-	 * @param number
-	 * @throws BlaException
+	 * @param number The option of the menu
+	 * @throws BlaException If the number is not an option of the menu
 	 */
 	public void selectOption(int number)throws BlaException{
 		logger.info("Selected option "+number);
@@ -138,9 +138,7 @@ public class TextUI {
 		blablakid.removeKid(name);
 	}
 	/**
-	 * This method asks for a lot of information (name of the parent,
-	 * number of children, number of rides per day and name of
-	 * children) to add a parent.
+	 * This method asks for information of the parent, and add it.
 	 * @throws BlaException
 	 */
 	public void addParent()throws BlaException{ 
@@ -153,6 +151,7 @@ public class TextUI {
 		Parent parent;
 		System.out.println ("Name of the parent to add:");
 		parentName = readString();
+		logger.info("Parent name: "+parentName);
 		do {
 			System.out.println ("How many kids does "+parentName+" have?:");
 			numberKids = Teclado.readInteger();
@@ -161,6 +160,7 @@ public class TextUI {
 				System.out.println("Error: Please, enter a numeric value");
 			}
 		} while (numberKids == Integer.MIN_VALUE);
+		logger.info("Kids of "+parentName+": "+numberKids);
 		kids = new Kids (numberKids);
 		do {
 			System.out.println ("How many rides can "+parentName+" make per day?:");
@@ -170,6 +170,7 @@ public class TextUI {
 				System.out.println("Error: Please, enter a numeric value");
 			}
 		} while (numberRides == Integer.MIN_VALUE);  
+		logger.info("Limit of rides for "+parentName+": "+numberRides);
 		parent = new Parent(parentName, numberRides, numberKids);	
 		for(int i=0; i<numberKids; i++) {
 			System.out.println ("Who is "+parentName+"'s kid number"+i+"?");
@@ -177,7 +178,6 @@ public class TextUI {
 			logger.info("Adding "+kidName+" to "+parentName);
 			kids.add(new Kid (kidName)); 
 		}
-		logger.info("Adding parent "+parentName+" with "+numberRides+" rides per day and "+numberKids+" kids");
 		this.blablakid.add(parent, kids);
 	
 	}
@@ -206,22 +206,25 @@ public class TextUI {
 		Time start, end;
 		System.out.println ("Name of the activity:");
 		nameActivity = readString();
+		logger.info("Activity name: "+nameActivity);
 		System.out.println ("Where does the activity "+nameActivity+" takes place?");
 		place = readString();
+		logger.info("Place: "+place);
 		day = askWeekDay();
 		System.out.println ("Name of the kid taking the activity:");
 		nameKid = readString();
+		logger.info("Kid Name: "+nameKid);
+		logger.info("Asking when start");
 		System.out.println ("When does the activity start?");
 		start = askTime();
+		logger.info("Asking when end");
 		System.out.println ("When does the activity end?");
 		end = askTime();
-		logger.info("Adding activity "+nameActivity+" that takes place in "+place+"("+day.toString()+") to kid "+nameKid+".Start "+start.toString()+".End"+end.toString());
 		this.blablakid.add(new Activity(nameActivity, place, day, start, end), nameKid);
 	}
 	
 	/**
-	 * After entering the kid's name, activity and day, the
-	 * method eliminates the activity saved previously.
+	 * After entering the kid's information, remove the activity.
 	 * @throws BlaException
 	 */
 	public void removeActivity() throws BlaException {
@@ -230,15 +233,16 @@ public class TextUI {
 		WeekDays day;
 		System.out.println ("Name of the kid taking the activity to remove: ");
 		nameKid = readString();
+		logger.info("Kid name: "+nameKid);
 		System.out.println ("Name of the activity to remove: ");
 		activityName = readString();
+		logger.info("Activity name: "+activityName);
 		day = askWeekDay();
-		logger.info("Removing activity "+activityName+" from "+nameKid+" activities");
 		this.blablakid.removeActivity(nameKid, activityName, day);	
 	}
 	
 	/**
-	 * 	A ride is added in this method.
+	 * 	Add a ride.
 	 *  @throws BlaException
 	 */
 	public void addRide() throws BlaException {
@@ -249,26 +253,32 @@ public class TextUI {
 		Ride ride;
 		System.out.println ("Name of the parent in charge of the ride:");
 		parentName = readString();
+		logger.info("Parent name: "+parentName);
 		System.out.println ("Name of the activity of the ride:");
 		activityName = readString();
+		logger.info("Activity name: "+activityName);
 		System.out.println ("Name of the kid taking the activity:");
 		kidName = readString();
+		logger.info("Kid name: "+kidName);
 		System.out.println ("Where does the ride start?");
 		startPlace = readString();
+		logger.info("Start place: "+startPlace);
 		System.out.println ("Where does the ride end?");
 		endPlace = readString();
+		logger.info("End place: "+endPlace);
+		logger.info("Asking when start");
 		System.out.println ("When does the ride start?");
 		start = askTime();
+		logger.info("Asking when end");
 		System.out.println ("When does the ride end?");
 		end = askTime();
 		day = askWeekDay();
 		ride = new Ride(start, end, startPlace, endPlace);
-		logger.info("Adding ride to "+parentName+". Kid: "+kidName+". Activity: "+activityName+". Start Place: "+startPlace+".End Place: "+endPlace+".Start Time: "+start.toString()+"End Time: "+end.toString());
 		this.blablakid.addRide(parentName, activityName, kidName, ride, day);
 	}
 	
 	/**
-	 * In this method we eliminate the previous ride.
+	 * This method eliminate the previous ride.
 	 * @throws BlaException
 	 */
 	public void removeRide() throws BlaException {
@@ -277,23 +287,23 @@ public class TextUI {
 		WeekDays day;
 		System.out.println ("Name of the parent in charge of the ride:");
 		parentName = readString();
+		logger.info("Parent name: "+parentName);
 		day = askWeekDay();
+		logger.info("Asking when start");
 		System.out.println ("Where does the ride start?");
 		rideStart = readString();
+		logger.info("Asking when end");
 		System.out.println ("Where does the ride end?");
 		rideEnd = readString();
-		logger.info("Removing ride of parent "+parentName+" in "+day.toString()+".Start Place: "+rideStart+".End Place: "+rideEnd);
 		this.blablakid.removeRide(parentName, day, rideStart, rideEnd);
 	}
 	/**
-	 * This method serves to ask about time. Returns
-	 * one hour, and if the time entered is not
-	 * correct an error appears.
-	 * @return
+	 * This method serves to ask about time
+	 * @return a Time object with the hour an minute
 	 * @throws BlaException
 	 */
 	public Time askTime() throws BlaException {
-		logger.info("Asking and checking Time");
+		logger.info("Asking Time");
 		int hour, minute;
 		System.out.println("\tInsert hour:"); 
 		do {
@@ -314,10 +324,9 @@ public class TextUI {
 		return new Time(hour, minute);
 	}
 	/**
-	 * Read read a text string checking that
-	 * it is not empty.
+	 * Read a text from console checking that it is not empty.
 	 * @return
-	 * @throws BlaException
+	 * @throws BlaException If the field is empty
 	 */
 	public String readString() throws BlaException {
 		String name;
@@ -331,10 +340,9 @@ public class TextUI {
 		return name;
 	} 
 	/**
-	 * Ask for a day of the week using a switch, and
-	 * each number from 0 to 4 is assigned a day.
-	 * @return
-	 * @throws BlaException
+	 * Ask for a day of the week using 
+	 * @return Day of the week
+	 * @throws BlaException If the numeric day entered is not [0-5]
 	 */
 	public WeekDays askWeekDay() throws BlaException{
 		WeekDays day = null;
@@ -342,6 +350,7 @@ public class TextUI {
 		System.out.println ("Insert the number of the day of the week:\n0 -Monday / 1-Tuesday / 2 -Wednesday / 3 -Thursday / 4 -Friday ");
 		do {
 			number = Teclado.readInteger();
+			logger.info("Day :"+number);
 			switch(number){
 				case 0:
 					day = WeekDays.MONDAY;
@@ -377,7 +386,7 @@ public class TextUI {
 	}
 	
 	/**
-	 * This method shows information about the journeys
+	 * This method shows information about the rides
 	 * missing to cover.
 	 */
 	public void checkStatus() {

@@ -56,15 +56,15 @@ public class Kids{
 	 * @param name Name of the kid to remove
 	 * @throws If the kid does not exist
 	 */
-	public void remove(String name)throws BlaException{
-		Kid kid = search(name);
+	public void remove(String kidName)throws BlaException{
+		Kid kid = search(kidName);
 		if(kid == null) { 
-			logger.error("The kid "+name+" does not exist");
-			throw new BlaException("Error: The kid "+name+" does not exist");
+			logger.error("The kid "+kidName+" does not exist");
+			throw new BlaException("Error: The kid "+kidName+" does not exist");
 		} 
 		organize(position(kid)); 
 		kids[this.next-1] = null;
-		logger.info("The kid "+name+" was deleted");
+		logger.info("The kid "+kidName+" was deleted");
 		this.next--;				
 	}
 	/**
@@ -98,12 +98,12 @@ public class Kids{
 	 * @param name Name of the kid to search
 	 * @return A kid object
 	 */
-	public Kid search(String name){
+	public Kid search(String kidName){
 		Kid kid = null;
 		Boolean exist = false;
 		int i = 0;
 		while((exist == false) && (i < this.next)) {
-			if(name.toLowerCase().equals(kids[i].getName().toLowerCase())){
+			if(kidName.toLowerCase().equals(kids[i].getName().toLowerCase())){
 				kid = kids[i];
 				exist = true;
 			}
@@ -116,7 +116,7 @@ public class Kids{
 	 * ride Ride to remove
 	 * @return True if was deleted, False if not
 	 */
-	public boolean removeRide(Ride ride) {
+	public boolean remove(Ride ride) {
 		boolean deleted = false;
 		int i = 0;
 		while(i<this.next && !deleted) {
@@ -153,10 +153,11 @@ public class Kids{
 	 */
 	public String checkStatus() {
 		StringBuffer salida= new StringBuffer();
-		salida.append("RIDES STATUS:");
+		salida.append("+-+-+-+-+-+-RIDES STATUS+-+-+-+-+-+-");
 		for(int i = 0; i < this.next; i++){
 			salida.append(kids[i].checkStatus());
 		}
+		salida.append("\n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
 		return salida.toString();
 	}
 	/**

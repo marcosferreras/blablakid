@@ -52,7 +52,7 @@ public class KidsTests {
 		kids.add(kid);
 		kid.add(new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00)));
 		Ride ride = new Ride(new Time(15,00), new Time(16,00), "Casa", "Palomera");
-		kid.addRide("Baloncesto",ride,WeekDays.MONDAY);
+		kid.add("Baloncesto",ride,WeekDays.MONDAY);
 		assertTrue(kid.removeRide(ride));
 	}
 	@Test
@@ -61,9 +61,9 @@ public class KidsTests {
 		kids.add(kid);
 		kid.add(new Activity("Baloncesto", "Palomera", WeekDays.MONDAY, new Time(18,00), new Time(20,00)));
 		Ride ride = new Ride(new Time(15,00), new Time(16,00), "Casa", "Palomera");
-		kid.addRide("Baloncesto",ride,WeekDays.MONDAY);
+		kid.add("Baloncesto",ride,WeekDays.MONDAY);
 		Ride ride1 = new Ride(new Time(15,00), new Time(16,00), "Casa", "Palomera");
-		assertFalse(kids.removeRide(ride1));
+		assertFalse(kids.remove(ride1));
 	}
 	@Test 
 	public void testGetLength()throws BlaException {
@@ -79,7 +79,8 @@ public class KidsTests {
 	}
 	@Test
 	public void testCheckStatus() {
-		assertEquals("RIDES STATUS:", this.kids.checkStatus());
+		assertEquals("+-+-+-+-+-+-RIDES STATUS+-+-+-+-+-+-\n" + 
+				"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", this.kids.checkStatus());
 	}
 	@Test
 	public void testToString() {
