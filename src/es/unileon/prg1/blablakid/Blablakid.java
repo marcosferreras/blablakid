@@ -15,7 +15,7 @@ public class Blablakid{
 	
 	/**
 	 * Constructor of the class
-	 * @param A number of type int to the max number of parents and kids
+	 * @param maxNumOfKids A number of type int to the max number of parents and kids
 	 * @throws If the number is equals or less than 0
 	 */
 	protected Blablakid(int maxNumOfKids) throws BlaException{
@@ -25,7 +25,7 @@ public class Blablakid{
 	
 	/**
 	 * Add a kid
-	 * @param An object of type int to add
+	 * @param kid An object of type int to add
 	 * @throws If the kid has already exist 
 	 */
 	public void add(Kid kid) throws BlaException {
@@ -34,7 +34,7 @@ public class Blablakid{
 	
 	/**
 	 * Remove a Kid
-	 * @param A name of the kid to remove of type String
+	 * @param name name A name of the kid to remove of type String
 	 * @throws If the kid does not exist
 	 */
 	public void removeKid(String name) throws BlaException {
@@ -52,8 +52,8 @@ public class Blablakid{
 	
 	/**
 	 * Add a activity
-	 * @param An object activity to add
-	 * @param A kidName of type String
+	 * @param activity An object activity to add
+	 * @param kidName A kidName of type String
 	 * @throws If activity has already exist
 	 * @throws If kid does not exist
 	 */
@@ -68,9 +68,9 @@ public class Blablakid{
 	
 	/**
 	 * Remove a activity and his rides
-	 * @param A kidName of the kid who has the activity of type String
-	 * @param A activityName of the activity to remove of type String
-	 * @param  An object day of type WeekDays
+	 * @param kidNmame A kidName of the kid who has the activity of type String
+	 * @param activityName A activityName of the activity to remove of type String
+	 * @param day An object day of type WeekDays
 	 * @throws If the kid does not exist
 	 * @throws If the activity does not exist
 	 */
@@ -101,7 +101,7 @@ public class Blablakid{
 	 * Add a ride
 	 * @param kidName A kidName of the kid who has the activity of type String
 	 * @param Activity name A activityName of the activity to remove of type String
-	 * @param parentNameA name of the parent of type String
+	 * @param parentName A name of the parent of type String
 	 * @param day An object of type WeekDays to add the ride in that day
 	 * @param ride An object of type Ride to add it
 	 * @throws If the ride has already exist
