@@ -38,7 +38,7 @@ public class Activities{
 	}
 	/**
 	 * Remove an activity from the collection
-	 * @param name Name of the activity to remove
+	 * @param activityName Name of the activity to remove
 	 * @param day Day of the activity
 	 */
 	public void remove(String activityName, WeekDays day) throws BlaException {

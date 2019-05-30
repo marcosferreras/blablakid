@@ -53,7 +53,7 @@ public class Kids{
 	}
 	/**
 	 * Remove a Kid from the array
-	 * @param name Name of the kid to remove
+	 * @param kidName Name of the kid to remove
 	 * @throws If the kid does not exist
 	 */
 	public void remove(String kidName)throws BlaException{
@@ -95,7 +95,7 @@ public class Kids{
 	}
 	/**
 	 * Search a kid in the array
-	 * @param name Name of the kid to search
+	 * @param kidName Name of the kid to search
 	 * @return A kid object
 	 */
 	public Kid search(String kidName){

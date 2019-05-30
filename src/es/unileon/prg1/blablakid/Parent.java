@@ -39,7 +39,7 @@ public class Parent{
 	}
 	/**
 	 * Add a kid
-	 * @param Kid An object of type Kid to add
+	 * @param kid An object of type Kid to add
 	 */
 	public void add(Kid kid) throws BlaException {
 		this.kids.add(kid);

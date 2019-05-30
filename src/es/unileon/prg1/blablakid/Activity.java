@@ -95,7 +95,6 @@ public class Activity{
 	/**
 	 * Add a ride to the activity 
 	 * @param ride A ride to add to the activity of a kid
-	 * @return True if the ride was added or False if not
 	 */
 	public void add(Ride ride)throws BlaException {
 		if(ride.getTimeEnd().isBefore(this.start)) {
