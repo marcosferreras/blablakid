@@ -56,7 +56,7 @@
 				<pathelement path="${lib}"/>
 				<pathelement path="${lib1}"/>
         		     	<pathelement path="${lib2}"/>
-				<pathelement path="./etcLogsTest"/>
+				<pathelement path="./etc/etcLogs"/>
 			</classpath>
 			<arg value="es.unileon.prg1.blablakid.AllTests"/>
 		</java>
@@ -71,7 +71,7 @@
 			      <pathelement path="${lib}"/>
         		      <pathelement path="${lib1}"/>
         		      <pathelement path="${lib2}"/>
-			      <pathelement path="."/>
+			      <pathelement path="./etc"/>
         		 </classpath>
      		 </java>
      </target>
