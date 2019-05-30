@@ -2,20 +2,41 @@ package es.unileon.prg1.blablakid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+/**
+ * 
+ * @author Marcos  Ferreras Rodriguez
+ * @author Mario Alvarez Iglesias
+ *
+ */
 public class Blablakid{
 	Kids kids;
 	Parents parents;
 	private static final Logger logger= LogManager.getLogger(Kid.class);
 	
+	/**
+	 * Constructor of the class
+	 * @param A number of type int to the max number of parents and kids
+	 * @throws If the number is equals or less than 0
+	 */
 	protected Blablakid(int maxNumOfKids) throws BlaException{
 		this.kids = new Kids(maxNumOfKids);
 		this.parents = new Parents(maxNumOfKids*2);
 	}
+	
+	/**
+	 * Add a kid
+	 * @param An object of type int to add
+	 * @throws If the kid has already exist 
+	 */
 	public void add(Kid kid) throws BlaException {
 		kids.add(kid);
 	}
 	
+	/**
+	 * Remove a Kid
+	 * @param A name of the kid to remove of type String
+	 * @throws If the kid does not exist
+	 */
 	public void removeKid(String name) throws BlaException {
 		Kid kid = this.kids.search(name);
 		Rides rides;
@@ -29,6 +50,13 @@ public class Blablakid{
 		this.parents.remove(rides);
 	}
 	
+	/**
+	 * Add a activity
+	 * @param An object activity to add
+	 * @param A kidName of type String
+	 * @throws If activity has already exist
+	 * @throws If kid does not exist
+	 */
 	public void add(Activity activity, String kidName) throws BlaException {
 		Kid kid = kids.search(kidName);
 		if(kid == null){
@@ -37,6 +65,15 @@ public class Blablakid{
 		}
 			kid.add(activity);
 	}
+	
+	/**
+	 * Remove a activity and his rides
+	 * @param A kidName of the kid who has the activity of type String
+	 * @param A activityName of the activity to remove of type String
+	 * @param  An object day of type WeekDays
+	 * @throws If the kid does not exist
+	 * @throws If the activity does not exist
+	 */
 	public void removeActivity(String kidName, String activityName, WeekDays day) throws BlaException {
 		Kid kid = kids.search(kidName);
 		Activity activity;
@@ -59,6 +96,19 @@ public class Blablakid{
 		kid.remove(activityName, day);
 		this.parents.remove(rides);
 	}
+	
+	/**
+	 * Add a ride
+	 * @param A kidName of the kid who has the activity of type String
+	 * @param A activityName of the activity to remove of type String
+	 * @param A name of the parent of type String
+	 * @param An object of type WeekDays to add the ride in that day
+	 * @param An object of type Ride to add it
+	 * @throws If the ride has already exist
+	 * @throws If the parent has not exist
+	 * @throws If the kid does not exist
+	 * @throws If the activity does not exist
+	 */
 	public void addRide(String parentName,String activityName,String kidName,Ride ride, WeekDays day) throws BlaException {
 		Kid kid = kids.search(kidName);
 		Activity activity;
@@ -70,10 +120,28 @@ public class Blablakid{
 		activity.add(ride);	
 		this.parents.add(parentName, day, ride); 
 	} 
+	
+	/**
+	 * Remove a ride
+	 * @param A name of the parent of type String
+	 * @param An object of type WeekDays to add the ride in that day
+	 * @param A start place of type String
+	 * @param A end place of type String
+	 * @throws If the ride has not exist
+	 * @throws If the parent has not exist
+	 */
 	public void removeRide(String nameParent, WeekDays day, String rideStart, String rideEnd) throws BlaException{		
 		Ride ride=this.parents.remove(nameParent, day, rideStart, rideEnd);
 		this.kids.remove(ride);
 	}
+	
+	/**
+	 * Add a parent
+	 * @param An object Kids to add to the parent
+	 * @param An object of type parent to add
+	 * @throws If the array of parents is compleat
+	 * @throws If the parent has already exist
+	 */
 	public void add(Parent parent, Kids kids) throws BlaException{ 
 		Kid kid;
 		if(kids.getLength()>this.kids.getLength()) {
@@ -91,12 +159,29 @@ public class Blablakid{
 		}
 		this.parents.add(parent);
 	}
+	
+	/**
+	 * Remove a parent
+	 * @param A name of the parent to remove of type String
+	 * @throws If the parent does not exist
+	 */
 	public void removeParent(String name) throws BlaException {
 		this.parents.remove(name);
 	}
+	
+	/**
+	 * Obtain the state of all the kids's rides
+	 * @return The state of all the kids's rides
+	 */
 	public String checkStatus() {
 		return kids.checkStatus();
 	}
+	
+	/**
+	 * ToString of the class
+	 * @return the information of the class
+	 */
+	@Override
 	public String toString(){
 		StringBuffer output=new StringBuffer();
 		output.append("////////////////////////\n\n");

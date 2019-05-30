@@ -9,8 +9,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class Ride{
 	
-	private Time timeStart;
-	private Time timeEnd;
+	private Time start;
+	private Time end;
 	private String startPlace;
 	private String endPlace;
 	private static final Logger logger= LogManager.getLogger(Ride.class);
@@ -23,23 +23,23 @@ public class Ride{
 	 * @param endPlace
 	 * @throws BlaException
 	 */
-	public Ride(Time timeStart, Time timeEnd, String startPlace, String endPlace ) throws BlaException{
-		if(!timeStart.isBefore(timeEnd)) {
+	public Ride(Time start, Time end, String startPlace, String endPlace ) throws BlaException{
+		if(!start.isBefore(end)) {
 			logger.error("Error:Please change the order of the hours");
 			throw new BlaException("Error:Please change the order of the hours");
 		}
-		this.timeStart=timeStart;
-		this.timeEnd=timeEnd;
+		this.start=start;
+		this.end=end;
 		this.startPlace=startPlace;
 		this.endPlace = endPlace;
-		logger.info("A ride object from "+startPlace+" at "+timeStart.toString()+" to "+endPlace+" at "+timeEnd.toString());
+		logger.info("A ride object from "+startPlace+" at "+start.toString()+" to "+endPlace+" at "+end.toString());
 	}
 
 	/**
 	 * @return A object time of the start of the ride
 	 */
 	public Time getTimeStart() {
-		return timeStart;
+		return start;
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public class Ride{
 	 * @return A object time of the end of the ride
 	 */
 	public Time getTimeEnd() {
-		return timeEnd;
+		return end;
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class Ride{
 	 */
 	@Override
 	public String toString() {
-		return ("\n"+this.startPlace+" > "+this.endPlace+" : "+timeStart.toString()+" / "+ timeEnd.toString());
+		return ("\n"+this.startPlace+" > "+this.endPlace+" : "+start.toString()+" / "+ end.toString());
 	}
 	
 	/**
