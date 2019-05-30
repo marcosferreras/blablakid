@@ -39,6 +39,11 @@ public class Parents {
 		return output;
 	}
 	
+	/**
+	 * Remove a kid of a parent
+	 * @param a number of tipe int
+	 * @throws If the number is less or equal to zero
+	 */
 	public void removeKid(String name) throws BlaException{
 		for (int i=0;i<this.next;i++) {
 			if(parent[i].find(name)) {
@@ -100,6 +105,7 @@ public class Parents {
 				number++;
 			}
 			outRide=false;
+			number=0;
 		}
 		
 	}
