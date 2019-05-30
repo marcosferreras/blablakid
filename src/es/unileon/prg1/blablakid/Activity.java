@@ -130,7 +130,7 @@ public class Activity{
 	 * @param ride Ride to remove
 	 * @return boolean True if was found and deleted, false if not
 	 */
-	public boolean removeRide(Ride ride) { 
+	public boolean remove(Ride ride) { 
 		boolean deleted = false;
 		if (this.before == ride) {
 			logger.info("The ride before "+before.toString()+" of activity "+this.name+" was deleted");

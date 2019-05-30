@@ -101,20 +101,20 @@ public class ActivityTests {
 	public void testRemoveRideBefore()throws BlaException {
 		Ride ride = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
 		this.activity.add(ride);
-		assertTrue(this.activity.removeRide(ride));
+		assertTrue(this.activity.remove(ride));
 	} 
 	@Test 
 	public void testRemoveFalseRide()throws BlaException {
 		Ride ride = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
 		Ride ride1 = new Ride(new Time(11,00), new Time(18,00), "Casa", "Palomera");
 		this.activity.add(ride);
-		assertFalse(this.activity.removeRide(ride1));
+		assertFalse(this.activity.remove(ride1));
 	} 
 	@Test 
 	public void testRemoveRideAfter()throws BlaException {
 		Ride ride = new Ride(new Time(20,00), new Time(21,00), "Palomera", "Casa");
 		this.activity.add(ride);
-		assertTrue(this.activity.removeRide(ride));
+		assertTrue(this.activity.remove(ride));
 	} 
 	@Test 
 	public void testToString() throws BlaException {

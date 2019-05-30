@@ -41,15 +41,15 @@ public class Activities{
 	 * @param name Name of the activity to remove
 	 * @param day Day of the activity
 	 */
-	public void remove(String name, WeekDays day) throws BlaException {
-		Activity activity = search(name, day);
+	public void remove(String activityName, WeekDays day) throws BlaException {
+		Activity activity = search(activityName, day);
 		if(activity == null) {
-			logger.error("The activity "+name+" does not exist");
-			throw new BlaException("Error: The activity "+name+" does not exist in "+day.toString());
+			logger.error("The activity "+activityName+" does not exist");
+			throw new BlaException("Error: The activity "+activityName+" does not exist in "+day.toString());
 		} else {
 					organize(position(activity));
 					this.activities[this.next]=null;
-					logger.info("The activity "+name+" was deleted from "+day.toString());
+					logger.info("The activity "+activityName+" was deleted from "+day.toString());
 					this.next--;
 			}
 	}
@@ -126,7 +126,7 @@ public class Activities{
 		boolean deleted = false;
 		int i = 0;
 		while(i<this.next && !deleted) {
-			deleted = this.activities[i].removeRide(ride);
+			deleted = this.activities[i].remove(ride);
 			i++;
 		}
 		return deleted;
