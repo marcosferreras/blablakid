@@ -112,8 +112,11 @@ public class RidesTest {
 		}
 		
 		@Test
-		public void testToString() {
+		public void testToString() throws BlaException{
+			Ride ride=new Ride(new Time(10,30),new Time(12,30),"csa","palmera");
+			rides.add(ride);
 			assertEquals("\n" + 
-					"casa > palomera : 12:30 / 15:30",rides.toString());
+					"casa > palomera : 12:30 / 15:30\n" + 
+					"csa > palmera : 10:30 / 12:30",rides.toString());
 		}
 }

@@ -3,11 +3,20 @@ package es.unileon.prg1.blablakid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * @author Mario Alvarez Iglesias
+ */
+
 public class Parents {
 	int next;
 	private Parent parent[];
 	private static final Logger logger= LogManager.getLogger(Parents.class);
 	
+	/**
+	 * Constructor
+	 * @param numParents Maximun number of kids indicated at runtime
+	 * @throws If the number of Parents is less or equal to zero
+	 */
 	public Parents(int numParents) throws BlaException {
 		if (isCorrectNumber(numParents)) {
 			parent = new Parent[numParents];
@@ -16,15 +25,18 @@ public class Parents {
 		}
 	}
 	
+	/**
+	 * Check if a number greater than 0
+	 * @param a number of tipe int
+	 * @throws If the number is less or equal to zero
+	 */
 	private boolean isCorrectNumber(int numParents) throws BlaException {
-		boolean salida;
-		if (numParents>0) salida=true;
-		else {
-			salida=false;
+		boolean output=true;
+		if (numParents<=0) {
 			logger.error("Error:The number must be greater than zero");
 			throw new BlaException ("Error:The number must be greater than zero");
 		}
-		return salida;
+		return output;
 	}
 	
 	public void removeKid(String name) throws BlaException{
@@ -87,6 +99,7 @@ public class Parents {
 				outRide=this.parent[number].remove(ride);
 				number++;
 			}
+			outRide=false;
 		}
 		
 	}
